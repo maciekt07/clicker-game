@@ -1,5 +1,5 @@
 import { User } from "../types";
-import { Achievement, achievements } from "../constants/achievements";
+import { achievements } from "../constants/achievements";
 
 interface Props {
   userProfile: User;

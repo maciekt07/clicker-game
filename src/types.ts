@@ -1,3 +1,4 @@
+// TODO: Move the User and Item interfaces to separate files in a 'types' folder for better organization and maintainability.
 /**
 Represents the user profile data structure.
 @interface
@@ -14,7 +15,7 @@ Represents the user profile data structure.
 
 export interface User {
   name: string | null;
-  createdAt: Date | null;
+  createdAt: Date;
   points: number;
   clicks: number;
   maxPoints: number;

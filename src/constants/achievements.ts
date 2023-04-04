@@ -6,6 +6,7 @@ Represents an achievement that can be earned by the user.
 @property {number=} requirement - The amount required to obtain the achievement.
 @property {number=} clicksRequired - The number of clicks required to obtain the achievement.
 */
+// TODO: Move this interface to types folder
 export interface Achievement {
   name: string;
   description: string;

@@ -1,12 +1,10 @@
-import styled from "styled-components";
-import { colorPalette } from "../styles/theme";
 import { formatNumber } from "../utils";
 import { User } from "../types";
 
 interface Props {
   userProfile: User;
 }
-
+// TODO: - Improve UI with additional styling/layout
 export const StatsInfo = ({ userProfile }: Props) => {
   return (
     <div style={{ textAlign: "center" }}>

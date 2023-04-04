@@ -4,16 +4,14 @@ import {
   StatsInfo,
   Shop,
   Navbar,
-  AchievementsList,
   ProfileAvatar,
   BackToTop,
 } from "../components";
 import { User } from "../types";
-import { ClickButton, ClickContainer, ClickImg, MuiTheme } from "../styles";
-import { ThemeProvider } from "@mui/material";
+import { ClickButton, ClickContainer, ClickImg } from "../styles";
 import { compactFormat } from "../utils";
 import { achievements } from "../constants";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
@@ -104,7 +102,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
   };
 
   useEffect(() => {
-    // TODO: start adding points after the user creates a profile
+    // FIXME: start adding points after the user creates a profile
     document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
 
     //points per second interval

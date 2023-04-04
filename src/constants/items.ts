@@ -1,5 +1,5 @@
 import { Item } from "../types";
-
+// TODO: Increase the cost of items with each purchase to balance the game economy and make it more challenging.
 export const items: { [key: string]: Item } = {
   smallBee: {
     name: "Very Small Bee",

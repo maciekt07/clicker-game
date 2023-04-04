@@ -7,7 +7,7 @@ interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
 }
-
+// TODO: Add more content to the About page
 export const About = ({ userProfile, setUserProfile }: Props) => {
   useEffect(() => {
     document.title = "Honey Clicker - About";

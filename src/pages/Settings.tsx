@@ -7,6 +7,10 @@ interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
 }
+// TODO:
+// - Implement form to allow user to change name
+// - Improve UI with additional styling/layout
+// - Display success/error messages upon form submission
 
 export const Settings = ({ userProfile, setUserProfile }: Props) => {
   const n = useNavigate();
