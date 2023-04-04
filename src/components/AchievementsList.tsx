@@ -4,7 +4,7 @@ import { achievements } from "../constants/achievements";
 interface Props {
   userProfile: User;
 }
-
+// TODO: Add styles and move this component to a modal
 export const AchievementsList = ({ userProfile }: Props) => {
   const unlockedAchievements = Object.values(achievements).filter(
     (achievement) => userProfile.achievements.includes(achievement.name)

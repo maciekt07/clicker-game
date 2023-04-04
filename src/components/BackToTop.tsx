@@ -28,7 +28,7 @@ export const BackToTop = () => {
     </Btn>
   );
 };
-
+// TODO: Modify the size and position of the BackToTop button to better fit the design
 const Btn = styled.button`
   position: fixed;
   display: flex;

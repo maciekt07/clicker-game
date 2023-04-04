@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-
+// TODO: Move this file to the "theme" folder.
 export const colorPalette = {
   yellow: "#ffb604",
   orange: "#f28705",
