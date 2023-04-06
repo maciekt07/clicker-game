@@ -217,7 +217,7 @@ Error generating stack: `+i.message+`
   justify-content: center;
   align-items: center;
   @media only screen and (max-width: 768px) {
-    margin-top: 128px;
+    margin-top: 96px;
   }
 `,O4=He.img`
   width: 20vw;
