@@ -8,16 +8,22 @@ export const AvatarContainer = styled.span`
   font-size: 16px;
   color: black;
   cursor: pointer;
+  @media only screen and (max-width: 768px) {
+    margin-right: 15px;
+  }
 `;
 export const ClickContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    margin-top: 60px;
+  }
 `;
 export const ClickImg = styled.img`
   width: 20vw;
-  max-width: 300px;
-  min-width: 180px;
+  max-width: 360px;
+  min-width: 220px;
   filter: drop-shadow(0px 0px 30px #ffd071);
 `;
 

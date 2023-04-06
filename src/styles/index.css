@@ -17,7 +17,9 @@
 
 * {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  -webkit-tap-highlight-color: transparent;
 }
+/* Remove select button styles on mobile devices */
 
 *::selection {
   background: rgb(255, 153, 37);
@@ -28,6 +30,7 @@ body {
   background: #f2b680;
   min-width: 320px;
   min-height: 100vh;
+  touch-action: manipulation;
 }
 .MuiPaper-root,
 .MuiButtonBase-root {

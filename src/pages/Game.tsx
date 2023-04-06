@@ -135,15 +135,13 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
           </Navbar>
 
           <div style={{ paddingTop: "150px" }} />
-          <ClickContainer>
+          <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton onClick={handleClick}>
               <ClickImg draggable="false" src={HoneyJar} />
             </ClickButton>
           </ClickContainer>
           <StatsInfo userProfile={userProfile} />
           <Shop userProfile={userProfile} setUserProfile={setUserProfile} />
-          {/* TODO: Move the AchievementsList elsewhere */}
-          {/* <AchievementsList userProfile={userProfile} /> */}
           <BackToTop />
         </>
       )}
