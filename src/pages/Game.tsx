@@ -102,18 +102,17 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
   };
 
   useEffect(() => {
-    // FIXME: start adding points after the user creates a profile
-    document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
+    if (userProfile.name !== null) {
+      document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
+      //points per second interval
+      const intervalId = setInterval(() => {
+        handleAddPoints(userProfile.points + userProfile.perSecond / 100);
+      }, 10);
 
-    //points per second interval
-
-    const intervalId = setInterval(() => {
-      handleAddPoints(userProfile.points + userProfile.perSecond / 100);
-    }, 10);
-
-    return () => {
-      clearInterval(intervalId);
-    };
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
   });
 
   useEffect(() => {

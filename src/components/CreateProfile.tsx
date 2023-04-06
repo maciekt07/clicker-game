@@ -6,7 +6,7 @@ import {
   DialogContent,
   Button,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/system";
 import { MuiTheme } from "../styles";
 import { nameToAvatar } from "../utils";
@@ -27,11 +27,14 @@ export const CreateProfile: React.FC<Props> = ({ onSave }) => {
     setInputValue(event.target.value);
   };
 
+  useEffect(() => {
+    document.title = "Create Profile - Honey Clicker";
+  }, []);
   const handleSetUserProfile = () => {
     if (inputValue.length < 4) {
       setErrorMessage("Must be at least 4 characters long");
-    } else if (inputValue.length > 25)
-      setErrorMessage("Can be up to 25 characters long");
+    } else if (inputValue.length > 16)
+      setErrorMessage("Can be up to 16 characters long");
     else {
       onSave(inputValue, new Date());
       console.log(new Date());

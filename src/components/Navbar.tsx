@@ -51,6 +51,10 @@ const LogoImage = styled.img`
   height: 72px;
   margin-left: 8vw;
   flex-shrink: 0;
+  transition: 0.3s filter;
+  ${LogoContainer}:hover > & {
+    filter: drop-shadow(0px 0px 30px #ffd071);
+  }
 `;
 
 const AboutLink = styled(Link)`
@@ -58,7 +62,7 @@ const AboutLink = styled(Link)`
   margin-left: 30px;
   color: ${colorPalette.orange};
   text-decoration: underline;
-  transition: 0.3s all;
+  transition: 0.3s text-shadow;
   &:hover {
     text-shadow: 0px 0px 12px ${colorPalette.orange};
   }
@@ -69,7 +73,7 @@ const LogoTxt = styled.p`
   color: ${colorPalette.orange};
   font-weight: bold;
   text-shadow: 0px 0px 4px ${colorPalette.orange};
-  transition: 0.3s all;
+  transition: 0.3s text-shadow;
   ${LogoContainer}:hover > & {
     text-shadow: 0px 0px 12px ${colorPalette.orange};
   }

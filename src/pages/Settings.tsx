@@ -3,6 +3,7 @@ import { Navbar, ProfileAvatar } from "../components";
 import { User } from "../types";
 import { useNavigate } from "react-router-dom";
 import { Slider } from "@mui/material";
+import { formatTimeAgo } from "../utils";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
@@ -15,7 +16,7 @@ interface Props {
 export const Settings = ({ userProfile, setUserProfile }: Props) => {
   const n = useNavigate();
   useEffect(() => {
-    document.title = `Honey Clicker Settings - ${userProfile.name}`;
+    document.title = `Settings - ${userProfile.name} - Honey Clicker`;
   }, []);
   useEffect(() => {
     if (userProfile.name === null) {
@@ -40,6 +41,7 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
         created at {createdAt.toLocaleDateString()}{" "}
         {createdAt.toLocaleTimeString()}
       </div>
+      <div>{formatTimeAgo(createdAt.toString())}</div>
       <div>Volume: {userProfile.audioVolume}</div>
       <Slider
         sx={{ width: "200px" }}

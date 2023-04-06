@@ -15,6 +15,7 @@ export {
   Container,
   ItemWrapper,
   LockedContainer,
-  Header,
+  ItemName,
   BuyButton,
+  Header,
 } from "./Shop.styled";

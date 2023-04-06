@@ -6,6 +6,32 @@ export const Container = styled.div`
   flex-wrap: wrap;
 `;
 
+export const Header = styled.div`
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 3px solid white;
+    border-radius: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  &:not(:empty)::before {
+    margin-right: 0.5em;
+  }
+
+  &:not(:empty)::after {
+    margin-left: 0.5em;
+  }
+`;
+
 const Item = css`
   background: ${colorPalette.brown};
   height: 300px;
@@ -14,7 +40,6 @@ const Item = css`
   border-radius: 30px;
   transition: 0.3s all;
   margin: 25px;
-
   flex-basis: calc(25% - 10px);
   margin-bottom: 20px;
 
@@ -46,7 +71,7 @@ export const LockedContainer = styled.div`
   font-size: 20px;
 `;
 
-export const Header = styled.h2`
+export const ItemName = styled.h2`
   text-align: center;
   font-size: 24px;
 `;

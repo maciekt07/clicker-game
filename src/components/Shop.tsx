@@ -1,22 +1,40 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { items } from "../constants/items";
 import { User } from "../types";
 import {
   BuyButton,
   Container,
   Header,
+  ItemName,
   ItemWrapper,
   LockedContainer,
 } from "../styles";
+
+import BuySound from "../assets/buy.mp3";
+
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
 }
 
+// The new cost of the item is calculated using the formula:
+// newCost = costBase * (rateGrowth ^ itemCount)
+// where costBase is the initial cost of the item,
+// rateGrowth is the factor by which the cost increases with each purchase (e.g. 1.1 for 10% increase),
+// and itemCount is the current number of items owned by the user.
+
 export const Shop = ({ userProfile, setUserProfile }: Props) => {
   const handleBuyItem = (item: string) => {
+    const buyAudio = new Audio(BuySound);
+    buyAudio.volume = userProfile.audioVolume;
+    buyAudio.play();
     const selectedItem = items[item];
-    const newPoints = userProfile.points - selectedItem.cost;
+    const rateGrown = 1.1;
+    const itemCount = userProfile.inventory[item] || 0;
+    const newCost = Math.floor(
+      selectedItem.cost * Math.pow(rateGrown, itemCount)
+    );
+    const newPoints = userProfile.points - newCost;
     const newMultiplier = userProfile.multiplier + selectedItem.multiplier;
     const newPerSecond = userProfile.perSecond + selectedItem.perSecond;
     const newInventory = { ...userProfile.inventory };
@@ -30,37 +48,48 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
     });
   };
 
+  const numLockedAchievements = useMemo(() => {
+    return Object.values(items).filter(
+      (item) => item.cost > userProfile.maxPoints
+    ).length;
+  }, [userProfile.maxPoints]);
+
   return (
     <div>
+      <Header>🛒 Shop</Header>
       <Container>
-        {/* TODO: Render LockedContainer only once if there are any locked achievements */}
         {Object.entries(items).map(([itemName, item]) => {
           if (item.cost > userProfile.maxPoints) {
-            return (
-              <LockedContainer key={itemName}>
-                <h3>🔒 Locked</h3>
-              </LockedContainer>
-            );
+            return null;
           }
+
+          const itemCount = userProfile.inventory[itemName] || 0;
+          const newCost = Math.floor(item.cost * Math.pow(1.1, itemCount));
 
           return (
             <ItemWrapper key={itemName}>
-              <Header>🐝{item.name}</Header>
-              <p>Cost: {item.cost}</p>
+              <ItemName>🐝{item.name}</ItemName>
+              <p>Cost: {newCost}</p>
               <p>Multiplier: {item.multiplier}</p>
               <p>Per second: {item.perSecond}</p>
-              <p>You bought: {userProfile.inventory[itemName] | 0}</p>
+              <p>You bought: {itemCount}</p>
+
               <BuyButton
-                disabled={item.cost > userProfile.points}
+                disabled={newCost > userProfile.points}
                 onClick={() => {
                   handleBuyItem(itemName);
                 }}
               >
-                {item.cost > userProfile.points ? "Not Enough Points" : "Buy"}
+                {newCost > userProfile.points ? "Not Enough Points" : "Buy"}
               </BuyButton>
             </ItemWrapper>
           );
         })}
+        {numLockedAchievements > 0 && (
+          <LockedContainer>
+            <h3>🔒 Locked ({numLockedAchievements} Items)</h3>
+          </LockedContainer>
+        )}
       </Container>
     </div>
   );

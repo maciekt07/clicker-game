@@ -10,7 +10,7 @@ interface Props {
 // TODO: Add more content to the About page
 export const About = ({ userProfile, setUserProfile }: Props) => {
   useEffect(() => {
-    document.title = "Honey Clicker - About";
+    document.title = "About - Honey Clicker";
   }, []);
   return (
     <>

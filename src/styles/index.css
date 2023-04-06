@@ -33,6 +33,11 @@ body {
 .MuiButtonBase-root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
 }
+
+.MuiDialog-container {
+  backdrop-filter: blur(4px);
+}
+
 a {
   text-decoration: none;
 }

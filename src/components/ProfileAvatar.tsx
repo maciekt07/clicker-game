@@ -13,11 +13,14 @@ import {
   DialogContent,
   Button,
   DialogActions,
+  IconButton,
+  Typography,
 } from "@mui/material";
 import { AvatarContainer } from "../styles";
 import { User } from "../types";
-import { Logout, Settings } from "@mui/icons-material";
+import { EmojiEvents, Logout, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { AchievementsList } from "./AchievementsList";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
@@ -26,7 +29,8 @@ interface Props {
 export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const [dialog, setDialog] = useState(false);
+  const [logoutDialog, setLogoutDialog] = useState(false);
+  const [achievementsDialog, setAchievementsDialog] = useState(false);
   const n = useNavigate();
   return (
     <>
@@ -40,17 +44,19 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
           title={userProfile.name !== null ? userProfile.name : "No Account"}
           placement="bottom-start"
         >
-          <Avatar
-            style={{
-              width: "50px",
-              height: "50px",
-              fontSize: "24px",
-              background: "#f28705",
-              boxShadow: "0 0 30px -1px #f28705cb",
-            }}
-          >
-            {nameToAvatar(userProfile.name)}
-          </Avatar>
+          <IconButton>
+            <Avatar
+              style={{
+                width: "50px",
+                height: "50px",
+                fontSize: "24px",
+                background: "#f28705",
+                boxShadow: "0 0 30px -1px #f28705cb",
+              }}
+            >
+              {nameToAvatar(userProfile.name)}
+            </Avatar>
+          </IconButton>
         </Tooltip>
       </AvatarContainer>
       <Menu
@@ -60,6 +66,13 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
         onClose={() => setAnchorEl(null)}
         MenuListProps={{
           "aria-labelledby": "basic-button",
+        }}
+        PaperProps={{
+          style: {
+            borderRadius: 12,
+            background: "#ffffffdc",
+            backdropFilter: "blur(6px)",
+          },
         }}
       >
         <MenuItem
@@ -76,7 +89,22 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
 
         <MenuItem
           onClick={() => {
-            setDialog(true);
+            setAnchorEl(null);
+            setAchievementsDialog(true);
+          }}
+          disabled={
+            userProfile.name === null || userProfile.achievements.length === 0
+          }
+        >
+          <ListItemIcon>
+            <EmojiEvents />
+          </ListItemIcon>
+          <ListItemText>Achievements</ListItemText>
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => {
+            setLogoutDialog(true);
             setAnchorEl(null);
           }}
           disabled={userProfile.name === null}
@@ -92,11 +120,10 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
           style: {
             borderRadius: 18,
             padding: 4,
-            fontFamily: "Inter",
           },
         }}
-        open={dialog}
-        onClose={() => setDialog(false)}
+        open={logoutDialog}
+        onClose={() => setLogoutDialog(false)}
       >
         <DialogTitle>Are You Sure You Want To Log Out?</DialogTitle>
         <DialogContent>Your profile will not be saved</DialogContent>
@@ -105,9 +132,8 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
             style={{
               fontSize: ".9rem",
               borderRadius: 12,
-              fontFamily: "Inter",
             }}
-            onClick={() => setDialog(false)}
+            onClick={() => setLogoutDialog(false)}
           >
             no
           </Button>
@@ -115,14 +141,38 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
             style={{
               fontSize: ".9rem",
               borderRadius: 12,
-              fontFamily: "Inter",
             }}
             onClick={() => {
-              setDialog(false);
+              setLogoutDialog(false);
               setUserProfile(defaultUserProfile);
             }}
           >
             yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        PaperProps={{
+          style: {
+            borderRadius: 18,
+            padding: 24,
+          },
+        }}
+        open={achievementsDialog}
+        onClose={() => setAchievementsDialog(false)}
+      >
+        <DialogTitle>{userProfile.name} Achievements </DialogTitle>
+        <AchievementsList userProfile={userProfile} />
+        <DialogActions>
+          <Button
+            onClick={() => setAchievementsDialog(false)}
+            style={{
+              fontSize: "1rem",
+              borderRadius: 12,
+              padding: 12,
+            }}
+          >
+            Close
           </Button>
         </DialogActions>
       </Dialog>

@@ -24,4 +24,12 @@ export const ClickImg = styled.img`
 export const ClickButton = muistyled(Button)({
   border: `4px solid ${colorPalette.orange}`,
   borderRadius: "48px",
+  transition: ".15s all ease-out",
+  // "&:hover": {
+  //   boxShadow: `0px 0px 60px -5px ${colorPalette.orange}`,
+  // },
+  "&:active": {
+    transform: "scale(.85)",
+    borderRadius: "72px",
+  },
 });
