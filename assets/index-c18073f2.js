@@ -212,6 +212,9 @@ Error generating stack: `+i.message+`
   font-size: 16px;
   color: black;
   cursor: pointer;
+  @media only screen and (max-width: 768px) {
+    margin-right: 10px;
+  }
 `,I4=He.div`
   display: flex;
   justify-content: center;
