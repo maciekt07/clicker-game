@@ -227,7 +227,7 @@ Error generating stack: `+i.message+`
   max-width: 360px;
   min-width: 220px;
   filter: drop-shadow(0px 0px 30px #ffd071);
-`,N4=te(es)({border:`4px solid ${Wt.orange}`,borderRadius:"48px",transition:".15s all ease-out","&:active":{transform:"scale(.85)",borderRadius:"72px"}}),L4=He.div`
+`,N4=te(es)({border:`4px solid ${Wt.orange}`,borderRadius:"48px",transition:".15s all ease-out","&:active":{"@media not all and (pointer: coarse)":{transform:"scale(.85)",borderRadius:"72px"}}}),L4=He.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
