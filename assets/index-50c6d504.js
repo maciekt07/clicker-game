@@ -216,10 +216,13 @@ Error generating stack: `+i.message+`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    margin-top: 128px;
+  }
 `,O4=He.img`
   width: 20vw;
-  max-width: 300px;
-  min-width: 180px;
+  max-width: 320px;
+  min-width: 200px;
   filter: drop-shadow(0px 0px 30px #ffd071);
 `,M4=te(Ji)({border:`4px solid ${Wt.orange}`,borderRadius:"48px",transition:".15s all ease-out","&:active":{transform:"scale(.85)",borderRadius:"72px"}}),N4=He.div`
   display: flex;
