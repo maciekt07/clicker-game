@@ -14,7 +14,7 @@ import {
   Button,
   DialogActions,
   IconButton,
-  Typography,
+  Badge,
 } from "@mui/material";
 import { AvatarContainer } from "../styles";
 import { User } from "../types";
@@ -45,17 +45,32 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
           placement="bottom-start"
         >
           <IconButton>
-            <Avatar
-              style={{
-                width: "50px",
-                height: "50px",
-                fontSize: "24px",
-                background: "#f28705",
-                boxShadow: "0 0 30px -1px #f28705cb",
-              }}
+            <Badge
+              badgeContent={userProfile.newAchievements}
+              color="secondary"
+              overlap="circular"
             >
-              {nameToAvatar(userProfile.name)}
-            </Avatar>
+              <Avatar
+                src={userProfile.profilePicture?.toString()}
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  fontSize: "24px",
+                  background: "#f28705",
+                  boxShadow: `${
+                    userProfile.profilePicture === null
+                      ? "0 0 30px -1px #f28705cb"
+                      : ""
+                  }`,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden",
+                }}
+              >
+                {nameToAvatar(userProfile.name)}
+              </Avatar>
+            </Badge>
           </IconButton>
         </Tooltip>
       </AvatarContainer>
@@ -70,7 +85,7 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
         PaperProps={{
           style: {
             borderRadius: 12,
-            background: "#ffffffdc",
+            background: "#ffffffd0",
             backdropFilter: "blur(6px)",
           },
         }}
@@ -91,13 +106,20 @@ export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
           onClick={() => {
             setAnchorEl(null);
             setAchievementsDialog(true);
+            setUserProfile({ ...userProfile, newAchievements: 0 });
           }}
           disabled={
             userProfile.name === null || userProfile.achievements.length === 0
           }
         >
           <ListItemIcon>
-            <EmojiEvents />
+            <Badge
+              badgeContent={userProfile.newAchievements}
+              variant="dot"
+              color="primary"
+            >
+              <EmojiEvents />
+            </Badge>
           </ListItemIcon>
           <ListItemText>Achievements</ListItemText>
         </MenuItem>

@@ -8,7 +8,7 @@ interface Props {
 export const StatsInfo = ({ userProfile }: Props) => {
   return (
     <div style={{ textAlign: "center" }}>
-      <h2>Points: {formatNumber(userProfile.points)}</h2>
+      <h2>Points: 🍯{formatNumber(userProfile.points)}</h2>
       <span>Max Points: {formatNumber(userProfile.maxPoints)}</span>
       <br />
       <span>Clicks: {userProfile.clicks}</span>

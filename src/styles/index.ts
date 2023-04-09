@@ -19,3 +19,8 @@ export {
   BuyButton,
   Header,
 } from "./Shop.styled";
+export {
+  SettingsContainer,
+  SettingsInput,
+  SaveButton,
+} from "./Settings.styled";

@@ -12,10 +12,10 @@ export const formatTimeAgo = (createdAt: string): string => {
   const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // 1 min = 60000 ms
 
   if (diffDays > 0) {
-    return `${diffDays}d ago`;
+    return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
   } else if (diffHrs > 0) {
-    return `${diffHrs}h ago`;
+    return `${diffHrs} hour${diffHrs === 1 ? "" : "s"} ago`;
   } else {
-    return `${diffMins}m ago`;
+    return `${diffMins} minute${diffMins === 1 ? "" : "s"} ago`;
   }
 };

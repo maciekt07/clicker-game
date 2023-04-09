@@ -6,6 +6,8 @@ export const colorPalette = {
   maroon: "#380000",
   peach: "#f2b680",
   brown: "#dc823c",
+  purple: "#4f2f4f",
+  indigo: "#4b0082",
 };
 
 export const MuiTheme = createTheme({
@@ -14,7 +16,7 @@ export const MuiTheme = createTheme({
       main: colorPalette.orange,
     },
     secondary: {
-      main: "#672fff",
+      main: colorPalette.peach,
     },
   },
 });

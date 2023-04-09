@@ -37,71 +37,68 @@ export const CreateProfile: React.FC<Props> = ({ onSave }) => {
       setErrorMessage("Can be up to 16 characters long");
     else {
       onSave(inputValue, new Date());
-      console.log(new Date());
     }
   };
 
   return (
     <>
-      <ThemeProvider theme={MuiTheme}>
-        <Dialog
-          PaperProps={{
-            style: {
-              borderRadius: 18,
-              padding: 4,
+      <Dialog
+        PaperProps={{
+          style: {
+            borderRadius: 18,
+            padding: 4,
+            fontFamily: "Inter",
+          },
+        }}
+        open={dialog}
+        onClose={() => setDialog(false)}
+      >
+        <DialogTitle>Looks like you don't have a profile yet</DialogTitle>
+        <DialogContent>
+          You can create it now by entering your nickname
+        </DialogContent>
+        <DialogActions>
+          <Button
+            style={{
+              fontSize: ".9rem",
+              borderRadius: 12,
               fontFamily: "Inter",
-            },
-          }}
-          open={dialog}
-          onClose={() => setDialog(false)}
-        >
-          <DialogTitle>Looks like you don't have a profile yet</DialogTitle>
-          <DialogContent>
-            You can create it now by entering your nickname
-          </DialogContent>
-          <DialogActions>
-            <Button
-              style={{
-                fontSize: ".9rem",
-                borderRadius: 12,
-                fontFamily: "Inter",
-              }}
-              onClick={() => setDialog(false)}
-            >
-              ok
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Background>
-          <Navbar />
-          <div style={{ paddingTop: "100px" }} />
-          <FormContainer>
-            <Avatar
-              style={{
-                width: "96px",
-                height: "96px",
-                fontSize: "36px",
-                background: "#f28705",
-                boxShadow: "0 0 30px -1px #f28705cb",
-              }}
-            >
-              {inputValue !== "" ? nameToAvatar(inputValue) : null}
-            </Avatar>
-            <br />
-            <NameInput
-              error={errorMessage !== null}
-              helperText={errorMessage}
-              label="Enter You Username"
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            <br />
-            <CreateButton onClick={handleSetUserProfile}>
-              Save Profile
-            </CreateButton>
-          </FormContainer>
-        </Background>
-      </ThemeProvider>
+            }}
+            onClick={() => setDialog(false)}
+          >
+            ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Background>
+        <Navbar />
+        <div style={{ paddingTop: "100px" }} />
+        <FormContainer>
+          <Avatar
+            style={{
+              width: "96px",
+              height: "96px",
+              fontSize: "36px",
+              background: "#f28705",
+              boxShadow: "0 0 30px -1px #f28705cb",
+            }}
+          >
+            {inputValue !== "" ? nameToAvatar(inputValue) : null}
+          </Avatar>
+          <br />
+          <NameInput
+            error={errorMessage !== null}
+            helperText={errorMessage}
+            label="Enter You Username"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+          <br />
+          <CreateButton onClick={handleSetUserProfile}>
+            Save Profile
+          </CreateButton>
+        </FormContainer>
+      </Background>
     </>
   );
 };

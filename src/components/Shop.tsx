@@ -11,6 +11,7 @@ import {
 } from "../styles";
 
 import BuySound from "../assets/buy.mp3";
+import { formatNumber, playSound } from "../utils";
 
 interface Props {
   userProfile: User;
@@ -25,9 +26,8 @@ interface Props {
 
 export const Shop = ({ userProfile, setUserProfile }: Props) => {
   const handleBuyItem = (item: string) => {
-    const buyAudio = new Audio(BuySound);
-    buyAudio.volume = userProfile.audioVolume;
-    buyAudio.play();
+    playSound(BuySound, userProfile.audioVolume);
+
     const selectedItem = items[item];
     const rateGrown = 1.1;
     const itemCount = userProfile.inventory[item] || 0;
@@ -69,10 +69,10 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
           return (
             <ItemWrapper key={itemName}>
               <ItemName>🐝{item.name}</ItemName>
-              <p>Cost: {newCost}</p>
-              <p>Multiplier: {item.multiplier}</p>
-              <p>Per second: {item.perSecond}</p>
-              <p>You bought: {itemCount}</p>
+              <p>Cost: 🍯{formatNumber(newCost, 0)}</p>
+              <p>Multiplier: {formatNumber(item.multiplier, 0)}</p>
+              <p>Per second: {formatNumber(item.perSecond, 1)}</p>
+              <p>You bought: {formatNumber(itemCount, 0)}</p>
 
               <BuyButton
                 disabled={newCost > userProfile.points}

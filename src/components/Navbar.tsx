@@ -32,8 +32,8 @@ export const Nav = styled.nav<NavProps>`
   position: fixed;
   top: 0;
   width: 100%;
-  background: #ffffffcb;
-  backdrop-filter: blur(6px);
+  background: #ffffffe2;
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.hasContent ? "center" : "left")};
@@ -53,7 +53,7 @@ const LogoImage = styled.img`
   flex-shrink: 0;
   transition: 0.3s filter;
   ${LogoContainer}:hover > & {
-    filter: drop-shadow(0px 0px 30px #ffd071);
+    filter: drop-shadow(0px 0px 16px #ffd071);
   }
 `;
 

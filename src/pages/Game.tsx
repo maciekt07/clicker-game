@@ -9,13 +9,14 @@ import {
 } from "../components";
 import { User } from "../types";
 import { ClickButton, ClickContainer, ClickImg } from "../styles";
-import { compactFormat } from "../utils";
+import { compactFormat, playSound } from "../utils";
 import { achievements } from "../constants";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
-
+import { Stack, Slider } from "@mui/material";
+import { VolumeDown, VolumeUp, VolumeMute } from "@mui/icons-material";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
@@ -32,9 +33,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
   };
 
   const handleClick = () => {
-    const clickAudio = new Audio(ClickSound);
-    clickAudio.volume = userProfile.audioVolume;
-    clickAudio.play();
+    playSound(ClickSound, userProfile.audioVolume);
     handleAddPoints(userProfile.points + userProfile.multiplier);
     setClicks(clicks + 1);
 
@@ -51,6 +50,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
         toast(`🖱️ ${achievement.name} unlocked! - ${achievement.description}`);
       });
 
+      const newAchievements = userProfile.newAchievements + 1;
       // Add unlocked click achievements to user profile
       setUserProfile({
         ...userProfile,
@@ -58,6 +58,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
           ...userProfile.achievements,
           ...unlockedClickAchievements.map((achievement) => achievement.name),
         ],
+        newAchievements: newAchievements,
       });
     }
   };
@@ -79,7 +80,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
       unlockedAchievements.forEach((achievement) => {
         toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
       });
-
+      const newAchievements = userProfile.newAchievements + 1;
       // Add unlocked achievements to user profile
       setUserProfile({
         ...userProfile,
@@ -90,6 +91,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
           ...userProfile.achievements,
           ...unlockedAchievements.map((achievement) => achievement.name),
         ],
+        newAchievements: newAchievements,
       });
     } else {
       setUserProfile({
@@ -134,9 +136,49 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
             />
           </Navbar>
 
-          <div style={{ paddingTop: "150px" }} />
+          <div style={{ paddingTop: "120px" }} />
+          <Stack
+            spacing={2}
+            direction="row"
+            sx={{ mb: 1, width: "200px" }}
+            alignItems="center"
+          >
+            <div
+              style={{ display: "flex" }}
+              onClick={() => {
+                userProfile.audioVolume === 0
+                  ? setUserProfile({ ...userProfile, audioVolume: 1 })
+                  : setUserProfile({ ...userProfile, audioVolume: 0 });
+              }}
+            >
+              {userProfile.audioVolume === 0 ? (
+                <VolumeMute />
+              ) : userProfile.audioVolume <= 0.5 ? (
+                <VolumeDown />
+              ) : (
+                <VolumeUp />
+              )}
+            </div>
+            <Slider
+              sx={{ width: "200px" }}
+              value={userProfile.audioVolume}
+              min={0}
+              max={1}
+              step={0.05}
+              onChange={(e: Event, value: number | number[]) => {
+                setUserProfile({
+                  ...userProfile,
+                  audioVolume: value as number,
+                });
+              }}
+            />
+          </Stack>
+          {/* TODO: add click animation on mobile */}
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
-            <ClickButton onClick={handleClick}>
+            <ClickButton
+              onClick={handleClick}
+              onTouchStart={(e) => e.preventDefault()}
+            >
               <ClickImg draggable="false" src={HoneyJar} />
             </ClickButton>
           </ClickContainer>

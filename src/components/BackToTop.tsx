@@ -23,13 +23,27 @@ export const BackToTop = () => {
   };
 
   return (
-    <Btn onClick={scrollTop} style={{ display: showBtn ? "flex" : "none" }}>
-      <KeyboardArrowUp color="primary" fontSize="large" />
+    <Btn
+      onClick={scrollTop}
+      //  style={{ display: showBtn ? "flex" : "none" }}
+      show={showBtn}
+    >
+      <KeyboardArrowUp
+        color="primary"
+        fontSize="large"
+        sx={{
+          fontSize: "2.5rem",
+        }}
+      />
     </Btn>
   );
 };
-// TODO: Modify the size and position of the BackToTop button to better fit the design
-const Btn = styled.button`
+
+interface BtnProps {
+  show: boolean;
+}
+
+const Btn = styled.button<BtnProps>`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -37,18 +51,19 @@ const Btn = styled.button`
   bottom: 20px;
   right: 20px;
   z-index: 99;
-  font-size: 18px;
   border: none;
   outline: none;
   transition: 0.3s all;
-  background: #ffffffcb;
-  backdrop-filter: blur(6px);
+  background: #ffffffe2;
+  backdrop-filter: blur(5px);
   color: white;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 16px;
+  padding: 12px;
+  border-radius: 22px;
+  transform: scale(${(props) => (props.show ? 1 : 0)});
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
-    background-color: #fffffff3;
+    background-color: #ffffff;
   }
 `;

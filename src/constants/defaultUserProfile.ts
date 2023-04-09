@@ -6,6 +6,7 @@ import { User } from "../types";
 export const defaultUserProfile: User = {
   name: null,
   createdAt: new Date(),
+  profilePicture: null,
   points: 0,
   clicks: 0,
   maxPoints: 0,
@@ -13,5 +14,6 @@ export const defaultUserProfile: User = {
   perSecond: 0.1,
   inventory: {},
   achievements: [],
+  newAchievements: 0,
   audioVolume: 0.3,
 };

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Navbar, ProfileAvatar } from "../components";
 
 import { User } from "../types";
+import { BackButton } from "../components/BackButton";
 
 interface Props {
   userProfile: User;
@@ -21,9 +22,17 @@ export const About = ({ userProfile, setUserProfile }: Props) => {
         />
       </Navbar>
       <div style={{ paddingTop: "100px" }} />
+      <BackButton />
+      <div>About</div>
       <h3>
         idk clicker game made in 3 days with react styled-components and mui
       </h3>
+      <a target="_blank" href="https://github.com/maciekt07/clicker-game">
+        <img
+          src="https://github-readme-stats.vercel.app/api/pin/?username=maciekt07&repo=clicker-game&theme=gruvbox"
+          alt="github"
+        />
+      </a>
     </>
   );
 };
