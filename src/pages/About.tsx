@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { useEffect } from "react";
 import { Navbar, ProfileAvatar, BackButton } from "../components";
 import styled from "styled-components";
 import { User } from "../types";
@@ -78,12 +79,12 @@ export const About = ({ userProfile, setUserProfile }: Props) => {
             </AboutLink>{" "}
             using:{" "}
             {techStack.map((tech, index) => (
-              <>
-                <AboutLink key={tech.name} href={tech.link} target="_blank">
+              <React.Fragment key={index}>
+                <AboutLink href={tech.link} target="_blank">
                   {tech.name}
                 </AboutLink>
                 {index !== techStack.length - 1 && ", "} &nbsp;
-              </>
+              </React.Fragment>
             ))}
           </AboutText>
 

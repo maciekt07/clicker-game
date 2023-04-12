@@ -73,6 +73,9 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
         >
           <Avatar
             src={userProfile.profilePicture?.toString()}
+            onError={() =>
+              setUserProfile({ ...userProfile, profilePicture: null })
+            }
             style={{
               width: "128px",
               height: "128px",

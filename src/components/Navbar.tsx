@@ -36,12 +36,13 @@ export const Nav = styled.nav<NavProps>`
   top: 0;
   width: 100%;
   background: #ffffffe2;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.hasContent ? "center" : "left")};
   color: black;
-  z-index: 40;
+  z-index: 2;
   user-select: none;
 `;
 const LogoContainer = styled.span`
