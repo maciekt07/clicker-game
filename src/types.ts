@@ -19,6 +19,7 @@ export interface User {
   points: number;
   clicks: number;
   maxPoints: number;
+  totalPoints: number;
   multiplier: number;
   perSecond: number;
   inventory: {

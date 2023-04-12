@@ -15,8 +15,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
-import { Stack, Slider } from "@mui/material";
-import { VolumeDown, VolumeUp, VolumeMute } from "@mui/icons-material";
+import { VolumeSlider } from "../components/VolumeSlider";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
@@ -47,7 +46,14 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
     if (unlockedClickAchievements.length > 0) {
       // Show toast notification for each unlocked click achievement
       unlockedClickAchievements.forEach((achievement) => {
-        toast(`🖱️ ${achievement.name} unlocked! - ${achievement.description}`);
+        // toast(`🖱️ ${achievement.name} unlocked! - ${achievement.description}`);
+        toast(
+          <>
+            <b>🖱️ {achievement.name} unlocked!</b>
+            <br />
+            <span>{achievement.description}</span>
+          </>
+        );
       });
 
       const newAchievements = userProfile.newAchievements + 1;
@@ -78,7 +84,14 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
     if (unlockedAchievements.length > 0) {
       // Show toast notification for each unlocked achievement
       unlockedAchievements.forEach((achievement) => {
-        toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
+        // toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
+        toast(
+          <>
+            <b>🍯 {achievement.name} unlocked!</b>
+            <br />
+            <span>{achievement.description}</span>
+          </>
+        );
       });
       const newAchievements = userProfile.newAchievements + 1;
       // Add unlocked achievements to user profile
@@ -135,44 +148,11 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
               setUserProfile={setUserProfile}
             />
           </Navbar>
+          <VolumeSlider
+            userProfile={userProfile}
+            setUserProfile={setUserProfile}
+          />
 
-          <div style={{ paddingTop: "120px" }} />
-          <Stack
-            spacing={2}
-            direction="row"
-            sx={{ mb: 1, width: "200px" }}
-            alignItems="center"
-          >
-            <div
-              style={{ display: "flex" }}
-              onClick={() => {
-                userProfile.audioVolume === 0
-                  ? setUserProfile({ ...userProfile, audioVolume: 1 })
-                  : setUserProfile({ ...userProfile, audioVolume: 0 });
-              }}
-            >
-              {userProfile.audioVolume === 0 ? (
-                <VolumeMute />
-              ) : userProfile.audioVolume <= 0.5 ? (
-                <VolumeDown />
-              ) : (
-                <VolumeUp />
-              )}
-            </div>
-            <Slider
-              sx={{ width: "200px" }}
-              value={userProfile.audioVolume}
-              min={0}
-              max={1}
-              step={0.05}
-              onChange={(e: Event, value: number | number[]) => {
-                setUserProfile({
-                  ...userProfile,
-                  audioVolume: value as number,
-                });
-              }}
-            />
-          </Stack>
           {/* TODO: add click animation on mobile */}
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton

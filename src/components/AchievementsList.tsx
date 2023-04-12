@@ -11,7 +11,8 @@ export const AchievementsList = ({ userProfile }: Props) => {
   const unlockedAchievements = Object.values(achievements).filter(
     (achievement) => userProfile.achievements.includes(achievement.name)
   );
-
+  const lockedAchievementsCount =
+    Object.values(achievements).length - unlockedAchievements.length;
   return (
     <Container>
       {unlockedAchievements.map((achievement) => (
@@ -20,7 +21,11 @@ export const AchievementsList = ({ userProfile }: Props) => {
           title={`Requirement: ${
             achievement.clicksRequired
               ? achievement.clicksRequired + " clicks"
-              : achievement.requirement + " points"
+              : achievement.requirement
+              ? achievement.requirement + " points"
+              : achievement.purchasesRequired
+              ? achievement.purchasesRequired + " purchases"
+              : "Unknown requirement"
           }`}
         >
           <ItemWrapper>
@@ -35,17 +40,28 @@ export const AchievementsList = ({ userProfile }: Props) => {
                   boxShadow: "0 0 30px -1px #f28705cb",
                 }}
               >
-                {achievement.clicksRequired ? "🖱️" : "🍯"}
+                {achievement.emoji}
               </Avatar>
             </AvatarWrapper>
             <TextWrapper>
               <Name>{achievement.name}</Name>
               <br />
-              <Description>{achievement.description}</Description>
+              <Description>
+                <b>
+                  {achievement.description}
+                  {achievement.longDescription && ": "}
+                </b>
+                {achievement.longDescription}
+              </Description>
             </TextWrapper>
           </ItemWrapper>
         </Tooltip>
       ))}
+      <br />
+
+      {lockedAchievementsCount !== 0 && (
+        <Locked>🔒 Locked Achievements: {lockedAchievementsCount}</Locked>
+      )}
     </Container>
   );
 };
@@ -59,7 +75,7 @@ const Container = styled.div`
 const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 8px;
+  margin: 8px 32px;
   background: #e2e2e2;
   padding: 16px 32px 16px 16px;
   border-radius: 16px;
@@ -82,4 +98,10 @@ const Description = styled.span`
 
 const TextWrapper = styled.div`
   margin: 0;
+`;
+const Locked = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  opacity: 0.8;
 `;

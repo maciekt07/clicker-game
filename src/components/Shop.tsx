@@ -4,15 +4,16 @@ import { User } from "../types";
 import {
   BuyButton,
   Container,
+  Cost,
   Header,
   ItemName,
   ItemWrapper,
   LockedContainer,
 } from "../styles";
-
+import { achievements } from "../constants";
 import BuySound from "../assets/buy.mp3";
 import { formatNumber, playSound } from "../utils";
-
+import { toast } from "react-toastify";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
@@ -27,6 +28,7 @@ interface Props {
 export const Shop = ({ userProfile, setUserProfile }: Props) => {
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
+    // TODO: add achievements for purchased items
 
     const selectedItem = items[item];
     const rateGrown = 1.1;
@@ -46,9 +48,47 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
       perSecond: newPerSecond,
       inventory: newInventory,
     });
+    const purchasedItemsSum = Object.values(userProfile.inventory).reduce(
+      (a, b) => a + b,
+      1
+    );
+
+    const unlockedPurchaseAchievements = Object.values(achievements).filter(
+      (achievement) =>
+        achievement.purchasesRequired !== undefined &&
+        purchasedItemsSum >= achievement.purchasesRequired &&
+        !userProfile.achievements.includes(achievement.name)
+    );
+    if (unlockedPurchaseAchievements.length > 0) {
+      // Show toast notification for each unlocked purchase achievement
+      unlockedPurchaseAchievements.forEach((achievement) => {
+        toast(
+          <>
+            <b>🛍️ {achievement.name} unlocked!</b>
+            <br />
+            <span>{achievement.description}</span>
+          </>
+        );
+      });
+
+      // Add unlocked purchase achievements to user profile
+      setUserProfile({
+        ...userProfile,
+        points: newPoints,
+        multiplier: newMultiplier,
+        perSecond: newPerSecond,
+        inventory: newInventory,
+        achievements: [
+          ...userProfile.achievements,
+          ...unlockedPurchaseAchievements.map(
+            (achievement) => achievement.name
+          ),
+        ],
+      });
+    }
   };
 
-  const numLockedAchievements = useMemo(() => {
+  const numLockedItems = useMemo(() => {
     return Object.values(items).filter(
       (item) => item.cost > userProfile.maxPoints
     ).length;
@@ -69,7 +109,9 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
           return (
             <ItemWrapper key={itemName}>
               <ItemName>🐝{item.name}</ItemName>
-              <p>Cost: 🍯{formatNumber(newCost, 0)}</p>
+              <Cost enoughtPoints={userProfile.points >= newCost}>
+                Cost: 🍯{formatNumber(newCost, 0)}
+              </Cost>
               <p>Multiplier: {formatNumber(item.multiplier, 0)}</p>
               <p>Per second: {formatNumber(item.perSecond, 1)}</p>
               <p>You bought: {formatNumber(itemCount, 0)}</p>
@@ -85,9 +127,9 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
             </ItemWrapper>
           );
         })}
-        {numLockedAchievements > 0 && (
+        {numLockedItems > 0 && (
           <LockedContainer>
-            <h3>🔒 Locked ({numLockedAchievements} Items)</h3>
+            <h3>🔒 Locked ({numLockedItems} Items)</h3>
           </LockedContainer>
         )}
       </Container>

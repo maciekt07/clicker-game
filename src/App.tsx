@@ -8,6 +8,7 @@ import { Settings } from "./pages/Settings";
 import { ThemeProvider } from "@mui/material";
 import { MuiTheme } from "./styles";
 import { ToastContainer } from "react-toastify";
+import { NotFound } from "./pages/NotFound";
 function App() {
   const [userProfile, setUserProfile] = useStorageState<User>(
     defaultUserProfile,
@@ -32,6 +33,15 @@ function App() {
           path="/settings"
           element={
             <Settings
+              userProfile={userProfile}
+              setUserProfile={setUserProfile}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <NotFound
               userProfile={userProfile}
               setUserProfile={setUserProfile}
             />

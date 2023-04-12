@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-// TODO: Move this file to the "theme" folder.
 export const colorPalette = {
   yellow: "#ffb604",
   orange: "#f28705",
@@ -7,7 +6,8 @@ export const colorPalette = {
   peach: "#f2b680",
   brown: "#dc823c",
   purple: "#4f2f4f",
-  indigo: "#4b0082",
+  indigo: "#531aa5",
+  red: "#ff3737",
 };
 
 export const MuiTheme = createTheme({
@@ -17,6 +17,9 @@ export const MuiTheme = createTheme({
     },
     secondary: {
       main: colorPalette.peach,
+    },
+    error: {
+      main: colorPalette.red,
     },
   },
 });

@@ -8,7 +8,10 @@ interface NumberFormatter {
  * @param {number} [decimalPlaces=1] The number of decimal places to include in the formatted string. Defaults to 1.
  * @returns {string} The formatted number as a string.
  */
-export const formatNumber: NumberFormatter = (num, decimalPlaces = 1) => {
+export const formatNumber: NumberFormatter = (
+  num: number,
+  decimalPlaces: number = 1
+): string => {
   const roundedNum = num.toFixed(decimalPlaces);
   const numString = roundedNum.toString();
   const numArray = numString.split(".");
@@ -32,7 +35,7 @@ export const formatNumber: NumberFormatter = (num, decimalPlaces = 1) => {
  * @param {number} num The number to format.
  * @returns {string} The formatted number as a string.
  */
-export const compactFormat = (num: number) => {
+export const compactFormat = (num: number): string => {
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
   return formatter.format(num);
 };

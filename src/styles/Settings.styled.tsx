@@ -5,7 +5,7 @@ import { TextField } from "@mui/material";
 
 export const SettingsContainer = styled.div`
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 60px;
 
   max-width: 400px;
   padding: 85px 10px;

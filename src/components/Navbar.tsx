@@ -11,16 +11,19 @@ interface Props {
 export const Navbar = ({ children }: Props) => {
   const hasContent = children !== undefined;
   return (
-    <Nav hasContent={hasContent}>
-      <Link to="/">
-        <LogoContainer>
-          <LogoImage src={HoneyJar} />
-          <LogoTxt>Honey Clicker</LogoTxt>
-        </LogoContainer>
-      </Link>
-      <AboutLink to="/about">About</AboutLink>
-      {children}
-    </Nav>
+    <>
+      <Nav hasContent={hasContent}>
+        <Link to="/">
+          <LogoContainer>
+            <LogoImage src={HoneyJar} />
+            <LogoTxt>Honey Clicker</LogoTxt>
+          </LogoContainer>
+        </Link>
+        <AboutLink to="/about">About</AboutLink>
+        {children}
+      </Nav>
+      <div style={{ paddingTop: "110px" }} />
+    </>
   );
 };
 
@@ -52,6 +55,9 @@ const LogoImage = styled.img`
   margin-left: 8vw;
   flex-shrink: 0;
   transition: 0.3s filter;
+  @media (max-width: 768px) {
+    margin-left: 8px;
+  }
   ${LogoContainer}:hover > & {
     filter: drop-shadow(0px 0px 16px #ffd071);
   }

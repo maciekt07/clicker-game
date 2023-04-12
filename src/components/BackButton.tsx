@@ -10,7 +10,7 @@ export const BackButton = () => {
   };
   return (
     <Btn onClick={handleClick}>
-      <ArrowBackIosNew fontSize="small" />
+      <ArrowBackIosNew />
       &nbsp;Back
     </Btn>
   );
@@ -20,13 +20,19 @@ const Btn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
   border: none;
   outline: none;
-  font-size: 18px;
-
-  padding: 8px;
+  font-size: 20px;
+  margin: 8px;
+  padding: 12px 18px;
   background-color: transparent;
+  background: #ffffff3b;
   color: ${colorPalette.orange};
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 20px;
+  transition: 0.3s all;
+  &:hover {
+    background: #ffffff40;
+  }
 `;

@@ -26,7 +26,8 @@
 
 body {
   margin: 0;
-  background: #4b0082; /* #4f2f4f; #8b572a #4b0082 */
+  background: #531aa5; /* #4f2f4f; #8b572a #4b0082 */
+  color: #efefef;
   min-width: 320px;
   min-height: 100vh;
   touch-action: manipulation;
@@ -45,6 +46,23 @@ a {
   text-decoration: none;
 }
 .Toastify__toast-theme--light {
-  background: #ffffffe2;
+  background: #ffffffd9;
   backdrop-filter: blur(5px);
+  padding: 12px;
+  border-radius: 18px;
+  color: #4b4b4b;
+}
+.MuiSlider-valueLabel {
+  border-radius: 10px !important;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25) !important;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25) !important;
+  padding: 6px 14px !important;
+  color: #000000c8 !important;
+  background: hsl(213deg 85% 97%) !important;
+  margin-top: 80px;
+}
+
+.MuiSlider-valueLabel::before,
+.MuiSlider-valueLabel::after {
+  display: none;
 }

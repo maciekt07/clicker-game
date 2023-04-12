@@ -10,6 +10,7 @@ export const defaultUserProfile: User = {
   points: 0,
   clicks: 0,
   maxPoints: 0,
+  totalPoints: 0,
   multiplier: 1,
   perSecond: 0.1,
   inventory: {},

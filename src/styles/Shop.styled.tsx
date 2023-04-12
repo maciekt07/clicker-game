@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  color: white;
   margin-top: 40px;
   display: flex;
   align-items: center;
@@ -25,19 +26,24 @@ export const Header = styled.div`
 
   &:not(:empty)::before {
     margin-right: 0.5em;
+    opacity: 0.7;
   }
 
   &:not(:empty)::after {
     margin-left: 0.5em;
+    opacity: 0.7;
   }
 `;
 
 const Item = css`
-  background: ${colorPalette.brown};
+  /* -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: black; */
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  background: #ffffff1d;
   height: 300px;
   border: 5px solid ${colorPalette.orange};
-  padding: 20px;
-  border-radius: 30px;
+  padding: 30px 20px;
+  border-radius: 40px;
   transition: 0.3s all;
   margin: 25px;
   flex-basis: calc(25% - 10px);
@@ -72,21 +78,43 @@ export const LockedContainer = styled.div`
 `;
 
 export const ItemName = styled.h2`
+  color: white;
   text-align: center;
   font-size: 24px;
+`;
+
+interface CostProps {
+  enoughtPoints: boolean;
+}
+
+export const Cost = styled.h3<CostProps>`
+  transition: 0.3s all;
+  color: ${(props) => (props.enoughtPoints ? "white" : colorPalette.red)};
+  text-shadow: ${(props) =>
+    props.enoughtPoints
+      ? "0px 0px 5px rgba(0, 0, 0, 0.25)"
+      : "0 0 12px#ff5e5e"};
 `;
 
 export const BuyButton = styled.button`
   width: 100%;
   padding: 16px 8px;
   font-size: 20px;
-  border: none;
-  background: ${colorPalette.yellow};
+  border: 2px solid transparent;
+  background: ${colorPalette.orange};
   color: white;
   cursor: pointer;
-  border-radius: 16px;
+  border-radius: 25px;
+  transition: 0.3s all;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  /* &:hover,
+  &:focus-visible {
+    outline: none;
+    border: 2px solid ${colorPalette.yellow};
+  } */
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
+    text-shadow: none;
   }
 `;

@@ -1,39 +1,43 @@
 import { useEffect, useState } from "react";
-import { Navbar, ProfileAvatar } from "../components";
+import { Navbar, ProfileAvatar, BackButton } from "../components";
 import { User } from "../types";
 import { useNavigate } from "react-router-dom";
 import {
-  Slider,
   Avatar,
   Button,
-  Typography,
-  Stack,
   Dialog,
   DialogContent,
   DialogActions,
   DialogTitle,
+  Tooltip,
+  IconButton,
+  Badge,
+  Popover,
 } from "@mui/material";
-import { formatTimeAgo } from "../utils";
-import { BackButton } from "../components/BackButton";
-import { SaveButton, SettingsContainer, SettingsInput } from "../styles";
+import { formatTimeAgo, isImageUrl } from "../utils";
+
+import {
+  SaveButton,
+  SettingsContainer,
+  SettingsInput,
+  colorPalette,
+} from "../styles";
 
 import { nameToAvatar } from "../utils";
-import { Delete, Launch, VolumeDown } from "@mui/icons-material";
+import { Delete, Edit, InfoOutlined, Logout } from "@mui/icons-material";
+import { defaultUserProfile } from "../constants";
 interface Props {
   userProfile: User;
   setUserProfile: React.Dispatch<React.SetStateAction<User>>;
 }
-// TODO:
-// - Implement form to allow user to change name
-// - Implement form to allow user to change profile picture
-// - Improve UI with additional styling/layout
-// - Display success/error messages upon form submission
 
 export const Settings = ({ userProfile, setUserProfile }: Props) => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [imgLink, setImgLink] = useState("");
+  const [imgError, setImgError] = useState("");
   const [imgDialog, setImgDialog] = useState(false);
+  const [logoutDialog, setLogoutDialog] = useState(false);
 
   const n = useNavigate();
   useEffect(() => {
@@ -55,34 +59,68 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
           setUserProfile={setUserProfile}
         />
       </Navbar>
-      <div style={{ paddingTop: "100px" }} />
       <BackButton />
       <SettingsContainer>
-        <Avatar
-          src={userProfile.profilePicture?.toString()}
+        <Badge
+          overlap="circular"
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          onClick={() => setImgDialog(true)}
+          badgeContent={
+            <Avatar style={{ background: "#6b6b6b", cursor: "pointer" }}>
+              <Edit />
+            </Avatar>
+          }
+        >
+          <Avatar
+            src={userProfile.profilePicture?.toString()}
+            style={{
+              width: "128px",
+              height: "128px",
+              fontSize: "60px",
+              // border: `${
+              //   userProfile.profilePicture === null
+              //     ? "none"
+              //     : "3px solid" + colorPalette.orange
+              // }`,
+              background: `${
+                userProfile.profilePicture === null ? "#f28705" : ""
+              }`,
+              boxShadow: `${
+                userProfile.profilePicture === null
+                  ? "0 0 30px -1px #f28705cb"
+                  : ""
+              }`,
+
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
+          >
+            {nameToAvatar(userProfile.name)}
+          </Avatar>
+        </Badge>
+        <div style={{ fontSize: "24px" }}>{userProfile.name}</div>
+        <div
           style={{
-            width: "128px",
-            height: "128px",
-            fontSize: "64px",
-            background: "#f28705",
-            boxShadow: `${
-              userProfile.profilePicture === null
-                ? "0 0 30px -1px #f28705cb"
-                : ""
-            }`,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            overflow: "hidden",
+            opacity: 0.7,
           }}
         >
-          {nameToAvatar(userProfile.name)}
-        </Avatar>
-
-        <div style={{ fontSize: "24px" }}>{userProfile.name}</div>
-        <div>Registered since {formatTimeAgo(createdAt.toString())}</div>
+          <Tooltip
+            title={`Created At: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`}
+          >
+            <IconButton>
+              <InfoOutlined />
+            </IconButton>
+          </Tooltip>
+          <span> Registered since {formatTimeAgo(createdAt.toString())}</span>
+        </div>
+        {/* <div>🏆 Max Points: {formatNumber(userProfile.maxPoints)}</div> */}
         <br />
-        <Button
+        {/* <Button
           style={{
             fontSize: ".9rem",
             borderRadius: 12,
@@ -94,7 +132,7 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
         >
           <Launch /> &nbsp; Change Image
         </Button>
-        <br />
+        <br /> */}
 
         <SettingsInput
           label="Change Name"
@@ -108,24 +146,37 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
           }}
         />
         <br />
-
-        <SaveButton
-          disabled={name === userProfile.name}
-          onClick={() => {
-            if (name.length < 4) {
-              setNameError("Must be at least 4 characters long");
-            } else if (name.length > 16)
-              setNameError("Can be up to 16 characters long");
-            else {
-              setUserProfile({
-                ...userProfile,
-                name: name,
-              });
-            }
+        {name !== "" && (
+          <SaveButton
+            disabled={name === userProfile.name}
+            onClick={() => {
+              if (name.length < 4) {
+                setNameError("Must be at least 4 characters long");
+              } else if (name.length > 32)
+                setNameError("Can be up to 32 characters long");
+              else {
+                setUserProfile({
+                  ...userProfile,
+                  name: name,
+                });
+                setName("");
+              }
+            }}
+          >
+            Save
+          </SaveButton>
+        )}
+        <Button
+          style={{
+            fontSize: ".9rem",
+            borderRadius: 12,
+            padding: "8px 14px",
           }}
+          color="error"
+          onClick={() => setLogoutDialog(true)}
         >
-          Save
-        </SaveButton>
+          <Logout /> &nbsp; logout
+        </Button>
       </SettingsContainer>
 
       <Dialog
@@ -133,31 +184,41 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
           style: {
             borderRadius: 18,
             padding: 4,
-            fontFamily: "Inter",
           },
         }}
         open={imgDialog}
-        onClose={() => setImgDialog(false)}
+        onClose={() => {
+          setImgDialog(false);
+        }}
       >
         <DialogTitle>Change Profile Picture</DialogTitle>
         <DialogContent>
           <br />
 
           <SettingsInput
-            type="text"
+            type="url"
             label="Link To Profile Picture"
+            error={imgError !== ""}
+            helperText={imgError}
             value={imgLink}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setImgLink(e.target.value);
+              setImgError("");
             }}
           />
           <br />
           <br />
           <Button
             color="error"
+            style={{
+              fontSize: ".9rem",
+              borderRadius: 12,
+            }}
             onClick={() => {
               setUserProfile({ ...userProfile, profilePicture: null });
               setImgDialog(false);
+              setImgError("");
+              setImgLink("");
             }}
           >
             <Delete /> &nbsp; Delete Image
@@ -168,7 +229,6 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
             style={{
               fontSize: ".9rem",
               borderRadius: 12,
-              fontFamily: "Inter",
             }}
             onClick={() => setImgDialog(false)}
           >
@@ -178,17 +238,57 @@ export const Settings = ({ userProfile, setUserProfile }: Props) => {
             style={{
               fontSize: ".9rem",
               borderRadius: 12,
-              fontFamily: "Inter",
             }}
             onClick={() => {
-              setImgDialog(false);
-              setUserProfile({
-                ...userProfile,
-                profilePicture: imgLink === "" ? null : imgLink,
-              });
+              if (isImageUrl(imgLink)) {
+                setImgDialog(false);
+                setImgLink("");
+                setUserProfile({
+                  ...userProfile,
+                  profilePicture: imgLink === "" ? null : imgLink,
+                });
+              } else {
+                setImgError("Please provide a valid image URL.");
+              }
             }}
           >
             ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        PaperProps={{
+          style: {
+            borderRadius: 18,
+            padding: 4,
+          },
+        }}
+        open={logoutDialog}
+        onClose={() => setLogoutDialog(false)}
+      >
+        <DialogTitle>Are You Sure You Want To Log Out?</DialogTitle>
+        <DialogContent>Your profile will not be saved</DialogContent>
+        <DialogActions>
+          <Button
+            style={{
+              fontSize: ".9rem",
+              borderRadius: 12,
+            }}
+            onClick={() => setLogoutDialog(false)}
+          >
+            no
+          </Button>
+          <Button
+            style={{
+              fontSize: ".9rem",
+              borderRadius: 12,
+            }}
+            onClick={() => {
+              setLogoutDialog(false);
+              setUserProfile(defaultUserProfile);
+            }}
+          >
+            yes
           </Button>
         </DialogActions>
       </Dialog>

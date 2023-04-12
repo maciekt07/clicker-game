@@ -18,6 +18,7 @@ export {
   ItemName,
   BuyButton,
   Header,
+  Cost,
 } from "./Shop.styled";
 export {
   SettingsContainer,
