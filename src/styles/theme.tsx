@@ -11,6 +11,9 @@ export const colorPalette = {
 };
 
 export const MuiTheme = createTheme({
+  typography: {
+    fontFamily: '"Poppins", sans-serif',
+  },
   palette: {
     primary: {
       main: colorPalette.orange,

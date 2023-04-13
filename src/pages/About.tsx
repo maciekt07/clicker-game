@@ -59,12 +59,13 @@ export const About = ({ userProfile, setUserProfile }: Props) => {
             achievements.
           </AboutText>
           <AboutText>
-            As you play the game, you will unlock various achievements. There
-            are currently <b>{achievementsCount} achievements</b> available to
-            unlock in Honey Clicker. These include achievements for producing
-            honey, clicking the button, and more. You can also visit the shop to
-            purchase upgrades that will increase your points per second and
-            multiplier. They are <b>{itemsCount} unique items</b> to buy.
+            <b>As you play the game,</b> you will unlock various achievements.
+            There are currently <b>{achievementsCount} achievements</b>{" "}
+            available to unlock in Honey Clicker. These include achievements for
+            producing honey, clicking the button, and more. You can also visit
+            the shop to purchase upgrades that will increase your points per
+            second and multiplier. They are <b>{itemsCount} unique items</b> to
+            buy.
           </AboutText>
           <AboutText>
             <b>Honey Clicker is a Progressive Web App. </b>

@@ -5,6 +5,7 @@ import {
   BuyButton,
   Container,
   Cost,
+  Description,
   Header,
   ItemName,
   ItemWrapper,
@@ -28,8 +29,6 @@ interface Props {
 export const Shop = ({ userProfile, setUserProfile }: Props) => {
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
-    // TODO: add achievements for purchased items
-
     const selectedItem = items[item];
     const rateGrown = 1.1;
     const itemCount = userProfile.inventory[item] || 0;
@@ -108,7 +107,10 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
 
           return (
             <ItemWrapper key={itemName}>
-              <ItemName>🐝{item.name}</ItemName>
+              <ItemName>
+                {item.emoji} {item.name}
+              </ItemName>
+              <Description>{item.description}</Description>
               <Cost enoughtPoints={userProfile.points >= newCost}>
                 Cost: 🍯{formatNumber(newCost, 0)}
               </Cost>

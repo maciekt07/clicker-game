@@ -40,11 +40,12 @@ const Item = css`
   -webkit-text-stroke-color: black; */
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   background: #ffffff1d;
-  height: 300px;
+  height: 410px;
   border: 5px solid ${colorPalette.orange};
   padding: 30px 20px;
   border-radius: 40px;
   transition: 0.3s all;
+  min-width: 360px;
   margin: 25px;
   flex-basis: calc(25% - 10px);
   margin-bottom: 20px;
@@ -96,7 +97,14 @@ export const Cost = styled.h3<CostProps>`
       : "0 0 12px#ff5e5e"};
 `;
 
+export const Description = styled.h4`
+  opacity: 0.8;
+  font-size: 14px;
+  min-height: 64px;
+`;
+
 export const BuyButton = styled.button`
+  margin-top: 16px;
   width: 100%;
   padding: 16px 8px;
   font-size: 20px;

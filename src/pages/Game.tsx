@@ -71,6 +71,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
 
   const handleAddPoints = (points: number) => {
     const newPoints = points;
+    const newTotalPoints = points;
     const newMaxPoints = Math.max(newPoints, userProfile.maxPoints);
 
     const unlockedAchievements = Object.values(achievements).filter(
@@ -154,6 +155,7 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
           />
 
           {/* TODO: add click animation on mobile */}
+
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton
               onClick={handleClick}

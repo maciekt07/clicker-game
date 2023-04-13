@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
@@ -10,13 +10,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  --toastify-font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  --toastify-font-family: "Poppins", sans-serif;
   --toastify-color-progress-dark: #f28705;
   --toastify-color-progress-light: #f28705;
 }
 
 * {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -25,6 +24,7 @@
 }
 
 body {
+  font-family: "Poppins", sans-serif !important;
   margin: 0;
   background: #531aa5; /* #4f2f4f; #8b572a #4b0082 */
   color: #efefef;
@@ -45,6 +45,11 @@ body {
 a {
   text-decoration: none;
 }
+
+button {
+  font-family: "Poppins", sans-serif;
+}
+
 .Toastify__toast-theme--light {
   background: #ffffffd9;
   backdrop-filter: blur(5px);

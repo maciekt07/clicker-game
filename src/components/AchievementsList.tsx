@@ -70,6 +70,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
+  font-family: "Poppins", sans-serif;
 `;
 
 const ItemWrapper = styled.div`
@@ -94,6 +95,9 @@ const Name = styled.span`
 
 const Description = styled.span`
   font-size: 16px;
+  & b {
+    color: #333;
+  }
 `;
 
 const TextWrapper = styled.div`

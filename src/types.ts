@@ -19,7 +19,6 @@ export interface User {
   points: number;
   clicks: number;
   maxPoints: number;
-  totalPoints: number;
   multiplier: number;
   perSecond: number;
   inventory: {
@@ -40,7 +39,9 @@ Represents an item available for purchase in the shop.
 */
 export interface Item {
   name: string;
+  emoji?: string;
   cost: number;
   multiplier: number;
   perSecond: number;
+  description: string;
 }

@@ -1,5 +1,6 @@
 import { formatNumber } from "../utils";
 import { User } from "../types";
+import styled from "styled-components";
 
 interface Props {
   userProfile: User;
@@ -7,7 +8,7 @@ interface Props {
 // TODO: - Improve UI with additional styling/layout
 export const StatsInfo = ({ userProfile }: Props) => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <StatsContainer className="Stats">
       <h2>Points: 🍯{formatNumber(userProfile.points)}</h2>
       <span>Max Points: {formatNumber(userProfile.maxPoints)}</span>
       <br />
@@ -16,7 +17,11 @@ export const StatsInfo = ({ userProfile }: Props) => {
       <span>Multiplier: {formatNumber(userProfile.multiplier)}</span>
       <br />
       <span>Per Second: {formatNumber(userProfile.perSecond)}</span>
-      <br />
-    </div>
+    </StatsContainer>
   );
 };
+
+const StatsContainer = styled.div`
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  text-align: center;
+`;
