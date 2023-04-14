@@ -1,5 +1,5 @@
 import { formatNumber } from "../utils";
-import { User } from "../types";
+import { User } from "../types/user";
 import styled from "styled-components";
 
 interface Props {

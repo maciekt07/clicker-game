@@ -2,24 +2,22 @@ import React from "react";
 import { useEffect } from "react";
 import { Navbar, ProfileAvatar, BackButton } from "../components";
 import styled from "styled-components";
-import { User } from "../types";
-
 import { colorPalette } from "../styles";
-import { Favorite, GitHub } from "@mui/icons-material";
-import { Button, Divider } from "@mui/material";
+import { GitHub } from "@mui/icons-material";
+import { Button } from "@mui/material";
 import { achievements, items } from "../constants";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
+import PLFlag from "../assets/poland-flag-icon.svg";
+import { UserProfileProps } from "../types/userProfileProps";
+
 // TODO: Add more content to the About page
-export const About = ({ userProfile, setUserProfile }: Props) => {
+export const About = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const achievementsCount = Object.keys(achievements).length;
   const itemsCount = Object.keys(items).length;
 
   useEffect(() => {
     document.title = "About - Honey Clicker";
   }, []);
+
   const techStack = [
     { name: "React.js", link: "https://react.dev/" },
     { name: "TypeScript", link: "https://www.typescriptlang.org/" },
@@ -78,7 +76,7 @@ export const About = ({ userProfile, setUserProfile }: Props) => {
             <AboutLink href="https://github.com/maciekt07" target="_blank">
               maciekt07
             </AboutLink>{" "}
-            using:{" "}
+            in <Flag src={PLFlag} /> using:{" "}
             {techStack.map((tech, index) => (
               <React.Fragment key={index}>
                 <AboutLink href={tech.link} target="_blank">
@@ -127,6 +125,12 @@ const AboutText = styled.p`
   color: #333333;
 `;
 
+const Flag = styled.img`
+  width: 20px;
+  border-radius: 3px;
+  filter: drop-shadow(0px 0px 1.5px rgba(0, 0, 0, 0.45));
+`;
+
 const AboutLink = styled.a`
   cursor: pointer;
   color: ${colorPalette.orange};
@@ -161,4 +165,8 @@ const AboutLink = styled.a`
     outline: none;
     box-shadow: none;
   }
+`;
+
+const BuyMeACoffeeBtn = styled.a`
+  position: absolute;
 `;

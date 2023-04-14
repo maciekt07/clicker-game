@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { items } from "../constants/items";
-import { User } from "../types";
+import { UserProfileProps } from "../types/userProfileProps";
 import {
   BuyButton,
   Container,
@@ -15,10 +15,6 @@ import { achievements } from "../constants";
 import BuySound from "../assets/buy.mp3";
 import { formatNumber, playSound } from "../utils";
 import { toast } from "react-toastify";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
 
 // The new cost of the item is calculated using the formula:
 // newCost = costBase * (rateGrowth ^ itemCount)
@@ -26,7 +22,7 @@ interface Props {
 // rateGrowth is the factor by which the cost increases with each purchase (e.g. 1.1 for 10% increase),
 // and itemCount is the current number of items owned by the user.
 
-export const Shop = ({ userProfile, setUserProfile }: Props) => {
+export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
     const selectedItem = items[item];
@@ -110,7 +106,7 @@ export const Shop = ({ userProfile, setUserProfile }: Props) => {
               <ItemName>
                 {item.emoji} {item.name}
               </ItemName>
-              <Description>{item.description}</Description>
+              <Description>„{item.description}”</Description>
               <Cost enoughtPoints={userProfile.points >= newCost}>
                 Cost: 🍯{formatNumber(newCost, 0)}
               </Cost>

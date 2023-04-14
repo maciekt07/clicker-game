@@ -101,6 +101,8 @@ export const Description = styled.h4`
   opacity: 0.8;
   font-size: 14px;
   min-height: 64px;
+  font-style: italic;
+  font-weight: 600;
 `;
 
 export const BuyButton = styled.button`

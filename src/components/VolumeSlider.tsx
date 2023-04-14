@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { User } from "../types";
+import { UserProfileProps } from "../types/userProfileProps";
 import { Stack, Tooltip, IconButton, Slider } from "@mui/material";
 import { VolumeOff, VolumeDown, VolumeUp } from "@mui/icons-material";
 import { defaultUserProfile } from "../constants";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
 
-export const VolumeSlider = ({ userProfile, setUserProfile }: Props) => {
+export const VolumeSlider = ({
+  userProfile,
+  setUserProfile,
+}: UserProfileProps) => {
   const [previousValue, setPreviousValue] = useState<number>(
     defaultUserProfile.audioVolume
   );
@@ -26,11 +25,15 @@ export const VolumeSlider = ({ userProfile, setUserProfile }: Props) => {
         width: "200px",
         marginLeft: "16px",
         background: "#ffffff1d",
-        padding: "12px 24px 12px 18px ",
+        padding: "12px 24px 12px 18px",
         borderRadius: "16px",
         transition: ".3s all",
         ":hover": {
           background: "#ffffff29",
+        },
+        "@media (max-width: 600px)": {
+          width: "172px",
+          padding: "8px 14px 8px 9px",
         },
       }}
       alignItems="center"

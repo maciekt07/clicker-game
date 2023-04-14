@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Navbar, ProfileAvatar, BackButton } from "../components";
-import { User } from "../types";
 import { useNavigate } from "react-router-dom";
 import {
   Avatar,
@@ -12,26 +11,17 @@ import {
   Tooltip,
   IconButton,
   Badge,
-  Popover,
 } from "@mui/material";
 import { formatTimeAgo, isImageUrl } from "../utils";
 
-import {
-  SaveButton,
-  SettingsContainer,
-  SettingsInput,
-  colorPalette,
-} from "../styles";
+import { SaveButton, SettingsContainer, SettingsInput } from "../styles";
 
 import { nameToAvatar } from "../utils";
 import { Delete, Edit, InfoOutlined, Logout } from "@mui/icons-material";
 import { defaultUserProfile } from "../constants";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
+import { UserProfileProps } from "../types/userProfileProps";
 
-export const Settings = ({ userProfile, setUserProfile }: Props) => {
+export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [imgLink, setImgLink] = useState("");

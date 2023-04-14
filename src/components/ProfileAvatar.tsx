@@ -19,16 +19,15 @@ import {
   Divider,
 } from "@mui/material";
 import { AvatarContainer, colorPalette } from "../styles";
-import { User } from "../types";
+import { UserProfileProps } from "../types/userProfileProps";
 import { EmojiEvents, Logout, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
 
-export const ProfileAvatar = ({ userProfile, setUserProfile }: Props) => {
+export const ProfileAvatar = ({
+  userProfile,
+  setUserProfile,
+}: UserProfileProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [logoutDialog, setLogoutDialog] = useState(false);

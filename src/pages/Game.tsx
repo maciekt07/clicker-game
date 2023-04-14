@@ -7,7 +7,7 @@ import {
   ProfileAvatar,
   BackToTop,
 } from "../components";
-import { User } from "../types";
+
 import { ClickButton, ClickContainer, ClickImg } from "../styles";
 import { compactFormat, playSound } from "../utils";
 import { achievements } from "../constants";
@@ -16,12 +16,9 @@ import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
 import { VolumeSlider } from "../components/VolumeSlider";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
+import { UserProfileProps } from "../types/userProfileProps";
 
-export const Game = ({ userProfile, setUserProfile }: Props) => {
+export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
   const handleSetUserProfile = (name: string | null, createdAt: Date) => {
     setUserProfile({
@@ -71,7 +68,6 @@ export const Game = ({ userProfile, setUserProfile }: Props) => {
 
   const handleAddPoints = (points: number) => {
     const newPoints = points;
-    const newTotalPoints = points;
     const newMaxPoints = Math.max(newPoints, userProfile.maxPoints);
 
     const unlockedAchievements = Object.values(achievements).filter(

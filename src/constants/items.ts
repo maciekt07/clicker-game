@@ -1,4 +1,12 @@
-import { Item } from "../types";
+export interface Item {
+  name: string;
+  emoji?: string;
+  cost: number;
+  multiplier: number;
+  perSecond: number;
+  description: string;
+}
+
 export const items: { [key: string]: Item } = {
   smallBee: {
     name: "Very Small Bee",
@@ -24,7 +32,7 @@ export const items: { [key: string]: Item } = {
     multiplier: 5,
     perSecond: 2,
     description:
-      "A male bee whose sole purpose is to mate with the queen bee. Not as useful for honey production, but essential for the survival of the colony.",
+      "A male bee whose sole purpose is to mate with the queen bee. Essential for the survival of the colony.",
     emoji: "🐝",
   },
   queenBee: {

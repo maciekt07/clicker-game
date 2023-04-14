@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { About } from "./pages/About";
 import { useStorageState } from "./hooks";
 import { defaultUserProfile } from "./constants";
-import { User } from "./types";
+import { User } from "./types/user";
 import { Settings } from "./pages/Settings";
 import { ThemeProvider } from "@mui/material";
 import { MuiTheme } from "./styles";

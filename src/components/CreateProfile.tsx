@@ -7,8 +7,6 @@ import {
   Button,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "@mui/system";
-import { MuiTheme } from "../styles";
 import { nameToAvatar } from "../utils";
 
 import { Background, FormContainer, NameInput, CreateButton } from "../styles";

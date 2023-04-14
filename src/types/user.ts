@@ -28,20 +28,3 @@ export interface User {
   newAchievements: number;
   audioVolume: number;
 }
-
-/**
-Represents an item available for purchase in the shop.
-@interface
-@property {string} name - The name of the item.
-@property {number} cost - The cost of the item in points.
-@property {number} multiplier - The multiplier applied to the user's point earnings per click when the item is purchased.
-@property {number} perSecond - The number of points the user earns per second when the item is purchased.
-*/
-export interface Item {
-  name: string;
-  emoji?: string;
-  cost: number;
-  multiplier: number;
-  perSecond: number;
-  description: string;
-}

@@ -1,16 +1,12 @@
 import { Button } from "@mui/material";
 import { Navbar, ProfileAvatar } from "../components";
-import { User } from "../types";
 import styled, { keyframes } from "styled-components";
 import { ArrowBackIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import SadBee from "../assets/SadBee.png";
-interface Props {
-  userProfile: User;
-  setUserProfile: React.Dispatch<React.SetStateAction<User>>;
-}
+import { UserProfileProps } from "../types/userProfileProps";
 
-export const NotFound = ({ userProfile, setUserProfile }: Props) => {
+export const NotFound = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const n = useNavigate();
   return (
     <Container>
