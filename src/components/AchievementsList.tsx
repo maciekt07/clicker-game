@@ -1,4 +1,4 @@
-import { User } from "../types";
+import { User } from "../types/user";
 import { achievements } from "../constants/achievements";
 import styled from "styled-components";
 import { Avatar, Tooltip } from "@mui/material";
