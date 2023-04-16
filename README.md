@@ -1,10 +1,10 @@
-# [Honey Clicker Game](https://honey-clicker-game.netlify.app/)
+# [🍯 Honey Clicker Game](https://honey-clicker-game.netlify.app/)
 
 <br />
 
-<p align="center">
 <img alt="logo" src="public/logo192.png" />
-</p>
+
+<br />
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1aee53e8-2535-4aea-aef7-1744cde81411/deploy-status)](https://app.netlify.com/sites/honey-clicker-game/deploys)
 
@@ -29,6 +29,18 @@ Welcome to Honey Clicker! This is a simple yet addictive clicker game where you 
 <img alt="screenshot 3" width="500" src="public/screenshots/ss3.png" />
 
 <img alt="screenshot 4" width="500" src="public/screenshots/ss4.png" />
+
+## 🎨 Color Palette
+
+<!-- prettier-ignore -->
+| Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name |
+| ---------- | ------------------------------------------------------------ |
+| ![](https://via.placeholder.com/15/ffb604/ffb604?text=+) `#ffb604` | Yellow |
+| ![](https://via.placeholder.com/15/f28705/f28705?text=+) `#f28705` | Orange |
+| ![](https://via.placeholder.com/15/380000/380000?text=+) `#380000` | Maroon |
+| ![](https://via.placeholder.com/15/f2b680/f2b680?text=+) `#f2b680` | Peach |
+| ![](https://via.placeholder.com/15/531aa5/531aa5?text=+) `#531aa5` | Indigo |
+| ![](https://via.placeholder.com/15/ff3737/ff3737?text=+) `#ff3737` | Red |
 
 ## 🌐 Technologies
 

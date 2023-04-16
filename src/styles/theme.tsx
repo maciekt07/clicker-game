@@ -5,7 +5,6 @@ export const colorPalette = {
   maroon: "#380000",
   peach: "#f2b680",
   brown: "#dc823c",
-  purple: "#4f2f4f",
   indigo: "#531aa5",
   red: "#ff3737",
 };
