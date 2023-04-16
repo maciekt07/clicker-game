@@ -1,5 +1,7 @@
 # [Honey Clicker Game](https://honey-clicker-game.netlify.app/)
 
+<br />
+
 <p align="center">
 <img alt="logo" src="public/logo192.png" />
 </p>
@@ -16,6 +18,7 @@ Welcome to Honey Clicker! This is a simple yet addictive clicker game where you 
 - User profile settings where you can change your name and profile picture
 - Cool sound effects and volume slider
 - Responsive design that adapts to different screen sizes
+- PWA (can be installed on mobile/desktop), and works offline.
 
 ## 📷 Screenshots
 
