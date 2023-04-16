@@ -1,8 +1,8 @@
 # [Honey Clicker Game](https://honey-clicker-game.netlify.app/)
 
-<div style="text-align:center;">
+<p align="center">
 <img alt="logo" src="public/logo192.png" />
-</div>
+</p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1aee53e8-2535-4aea-aef7-1744cde81411/deploy-status)](https://app.netlify.com/sites/honey-clicker-game/deploys)
 
@@ -19,13 +19,13 @@ Welcome to Honey Clicker! This is a simple yet addictive clicker game where you 
 
 ## 📷 Screenshots
 
-<img alt="screenshot 1" width="400" src="public/screenshots/ss1.png" />
+<img alt="screenshot 1" width="500" src="public/screenshots/ss1.png" />
 
-<img alt="screenshot 2" width="400" src="public/screenshots/ss2.png" />
+<img alt="screenshot 2" width="500" src="public/screenshots/ss2.png" />
 
-<img alt="screenshot 3" width="400" src="public/screenshots/ss3.png" />
+<img alt="screenshot 3" width="500" src="public/screenshots/ss3.png" />
 
-<img alt="screenshot 4" width="400" src="public/screenshots/ss4.png" />
+<img alt="screenshot 4" width="500" src="public/screenshots/ss4.png" />
 
 ## 🌐 Technologies
 
