@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export const BackToTop = () => {
   const [showBtn, setShowBtn] = useState(false);
 
+  // Function to check whether to show the button or not
   const checkScrollTop = () => {
     if (!showBtn && window.pageYOffset > 400) {
       setShowBtn(true);
@@ -13,21 +14,19 @@ export const BackToTop = () => {
     }
   };
 
+  // Adding an event listener to the window object when the component mounts
   useEffect(() => {
     window.addEventListener("scroll", checkScrollTop);
+    // Removing the event listener when the component unmounts
     return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [showBtn]);
+  }, [showBtn]); // Only rerun this effect if showBtn changes
 
+  // Function to scroll to the top of the page smoothly
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
   return (
-    <Btn
-      onClick={scrollTop}
-      //  style={{ display: showBtn ? "flex" : "none" }}
-      show={showBtn}
-    >
+    <Btn onClick={scrollTop} show={showBtn}>
       <KeyboardArrowUp
         color="primary"
         fontSize="large"

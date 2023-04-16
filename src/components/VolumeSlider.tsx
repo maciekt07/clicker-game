@@ -33,7 +33,7 @@ export const VolumeSlider = ({
         },
         "@media (max-width: 600px)": {
           width: "172px",
-          padding: "8px 14px 8px 9px",
+          padding: "8px 18px 8px 9px",
         },
       }}
       alignItems="center"

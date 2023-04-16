@@ -9,15 +9,16 @@ import { achievements, items } from "../constants";
 import PLFlag from "../assets/poland-flag-icon.svg";
 import { UserProfileProps } from "../types/userProfileProps";
 
-// TODO: Add more content to the About page
 export const About = ({ userProfile, setUserProfile }: UserProfileProps) => {
+  // Calculate the number of achievements and items
   const achievementsCount = Object.keys(achievements).length;
   const itemsCount = Object.keys(items).length;
-
+  // Set the document title
   useEffect(() => {
     document.title = "About - Honey Clicker";
   }, []);
 
+  // Define the technology stack used to build the game
   const techStack = [
     { name: "React.js", link: "https://react.dev/" },
     { name: "TypeScript", link: "https://www.typescriptlang.org/" },
@@ -165,8 +166,4 @@ const AboutLink = styled.a`
     outline: none;
     box-shadow: none;
   }
-`;
-
-const BuyMeACoffeeBtn = styled.a`
-  position: absolute;
 `;

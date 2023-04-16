@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "@mui/material";
 import { Navbar, ProfileAvatar } from "../components";
 import styled, { keyframes } from "styled-components";
@@ -8,6 +9,9 @@ import { UserProfileProps } from "../types/userProfileProps";
 
 export const NotFound = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const n = useNavigate();
+  useEffect(() => {
+    document.title = `Page Not Found - Honey Clicker`;
+  }, []);
   return (
     <Container>
       <Navbar>

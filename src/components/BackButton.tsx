@@ -5,6 +5,7 @@ import { colorPalette } from "../styles";
 
 export const BackButton = () => {
   const n = useNavigate();
+  // Function that navigates back to the previous page using the useNavigate hook
   const handleClick = () => {
     n(-1);
   };

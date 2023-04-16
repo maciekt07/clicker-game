@@ -28,22 +28,24 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     });
   };
 
+  // Function to handle clicking on the honey jar
   const handleClick = () => {
+    // Play click sound
     playSound(ClickSound, userProfile.audioVolume);
+    // Add points based on user's multiplier
     handleAddPoints(userProfile.points + userProfile.multiplier);
+    // Increment click count
     setClicks(clicks + 1);
-
+    // Check for unlocked click achievements
     const unlockedClickAchievements = Object.values(achievements).filter(
       (achievement) =>
         achievement.clicksRequired !== undefined &&
         clicks + 1 >= achievement.clicksRequired &&
         !userProfile.achievements.includes(achievement.name)
     );
-
+    // If there are unlocked click achievements, show toast notifications and update user profile
     if (unlockedClickAchievements.length > 0) {
-      // Show toast notification for each unlocked click achievement
       unlockedClickAchievements.forEach((achievement) => {
-        // toast(`🖱️ ${achievement.name} unlocked! - ${achievement.description}`);
         toast(
           <>
             <b>🖱️ {achievement.name} unlocked!</b>
@@ -65,11 +67,11 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
       });
     }
   };
-
+  // Function to add points to user's profile
   const handleAddPoints = (points: number) => {
     const newPoints = points;
     const newMaxPoints = Math.max(newPoints, userProfile.maxPoints);
-
+    // Check for unlocked achievements
     const unlockedAchievements = Object.values(achievements).filter(
       (achievement) =>
         achievement.requirement !== undefined &&
@@ -77,7 +79,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         userProfile.maxPoints < achievement.requirement &&
         !userProfile.achievements.includes(achievement.name)
     );
-
+    // If there are unlocked achievements, show toast notifications and update user profile
     if (unlockedAchievements.length > 0) {
       // Show toast notification for each unlocked achievement
       unlockedAchievements.forEach((achievement) => {
@@ -116,7 +118,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   useEffect(() => {
     if (userProfile.name !== null) {
       document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
-      //points per second interval
+      //Points per second interval
       const intervalId = setInterval(() => {
         handleAddPoints(userProfile.points + userProfile.perSecond / 100);
       }, 10);

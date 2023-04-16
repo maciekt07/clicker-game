@@ -31,8 +31,8 @@ export const CreateProfile: React.FC<Props> = ({ onSave }) => {
   const handleSetUserProfile = () => {
     if (inputValue.length < 4) {
       setErrorMessage("Must be at least 4 characters long");
-    } else if (inputValue.length > 32)
-      setErrorMessage("Can be up to 32 characters long");
+    } else if (inputValue.length > 16)
+      setErrorMessage("Can be up to 16 characters long");
     else {
       onSave(inputValue, new Date());
     }

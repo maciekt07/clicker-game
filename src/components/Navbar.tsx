@@ -8,6 +8,8 @@ interface Props {
   children?: ReactNode;
 }
 
+/* FIXME: Some strange lines appear when hovering on other cards idk why */
+
 export const Navbar = ({ children }: Props) => {
   const hasContent = children !== undefined;
   return (
@@ -35,13 +37,12 @@ export const Nav = styled.nav<NavProps>`
   position: fixed;
   top: 0;
   width: 100%;
-  background: #ffffffe2;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background: #ffffffed;
+  /* -webkit-backdrop-filter: blur(6px); */
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.hasContent ? "center" : "left")};
-  color: black;
   z-index: 2;
   user-select: none;
 `;

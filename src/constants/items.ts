@@ -1,12 +1,27 @@
+/**
+ * Represents an item that can be purchased in the clicker game.
+ * @interface
+ * @property {string} name - The name of the item.
+ * @property {number} cost - The cost of the item in honey.
+ * @property {number} multiplier - The multiplier that the item applies to honey production.
+ * @property {number} perSecond - The amount of honey produced per second by the item.
+ * @property {string} description - A description of the item.
+ * @property {string} [emoji] - An optional emoji representing the item.
+ */
 export interface Item {
   name: string;
-  emoji?: string;
   cost: number;
   multiplier: number;
   perSecond: number;
   description: string;
+  emoji?: string;
 }
 
+/**
+ * An object containing all the items that can be purchased in the game.
+ * @constant
+ * @type {Object<string, Item>}
+ */
 export const items: { [key: string]: Item } = {
   smallBee: {
     name: "Very Small Bee",
@@ -20,7 +35,7 @@ export const items: { [key: string]: Item } = {
   workerBee: {
     name: "Worker Bee",
     cost: 100,
-    multiplier: 1,
+    multiplier: 2,
     perSecond: 0.5,
     description:
       "The backbone of any bee colony, this bee works tirelessly to gather nectar and pollen and produce honey.",

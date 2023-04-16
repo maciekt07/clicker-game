@@ -8,9 +8,11 @@ interface Props {
 }
 
 export const AchievementsList = ({ userProfile }: Props) => {
+  // Filter out the achievements that the user has unlocked
   const unlockedAchievements = Object.values(achievements).filter(
     (achievement) => userProfile.achievements.includes(achievement.name)
   );
+  // Calculate the number of locked achievements
   const lockedAchievementsCount =
     Object.values(achievements).length - unlockedAchievements.length;
   return (
@@ -33,9 +35,9 @@ export const AchievementsList = ({ userProfile }: Props) => {
               <Avatar
                 style={{
                   marginLeft: "12px",
-                  width: "64px",
-                  height: "64px",
-                  fontSize: "24px",
+                  width: "76px",
+                  height: "76px",
+                  fontSize: "28px",
                   background: "#f28705",
                   boxShadow: "0 0 30px -1px #f28705cb",
                 }}
@@ -58,7 +60,7 @@ export const AchievementsList = ({ userProfile }: Props) => {
         </Tooltip>
       ))}
       <br />
-
+      {/* Render the locked achievements count if there are any */}
       {lockedAchievementsCount !== 0 && (
         <Locked>🔒 Locked Achievements: {lockedAchievementsCount}</Locked>
       )}
@@ -79,7 +81,7 @@ const ItemWrapper = styled.div`
   margin: 8px 32px;
   background: #e2e2e2;
   padding: 16px 32px 16px 16px;
-  border-radius: 16px;
+  border-radius: 24px;
 `;
 
 const AvatarWrapper = styled.div`
@@ -102,6 +104,7 @@ const Description = styled.span`
 
 const TextWrapper = styled.div`
   margin: 0;
+  margin-left: 8px;
 `;
 const Locked = styled.div`
   font-weight: bold;

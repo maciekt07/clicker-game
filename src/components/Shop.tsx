@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { items } from "../constants/items";
 import { UserProfileProps } from "../types/userProfileProps";
 import {
@@ -22,6 +22,7 @@ import { toast } from "react-toastify";
 // rateGrowth is the factor by which the cost increases with each purchase (e.g. 1.1 for 10% increase),
 // and itemCount is the current number of items owned by the user.
 
+//TODO: Add toast when unlocked new item
 export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
@@ -35,6 +36,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
     const newMultiplier = userProfile.multiplier + selectedItem.multiplier;
     const newPerSecond = userProfile.perSecond + selectedItem.perSecond;
     const newInventory = { ...userProfile.inventory };
+
     newInventory[item] = (newInventory[item] || 0) + 1;
     setUserProfile({
       ...userProfile,
@@ -43,6 +45,15 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
       perSecond: newPerSecond,
       inventory: newInventory,
     });
+    // if (!userProfile.inventory[item]) {
+    //   toast(
+    //     <>
+    //       <b>🔓 New Item Unlocked!</b>
+    //       <br />
+    //       <span>{selectedItem.name}</span>
+    //     </>
+    //   );
+    // }
     const purchasedItemsSum = Object.values(userProfile.inventory).reduce(
       (a, b) => a + b,
       1
@@ -66,6 +77,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
         );
       });
 
+      const newAchievements = userProfile.newAchievements + 1;
       // Add unlocked purchase achievements to user profile
       setUserProfile({
         ...userProfile,
@@ -79,6 +91,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
             (achievement) => achievement.name
           ),
         ],
+        newAchievements: newAchievements,
       });
     }
   };

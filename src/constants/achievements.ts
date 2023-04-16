@@ -2,11 +2,13 @@
 Represents an achievement that can be earned by the user.
 @interface
 @property {string} name - The name of the achievement.
-@property {string} description - The description of the achievement.
-@property {number=} requirement - The amount required to obtain the achievement.
-@property {number=} clicksRequired - The number of clicks required to obtain the achievement.
+@property {string} emoji - The emoji representing the achievement.
+@property {string} description - The short description of the achievement.
+@property {string} [longDescription] - The longer description of the achievement.
+@property {number} [requirement] - The amount required to obtain the achievement.
+@property {number} [clicksRequired] - The number of clicks required to obtain the achievement.
+@property {number} [purchasesRequired] - The number of purchases required to obtain the achievement.
 */
-
 export interface Achievement {
   name: string;
   emoji: string;

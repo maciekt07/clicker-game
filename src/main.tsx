@@ -5,12 +5,12 @@ import App from "./App";
 import "./styles/index.css";
 import { registerSW } from "virtual:pwa-register";
 
-// add this to prompt for a refresh
 const updateSW = registerSW({
   onNeedRefresh() {
     updateSW(true);
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>

@@ -23,7 +23,7 @@ import { UserProfileProps } from "../types/userProfileProps";
 import { EmojiEvents, Logout, Settings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
-
+import { toast } from "react-toastify";
 export const ProfileAvatar = ({
   userProfile,
   setUserProfile,
@@ -174,6 +174,7 @@ export const ProfileAvatar = ({
             onClick={() => {
               setLogoutDialog(false);
               setUserProfile(defaultUserProfile);
+              toast.success("Successfully logged out");
             }}
           >
             yes
@@ -184,7 +185,7 @@ export const ProfileAvatar = ({
         fullScreen={useMediaQuery("(max-width:768px)")}
         PaperProps={{
           style: {
-            borderRadius: 18,
+            borderRadius: 32,
             padding: 24,
             minWidth: "500px",
           },

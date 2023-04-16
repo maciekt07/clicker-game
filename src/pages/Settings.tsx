@@ -20,6 +20,7 @@ import { nameToAvatar } from "../utils";
 import { Delete, Edit, InfoOutlined, Logout } from "@mui/icons-material";
 import { defaultUserProfile } from "../constants";
 import { UserProfileProps } from "../types/userProfileProps";
+import { toast } from "react-toastify";
 
 export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [name, setName] = useState("");
@@ -70,11 +71,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
               width: "128px",
               height: "128px",
               fontSize: "60px",
-              // border: `${
-              //   userProfile.profilePicture === null
-              //     ? "none"
-              //     : "3px solid" + colorPalette.orange
-              // }`,
               background: `${
                 userProfile.profilePicture === null ? "#f28705" : ""
               }`,
@@ -88,12 +84,15 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
               justifyContent: "center",
               alignItems: "center",
               overflow: "hidden",
+              cursor: "pointer",
             }}
           >
             {nameToAvatar(userProfile.name)}
           </Avatar>
         </Badge>
-        <div style={{ fontSize: "24px" }}>{userProfile.name}</div>
+        <div style={{ fontSize: "24px", marginTop: "4px" }}>
+          {userProfile.name}
+        </div>
         <div
           style={{
             display: "flex",
@@ -111,22 +110,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
           </Tooltip>
           <span> Registered since {formatTimeAgo(createdAt.toString())}</span>
         </div>
-        {/* <div>🏆 Max Points: {formatNumber(userProfile.maxPoints)}</div> */}
         <br />
-        {/* <Button
-          style={{
-            fontSize: ".9rem",
-            borderRadius: 12,
-            padding: "8px 14px",
-          }}
-          variant="outlined"
-          disableElevation
-          onClick={() => setImgDialog(true)}
-        >
-          <Launch /> &nbsp; Change Image
-        </Button>
-        <br /> */}
-
         <SettingsInput
           label="Change Name"
           type="text"
@@ -141,17 +125,22 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
         <br />
         {name !== "" && (
           <SaveButton
-            disabled={name === userProfile.name}
+            // disabled={name === userProfile.name}
             onClick={() => {
               if (name.length < 4) {
                 setNameError("Must be at least 4 characters long");
-              } else if (name.length > 32)
-                setNameError("Can be up to 32 characters long");
-              else {
+              } else if (name.length > 16)
+                setNameError("Can be up to 16 characters long");
+              else if (name === userProfile.name) {
+                toast.error(
+                  "The new name cannot be the same as the previous one"
+                );
+              } else {
                 setUserProfile({
                   ...userProfile,
                   name: name,
                 });
+                toast.success("Changed name successful");
                 setName("");
               }
             }}
@@ -192,7 +181,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             type="url"
             label="Link To Profile Picture"
             error={imgError !== ""}
-            helperText={imgError}
+            helperText={imgError || `${imgLink.length}/255`}
             value={imgLink}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setImgLink(e.target.value);
@@ -233,13 +222,14 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
               borderRadius: 12,
             }}
             onClick={() => {
-              if (isImageUrl(imgLink)) {
+              if (isImageUrl(imgLink) && imgLink.length <= 255) {
                 setImgDialog(false);
                 setImgLink("");
                 setUserProfile({
                   ...userProfile,
                   profilePicture: imgLink === "" ? null : imgLink,
                 });
+                toast.success("Changed image successful");
               } else {
                 setImgError("Please provide a valid image URL.");
               }
@@ -279,6 +269,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             onClick={() => {
               setLogoutDialog(false);
               setUserProfile(defaultUserProfile);
+              toast.success("Successfully logged out");
             }}
           >
             yes

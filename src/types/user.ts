@@ -9,12 +9,13 @@ Represents the user profile data structure.
 @property {number} perSecond - The number of points the user earns per second.
 @property {Object.<string, number>} inventory - The user's inventory of items, where the keys are the item names and the values are the number of items.
 @property {string[]} achievements - The user's list of achieved achievements.
+@property {number} newAchievements - The number of unread achievements.
 @property {number} audioVolume - The user's audio volume level.
 */
 
 export interface User {
   name: string | null;
-  profilePicture: string | null | ArrayBuffer;
+  profilePicture: string | null;
   createdAt: Date;
   points: number;
   clicks: number;
