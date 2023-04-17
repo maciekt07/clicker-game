@@ -11,6 +11,24 @@ export const VolumeSlider = ({
   const [previousValue, setPreviousValue] = useState<number>(
     defaultUserProfile.audioVolume
   );
+
+  const handleMuteClick = () => {
+    setPreviousValue(userProfile.audioVolume);
+    userProfile.audioVolume === 0
+      ? setUserProfile({
+          ...userProfile,
+          audioVolume: previousValue !== 0 ? previousValue : 1,
+        })
+      : setUserProfile({ ...userProfile, audioVolume: 0 });
+  };
+
+  const handleSliderChange = (e: Event, value: number | number[]) => {
+    setUserProfile({
+      ...userProfile,
+      audioVolume: value as number,
+    });
+  };
+
   const volumeLabel = () => {
     const vol = Math.floor(userProfile.audioVolume * 100);
     return vol === 0 ? "Muted" : vol + "%";
@@ -39,18 +57,7 @@ export const VolumeSlider = ({
       alignItems="center"
     >
       <Tooltip title={userProfile.audioVolume === 0 ? "Unmute" : "Mute"}>
-        <IconButton
-          sx={{ color: "white" }}
-          onClick={() => {
-            setPreviousValue(userProfile.audioVolume);
-            userProfile.audioVolume === 0
-              ? setUserProfile({
-                  ...userProfile,
-                  audioVolume: previousValue !== 0 ? previousValue : 1,
-                })
-              : setUserProfile({ ...userProfile, audioVolume: 0 });
-          }}
-        >
+        <IconButton sx={{ color: "white" }} onClick={handleMuteClick}>
           {userProfile.audioVolume === 0 ? (
             <VolumeOff />
           ) : userProfile.audioVolume <= 0.5 ? (
@@ -70,12 +77,7 @@ export const VolumeSlider = ({
         step={0.01}
         valueLabelFormat={volumeLabel}
         valueLabelDisplay="auto"
-        onChange={(e: Event, value: number | number[]) => {
-          setUserProfile({
-            ...userProfile,
-            audioVolume: value as number,
-          });
-        }}
+        onChange={handleSliderChange}
       />
     </Stack>
   );

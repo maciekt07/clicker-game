@@ -11,10 +11,9 @@ interface Props {
 /* FIXME: Some strange lines appear when hovering on other cards idk why */
 
 export const Navbar = ({ children }: Props) => {
-  const hasContent = children !== undefined;
   return (
     <>
-      <Nav hasContent={hasContent}>
+      <Nav>
         <Link to="/">
           <LogoContainer>
             <LogoImage src={HoneyJar} />
@@ -29,11 +28,7 @@ export const Navbar = ({ children }: Props) => {
   );
 };
 
-interface NavProps {
-  hasContent: boolean;
-}
-
-export const Nav = styled.nav<NavProps>`
+export const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
@@ -42,7 +37,7 @@ export const Nav = styled.nav<NavProps>`
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.hasContent ? "center" : "left")};
+  justify-content: "center";
   z-index: 2;
   user-select: none;
 `;

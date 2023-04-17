@@ -45,15 +45,6 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
       perSecond: newPerSecond,
       inventory: newInventory,
     });
-    // if (!userProfile.inventory[item]) {
-    //   toast(
-    //     <>
-    //       <b>🔓 New Item Unlocked!</b>
-    //       <br />
-    //       <span>{selectedItem.name}</span>
-    //     </>
-    //   );
-    // }
     const purchasedItemsSum = Object.values(userProfile.inventory).reduce(
       (a, b) => a + b,
       1

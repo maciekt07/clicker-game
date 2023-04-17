@@ -28,12 +28,6 @@ export const About = ({ userProfile, setUserProfile }: UserProfileProps) => {
   ];
   return (
     <>
-      <Navbar>
-        <ProfileAvatar
-          userProfile={userProfile}
-          setUserProfile={setUserProfile}
-        />
-      </Navbar>
       <BackButton />
       <div
         style={{

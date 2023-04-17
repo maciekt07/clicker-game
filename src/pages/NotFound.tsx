@@ -1,25 +1,17 @@
 import { useEffect } from "react";
 import { Button } from "@mui/material";
-import { Navbar, ProfileAvatar } from "../components";
 import styled, { keyframes } from "styled-components";
 import { ArrowBackIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import SadBee from "../assets/SadBee.png";
-import { UserProfileProps } from "../types/userProfileProps";
 
-export const NotFound = ({ userProfile, setUserProfile }: UserProfileProps) => {
+export const NotFound = () => {
   const n = useNavigate();
   useEffect(() => {
     document.title = `Page Not Found - Honey Clicker`;
   }, []);
   return (
     <Container>
-      <Navbar>
-        <ProfileAvatar
-          userProfile={userProfile}
-          setUserProfile={setUserProfile}
-        />
-      </Navbar>
       <Image src={SadBee} />
       <Title>404</Title>
       <Description>Page not found</Description>
@@ -38,11 +30,11 @@ export const NotFound = ({ userProfile, setUserProfile }: UserProfileProps) => {
   );
 };
 const Container = styled.div`
+  margin-top: 12vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 const bounce = keyframes`

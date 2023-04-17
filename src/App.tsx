@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material";
 import { MuiTheme } from "./styles";
 import { ToastContainer } from "react-toastify";
 import { NotFound } from "./pages/NotFound";
+import { MainLayout } from "./layouts/MainLayout";
 function App() {
   const [userProfile, setUserProfile] = useStorageState<User>(
     defaultUserProfile,
@@ -16,50 +17,47 @@ function App() {
   );
   return (
     <ThemeProvider theme={MuiTheme}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Game userProfile={userProfile} setUserProfile={setUserProfile} />
-          }
+      <MainLayout userProfile={userProfile} setUserProfile={setUserProfile}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Game userProfile={userProfile} setUserProfile={setUserProfile} />
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <About
+                userProfile={userProfile}
+                setUserProfile={setUserProfile}
+              />
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <Settings
+                userProfile={userProfile}
+                setUserProfile={setUserProfile}
+              />
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={6000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
         />
-        <Route
-          path="/about"
-          element={
-            <About userProfile={userProfile} setUserProfile={setUserProfile} />
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <Settings
-              userProfile={userProfile}
-              setUserProfile={setUserProfile}
-            />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <NotFound
-              userProfile={userProfile}
-              setUserProfile={setUserProfile}
-            />
-          }
-        />
-      </Routes>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      </MainLayout>
     </ThemeProvider>
   );
 }

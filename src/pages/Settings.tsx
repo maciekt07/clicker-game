@@ -44,12 +44,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
 
   return (
     <>
-      <Navbar>
-        <ProfileAvatar
-          userProfile={userProfile}
-          setUserProfile={setUserProfile}
-        />
-      </Navbar>
       <BackButton />
       <SettingsContainer>
         <Badge

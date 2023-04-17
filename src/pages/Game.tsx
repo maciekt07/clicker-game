@@ -141,17 +141,10 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         <CreateProfile onSave={handleSetUserProfile} />
       ) : (
         <>
-          <Navbar>
-            <ProfileAvatar
-              userProfile={userProfile}
-              setUserProfile={setUserProfile}
-            />
-          </Navbar>
           <VolumeSlider
             userProfile={userProfile}
             setUserProfile={setUserProfile}
           />
-
           {/* TODO: add click animation on mobile */}
 
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>

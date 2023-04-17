@@ -26,6 +26,7 @@ const Btn = styled.button`
   outline: none;
   font-size: 20px;
   margin: 8px;
+  margin-left: 16px;
   padding: 12px 18px;
   background-color: transparent;
   background: #ffffff3b;

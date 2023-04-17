@@ -36,9 +36,6 @@ export const ProfileAvatar = ({
   return (
     <>
       <AvatarContainer
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
         onClick={(event) => {
           userProfile.name === null ? n("/") : setAnchorEl(event.currentTarget);
         }}
