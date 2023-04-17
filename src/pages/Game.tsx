@@ -17,6 +17,7 @@ import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
 import { VolumeSlider } from "../components/VolumeSlider";
 import { UserProfileProps } from "../types/userProfileProps";
+import { useKeyDown } from "../hooks";
 
 export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
@@ -67,6 +68,9 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
       });
     }
   };
+
+  useKeyDown("Enter", handleClick);
+
   // Function to add points to user's profile
   const handleAddPoints = (points: number) => {
     const newPoints = points;

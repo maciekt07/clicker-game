@@ -3,6 +3,7 @@ import { UserProfileProps } from "../types/userProfileProps";
 import { Stack, Tooltip, IconButton, Slider } from "@mui/material";
 import { VolumeOff, VolumeDown, VolumeUp } from "@mui/icons-material";
 import { defaultUserProfile } from "../constants";
+import { useKeyDown } from "../hooks";
 
 export const VolumeSlider = ({
   userProfile,
@@ -33,6 +34,8 @@ export const VolumeSlider = ({
     const vol = Math.floor(userProfile.audioVolume * 100);
     return vol === 0 ? "Muted" : vol + "%";
   };
+
+  useKeyDown("m", handleMuteClick);
 
   return (
     <Stack
