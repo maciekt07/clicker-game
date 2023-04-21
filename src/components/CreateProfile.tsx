@@ -8,9 +8,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { nameToAvatar } from "../utils";
-
-import { Background, FormContainer, NameInput, CreateButton } from "../styles";
-import { Navbar } from "./Navbar";
+import { FormContainer, NameInput, CreateButton } from "../styles";
 
 interface Props {
   onSave: (name: string, createdAt: Date) => void;

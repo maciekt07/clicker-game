@@ -45,12 +45,12 @@ export const VolumeSlider = ({
         mb: 1,
         width: "200px",
         marginLeft: "16px",
-        background: "#ffffff1d",
+        background: "#ffffff2f",
         padding: "12px 24px 12px 18px",
         borderRadius: "16px",
         transition: ".3s all",
         ":hover": {
-          background: "#ffffff29",
+          background: "#ffffff35",
         },
         "@media (max-width: 600px)": {
           width: "172px",

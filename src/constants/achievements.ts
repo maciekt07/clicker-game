@@ -122,6 +122,14 @@ export const achievements: { [key: string]: Achievement } = {
       "With 100 clicks under your belt, you're now a Clicker Pro. Keep up the speedy clicking!",
     clicksRequired: 100,
   },
+  clickingChampion: {
+    name: "Clicking Champion",
+    emoji: "🖱️",
+    description: "Click the button 500 times",
+    longDescription:
+      "You've clicked the button 500 times and have earned the title of Clicking Champion. Your clicking skills are truly impressive!",
+    clicksRequired: 500,
+  },
   clickingMaster: {
     name: "Clicking Master",
     emoji: "🖱️",
@@ -129,6 +137,14 @@ export const achievements: { [key: string]: Achievement } = {
     longDescription:
       "You've clicked the button 1000 times and are now a Clicking Master. Your fingers are lightning-fast and your clicking skills are truly impressive.",
     clicksRequired: 1000,
+  },
+  clickingSuperstar: {
+    name: "Clicking Superstar",
+    emoji: "🖱️",
+    description: "Click the button 5000 times",
+    longDescription:
+      "You've clicked the button 5000 times and have earned the title of Clicking Superstar. Your clicking skills are unmatched, and you are truly a master of the art of clicking!",
+    clicksRequired: 5000,
   },
   clickingLegend: {
     name: "Clicking Legend",
@@ -163,6 +179,14 @@ export const achievements: { [key: string]: Achievement } = {
       "With 100 purchases made, you're now a Shopping Pro. Your beekeeping equipment is top-of-the-line, and your bees are happy and well-cared-for.",
     purchasesRequired: 100,
   },
+  buyingLegend: {
+    name: "Buying Legend",
+    emoji: "🛍️",
+    description: "Buy 500 items",
+    longDescription:
+      "You've purchased 500 items and have earned the title of Buying Legend. Your dedication to beekeeping and your exceptional shopping skills have propelled your empire to new heights!",
+    purchasesRequired: 500,
+  },
   buyExpert: {
     name: "Buy Expert",
     emoji: "🛍️",
@@ -170,6 +194,14 @@ export const achievements: { [key: string]: Achievement } = {
     longDescription:
       "You've made 1,000 purchases and have earned the title of Buy Expert. Your beekeeping knowledge and equipment are second to none!",
     purchasesRequired: 1000,
+  },
+  buyingChampion: {
+    name: "Buying Champion",
+    emoji: "🛍️",
+    description: "Buy 5,000 items",
+    longDescription:
+      "You've made 5,000 purchases and have earned the title of Buying Champion. Your beekeeping skills and knowledge have grown tremendously, and your bees are thriving under your expert care.",
+    purchasesRequired: 5000,
   },
   buyingMaster: {
     name: "Buying Master",
@@ -179,6 +211,7 @@ export const achievements: { [key: string]: Achievement } = {
       "You're a Buying Master, having made 10,000 purchases. Your beekeeping empire is growing rapidly, and your bees are thriving under your care.",
     purchasesRequired: 10000,
   },
+
   buyTycoon: {
     name: "Buy Tycoon",
     emoji: "🛍️",

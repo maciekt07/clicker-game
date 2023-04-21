@@ -29,12 +29,12 @@ const Btn = styled.button`
   margin-left: 16px;
   padding: 12px 18px;
   background-color: transparent;
-  background: #ffffff3b;
+  background: #f5f5f5;
   color: ${colorPalette.orange};
   cursor: pointer;
   border-radius: 20px;
   transition: 0.3s all;
   &:hover {
-    background: #ffffff40;
+    background: #f5f5f5e8;
   }
 `;

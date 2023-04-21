@@ -10,6 +10,7 @@ export {
   ClickContainer,
   ClickImg,
   ClickButton,
+  ShareButton,
 } from "./Game.styled";
 export {
   Container,

@@ -20,7 +20,7 @@ export const FormContainer = styled.div`
   padding: 85px 10px;
   border-radius: 50px;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
+  background: #f5f5f5;
   border: 5px solid ${colorPalette.orange};
   display: flex;
   gap: 3px;

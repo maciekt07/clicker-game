@@ -52,15 +52,15 @@ const Btn = styled.button<BtnProps>`
   z-index: 99;
   border: none;
   outline: none;
-  transition: 0.3s all;
-  background: #ffffffe2;
-  backdrop-filter: blur(5px);
+
+  background: #ffffffd9;
+  backdrop-filter: blur(4px);
   color: white;
   cursor: pointer;
   padding: 12px;
   border-radius: 22px;
   transform: scale(${(props) => (props.show ? 1 : 0)});
-  transition: transform 0.2s ease-in-out;
+  transition: 0.3s all ease-in-out;
 
   &:hover {
     background-color: #ffffff;

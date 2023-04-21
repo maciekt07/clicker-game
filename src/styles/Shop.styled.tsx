@@ -108,8 +108,8 @@ export const Description = styled.h4`
 export const BuyButton = styled.button`
   margin-top: 16px;
   width: 100%;
-  padding: 16px 8px;
-  font-size: 20px;
+  padding: 16px;
+  font-size: 22px;
   border: 2px solid transparent;
   background: ${colorPalette.orange};
   color: white;

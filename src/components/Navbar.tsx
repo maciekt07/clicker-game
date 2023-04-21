@@ -8,7 +8,7 @@ interface Props {
   children?: ReactNode;
 }
 
-/* FIXME: Some strange lines appear when hovering on other cards idk why */
+/* FIXME: Some strange lines appear when hovering on other cards idk why 🙄 */
 
 export const Navbar = ({ children }: Props) => {
   return (
@@ -31,6 +31,7 @@ export const Navbar = ({ children }: Props) => {
 export const Nav = styled.nav`
   position: fixed;
   top: 0;
+
   width: 100%;
   background: #ffffffed;
   /* -webkit-backdrop-filter: blur(6px); */
@@ -39,6 +40,7 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: "center";
   z-index: 2;
+  border-bottom: 4px solid #3333332a;
   user-select: none;
 `;
 const LogoContainer = styled.span`

@@ -1,15 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
-import { Navbar, ProfileAvatar, BackButton } from "../components";
+import { BackButton } from "../components";
 import styled from "styled-components";
 import { colorPalette } from "../styles";
 import { GitHub } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { achievements, items } from "../constants";
 import PLFlag from "../assets/poland-flag-icon.svg";
-import { UserProfileProps } from "../types/userProfileProps";
 
-export const About = ({ userProfile, setUserProfile }: UserProfileProps) => {
+export const About = () => {
   // Calculate the number of achievements and items
   const achievementsCount = Object.keys(achievements).length;
   const itemsCount = Object.keys(items).length;

@@ -26,7 +26,7 @@
 body {
   font-family: "Poppins", sans-serif !important;
   margin: 0;
-  background: #531aa5; /* #4f2f4f; #8b572a #4b0082 */
+  background: #531aa5;
   color: #efefef;
   min-width: 320px;
   min-height: 100vh;
@@ -52,7 +52,7 @@ button {
 
 .Toastify__toast-theme--light {
   background: #ffffffd9;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   padding: 12px;
   border-radius: 18px;
   color: #4b4b4b;

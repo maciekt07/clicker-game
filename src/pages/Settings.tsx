@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navbar, ProfileAvatar, BackButton } from "../components";
+import { BackButton } from "../components";
 import { useNavigate } from "react-router-dom";
 import {
   Avatar,
@@ -174,7 +174,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
           <SettingsInput
             type="url"
             label="Link To Profile Picture"
-            error={imgError !== ""}
+            error={imgError !== "" || imgLink.length > 255}
             helperText={imgError || `${imgLink.length}/255`}
             value={imgLink}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

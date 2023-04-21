@@ -113,6 +113,15 @@ export const items: { [key: string]: Item } = {
       "A luxurious hive fit for a queen, with spacious chambers and plenty of room for her attendants.",
     emoji: "🏰",
   },
+  beeSuit: {
+    name: "Bee Suit",
+    cost: 10000000,
+    multiplier: 7500,
+    perSecond: 1500,
+    description:
+      "A protective suit that covers the entire body and prevents bee stings.",
+    emoji: "👩‍🚀",
+  },
   pollenCollector: {
     name: "Pollen Collector",
     cost: 25000000,
@@ -130,5 +139,23 @@ export const items: { [key: string]: Item } = {
     description:
       "A hive made entirely of diamond, the ultimate symbol of luxury and prestige.",
     emoji: "💎",
+  },
+  honeyExtractor: {
+    name: "Honey Extractor",
+    cost: 500000000,
+    multiplier: 50000,
+    perSecond: 10000,
+    description:
+      "A device that spins the honeycombs and extracts the honey using centrifugal force.",
+    emoji: "🍯",
+  },
+  beeMuseum: {
+    name: "Bee Museum",
+    cost: 1000000000,
+    multiplier: 100000,
+    perSecond: 20000,
+    description:
+      "A place that showcases the history, culture, and science of bees and honey.",
+    emoji: "🏛️",
   },
 };

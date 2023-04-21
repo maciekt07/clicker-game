@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  CreateProfile,
-  StatsInfo,
-  Shop,
-  Navbar,
-  ProfileAvatar,
-  BackToTop,
-} from "../components";
-
-import { ClickButton, ClickContainer, ClickImg } from "../styles";
+import { CreateProfile, StatsInfo, Shop, BackToTop } from "../components";
+import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
 import { compactFormat, playSound } from "../utils";
 import { achievements } from "../constants";
 import { toast } from "react-toastify";
@@ -18,6 +10,7 @@ import ClickSound from "../assets/click.mp3";
 import { VolumeSlider } from "../components/VolumeSlider";
 import { UserProfileProps } from "../types/userProfileProps";
 import { useKeyDown } from "../hooks";
+import { Share } from "@mui/icons-material";
 
 export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
@@ -49,10 +42,13 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
       unlockedClickAchievements.forEach((achievement) => {
         toast(
           <>
-            <b>🖱️ {achievement.name} unlocked!</b>
+            <b>{achievement.name} unlocked!</b>
             <br />
             <span>{achievement.description}</span>
-          </>
+          </>,
+          {
+            icon: achievement.emoji,
+          }
         );
       });
 
@@ -90,10 +86,13 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         // toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
         toast(
           <>
-            <b>🍯 {achievement.name} unlocked!</b>
+            <b>{achievement.name} unlocked!</b>
             <br />
             <span>{achievement.description}</span>
-          </>
+          </>,
+          {
+            icon: achievement.emoji,
+          }
         );
       });
       const newAchievements = userProfile.newAchievements + 1;
@@ -139,6 +138,18 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     }
   }, [userProfile]);
 
+  const handleShareClick = async () => {
+    try {
+      await navigator.share({
+        title: "Honey Clicker",
+        text: "Simple yet addictive clicker game where you can earn points by clicking on a honey jar. You can use your points to upgrade your clicking power and unlock achievements.",
+        url: window.location.href,
+      });
+    } catch (error) {
+      console.error("Error sharing:", error);
+    }
+  };
+
   return (
     <>
       {userProfile.name === null ? (
@@ -149,8 +160,10 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
             userProfile={userProfile}
             setUserProfile={setUserProfile}
           />
+          <ShareButton onClick={handleShareClick}>
+            <Share /> &nbsp; Share
+          </ShareButton>
           {/* TODO: add click animation on mobile */}
-
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton
               onClick={handleClick}

@@ -28,7 +28,7 @@ export const ClickImg = styled.img`
 `;
 
 export const ClickButton = muistyled(Button)({
-  border: `4px solid ${colorPalette.orange}`,
+  border: `5px solid ${colorPalette.orange}`,
   borderRadius: "48px",
   transition: ".15s all ease-out",
   "&:active": {
@@ -38,3 +38,23 @@ export const ClickButton = muistyled(Button)({
     },
   },
 });
+
+export const ShareButton = styled.button`
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 110px;
+  right: 16px;
+  padding: 16px 26px;
+  font-size: 16px;
+  border-radius: 20px;
+  background: #ffffff2f;
+  display: flex;
+  color: ${colorPalette.orange};
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s all;
+  &:hover {
+    background: #ffffff35;
+  }
+`;

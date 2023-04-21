@@ -61,10 +61,13 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
       unlockedPurchaseAchievements.forEach((achievement) => {
         toast(
           <>
-            <b>🛍️ {achievement.name} unlocked!</b>
+            <b>{achievement.name} unlocked!</b>
             <br />
             <span>{achievement.description}</span>
-          </>
+          </>,
+          {
+            icon: achievement.emoji,
+          }
         );
       });
 
@@ -135,6 +138,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
           </LockedContainer>
         )}
       </Container>
+      <div style={{ paddingTop: "85px" }} />
     </div>
   );
 };
