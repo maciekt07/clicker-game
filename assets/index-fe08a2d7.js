@@ -542,7 +542,7 @@ Error generating stack: `+i.message+`
   &:hover {
     background: #f5f5f5e8;
   }
-`,MO=({userProfile:e,setUserProfile:t})=>{const n=e.maxPoints/10,r={FirstQuest:{name:"available soon (or not)",completed:!1},SecondQuest:{name:"completed quest",completed:!0}},o=Object.values(r).every(i=>i.completed);return Y(LO,{children:[Y(NO,{children:["Quests for ",e.name]}),o?S("p",{children:"All quests completed"}):Object.values(r).map((i,a)=>Y(_O,{completed:i.completed,children:[i.completed&&S(yO,{})," ",i.name]},a)),Y("p",{children:["Reward = 🍯",O1(n)," "]})]})},LO=ye.div`
+`,MO=({userProfile:e,setUserProfile:t})=>{const n=e.maxPoints/8>100?e.maxPoints/8:100,r={FirstQuest:{name:"available soon (or not)",completed:!1},SecondQuest:{name:"completed quest",completed:!0}},o=Object.values(r).every(i=>i.completed);return Y(LO,{children:[Y(NO,{children:["Quests for ",e.name]}),o?S("p",{children:"All quests completed"}):Object.values(r).map((i,a)=>Y(_O,{completed:i.completed,children:[i.completed&&S(yO,{})," ",i.name]},a)),!o&&Y("p",{children:["Reward = 🍯",O1(n)]})]})},LO=ye.div`
   background: #ffffff2f;
   margin-left: 20px;
   min-width: 250px;
