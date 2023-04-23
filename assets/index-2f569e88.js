@@ -550,10 +550,13 @@ Error generating stack: `+i.message+`
   position: absolute;
   top: 220px;
   border-radius: 20px;
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     position: relative;
     top: 0;
-    margin: 25px 85px;
+    margin: 25px 200px;
+  }
+  @media (max-width: 700px) {
+    margin: 25px 80px;
   }
 `,LO=ye.h3`
   color: ${Le.orange};
