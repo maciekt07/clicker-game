@@ -1,32 +1,16 @@
 import { KeyboardArrowUp } from "@mui/icons-material";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useScrollTrigger } from "../hooks";
 
 export const BackToTop = () => {
-  const [showBtn, setShowBtn] = useState(false);
-
-  // Function to check whether to show the button or not
-  const checkScrollTop = () => {
-    if (!showBtn && window.pageYOffset > 400) {
-      setShowBtn(true);
-    } else if (showBtn && window.pageYOffset <= 400) {
-      setShowBtn(false);
-    }
-  };
-
-  // Adding an event listener to the window object when the component mounts
-  useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
-    // Removing the event listener when the component unmounts
-    return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [showBtn]); // Only rerun this effect if showBtn changes
+  const checkScrollTop = useScrollTrigger();
 
   // Function to scroll to the top of the page smoothly
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <Btn onClick={scrollTop} show={showBtn}>
+    <Btn onClick={scrollTop} show={checkScrollTop}>
       <KeyboardArrowUp
         color="primary"
         fontSize="large"

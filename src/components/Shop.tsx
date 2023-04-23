@@ -49,7 +49,16 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
       (a, b) => a + b,
       1
     );
-
+    if (!userProfile.inventory[item]) {
+      toast(
+        <>
+          <b>New Item Unlocked!</b>
+          <br />
+          <span>{selectedItem.name}</span>
+        </>,
+        { icon: "🔓" }
+      );
+    }
     const unlockedPurchaseAchievements = Object.values(achievements).filter(
       (achievement) =>
         achievement.purchasesRequired !== undefined &&

@@ -25,15 +25,7 @@ function App() {
               <Game userProfile={userProfile} setUserProfile={setUserProfile} />
             }
           />
-          <Route
-            path="/about"
-            element={
-              <About
-                userProfile={userProfile}
-                setUserProfile={setUserProfile}
-              />
-            }
-          />
+          <Route path="/about" element={<About />} />
           <Route
             path="/settings"
             element={

@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { CreateProfile, StatsInfo, Shop, BackToTop } from "../components";
+import {
+  CreateProfile,
+  StatsInfo,
+  Shop,
+  BackToTop,
+  Quests,
+} from "../components";
 import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
 import { compactFormat, playSound } from "../utils";
 import { achievements } from "../constants";
@@ -9,11 +15,11 @@ import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
 import { VolumeSlider } from "../components/VolumeSlider";
 import { UserProfileProps } from "../types/userProfileProps";
-import { useKeyDown } from "../hooks";
 import { Share } from "@mui/icons-material";
 
 export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const handleSetUserProfile = (name: string | null, createdAt: Date) => {
     setUserProfile({
       ...userProfile,
@@ -30,6 +36,14 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     handleAddPoints(userProfile.points + userProfile.multiplier);
     // Increment click count
     setClicks(clicks + 1);
+    //animation
+
+    if (!isClicked) {
+      setIsClicked(true);
+      setTimeout(() => {
+        setIsClicked(false);
+      }, 150);
+    }
     // Check for unlocked click achievements
     const unlockedClickAchievements = Object.values(achievements).filter(
       (achievement) =>
@@ -65,7 +79,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     }
   };
 
-  useKeyDown("Enter", handleClick);
+  // useKeyDown("Enter", handleClick);
 
   // Function to add points to user's profile
   const handleAddPoints = (points: number) => {
@@ -163,16 +177,20 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           <ShareButton onClick={handleShareClick}>
             <Share /> &nbsp; Share
           </ShareButton>
-          {/* TODO: add click animation on mobile */}
+
+          {/* TODO: improve animation on mobile */}
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton
+              className={isClicked ? "clicked" : ""}
               onClick={handleClick}
               onTouchStart={(e) => e.preventDefault()}
             >
               <ClickImg draggable="false" src={HoneyJar} />
             </ClickButton>
           </ClickContainer>
+
           <StatsInfo userProfile={userProfile} />
+          <Quests userProfile={userProfile} setUserProfile={setUserProfile} />
           <Shop userProfile={userProfile} setUserProfile={setUserProfile} />
           <BackToTop />
         </>

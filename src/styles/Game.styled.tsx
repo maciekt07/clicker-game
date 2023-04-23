@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { styled as muistyled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { colorPalette } from "./theme";
@@ -12,6 +12,7 @@ export const AvatarContainer = styled.span`
     margin-right: 15px;
   }
 `;
+
 export const ClickContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -31,11 +32,10 @@ export const ClickButton = muistyled(Button)({
   border: `5px solid ${colorPalette.orange}`,
   borderRadius: "48px",
   transition: ".15s all ease-out",
-  "&:active": {
-    "@media not all and (pointer: coarse)": {
-      transform: "scale(.85)",
-      borderRadius: "72px",
-    },
+  "&.clicked": {
+    borderRadius: "72px",
+    borderColor: colorPalette.yellow,
+    transform: "scale(.9)",
   },
 });
 
@@ -45,7 +45,7 @@ export const ShareButton = styled.button`
   position: absolute;
   top: 110px;
   right: 16px;
-  padding: 16px 26px;
+  padding: 14px 22px;
   font-size: 16px;
   border-radius: 20px;
   background: #ffffff2f;

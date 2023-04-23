@@ -3,26 +3,14 @@ import { User } from "../types/user";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { colorPalette } from "../styles";
+import { useScrollTrigger } from "../hooks";
 
 interface Props {
   userProfile: User;
 }
 
 export const StatsInfo = ({ userProfile }: Props) => {
-  const [showPoints, setShowPoints] = useState(false);
-
-  const checkScrollTop = () => {
-    if (!showPoints && window.pageYOffset > 400) {
-      setShowPoints(true);
-    } else if (showPoints && window.pageYOffset <= 400) {
-      setShowPoints(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
-    return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [showPoints]);
+  const checkShowPoints = useScrollTrigger();
 
   const formatPoints = () => {
     return `Points: 🍯${
@@ -50,7 +38,7 @@ export const StatsInfo = ({ userProfile }: Props) => {
         <span>Per Second: {formatNumber(userProfile.perSecond)}</span>
       </StatsContainer>
       {/* TODO: - Improve UI beacause its ugly as fuck */}
-      <Points show={showPoints}>{formatPoints()}</Points>
+      <Points show={checkShowPoints}>{formatPoints()}</Points>
     </>
   );
 };
@@ -73,7 +61,7 @@ interface PointsProps {
 const Points = styled.div<PointsProps>`
   z-index: 2;
   position: fixed;
-  bottom: 20px;
+  top: 110px;
   left: 50%;
   transition: 0.3s all ease-in-out;
   transform: translate(-50%, 0) scale(${(props) => (props.show ? 1 : 0)});

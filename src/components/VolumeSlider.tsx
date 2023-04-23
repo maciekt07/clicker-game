@@ -43,7 +43,7 @@ export const VolumeSlider = ({
       direction="row"
       sx={{
         mb: 1,
-        width: "200px",
+        width: "225px",
         marginLeft: "16px",
         background: "#ffffff2f",
         padding: "12px 24px 12px 18px",
@@ -53,7 +53,7 @@ export const VolumeSlider = ({
           background: "#ffffff35",
         },
         "@media (max-width: 600px)": {
-          width: "172px",
+          width: "180px",
           padding: "8px 18px 8px 9px",
         },
       }}

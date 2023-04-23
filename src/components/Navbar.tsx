@@ -40,7 +40,6 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: "center";
   z-index: 2;
-  border-bottom: 4px solid #3333332a;
   user-select: none;
 `;
 const LogoContainer = styled.span`

@@ -154,6 +154,14 @@ export const achievements: { [key: string]: Achievement } = {
       "You're a Clicking Legend with 10,000 button clicks. Your clicking abilities are unmatched, and your speed is simply astounding.",
     clicksRequired: 10000,
   },
+  clickingTitan: {
+    name: "Clicking Titan",
+    emoji: "🖱️",
+    description: "Click the button 50,000 times",
+    longDescription:
+      "You've clicked the button 50,000 times, achieving the title of Clicking Titan. Your clicking skills are beyond impressive and have reached a level of mastery that few can match.",
+    clicksRequired: 50000,
+  },
   clickingGod: {
     name: "Clicking God",
     emoji: "🖱️",
@@ -179,12 +187,12 @@ export const achievements: { [key: string]: Achievement } = {
       "With 100 purchases made, you're now a Shopping Pro. Your beekeeping equipment is top-of-the-line, and your bees are happy and well-cared-for.",
     purchasesRequired: 100,
   },
-  buyingLegend: {
-    name: "Buying Legend",
+  buyTycoon: {
+    name: "Buy Tycoon",
     emoji: "🛍️",
     description: "Buy 500 items",
     longDescription:
-      "You've purchased 500 items and have earned the title of Buying Legend. Your dedication to beekeeping and your exceptional shopping skills have propelled your empire to new heights!",
+      "You've purchased 500 items and have earned the title of Buy Tycoon. Your dedication to beekeeping and your exceptional shopping skills have propelled your empire to new heights!",
     purchasesRequired: 500,
   },
   buyExpert: {
@@ -212,20 +220,20 @@ export const achievements: { [key: string]: Achievement } = {
     purchasesRequired: 10000,
   },
 
-  buyTycoon: {
-    name: "Buy Tycoon",
+  buyingLegend: {
+    name: "Buy Legend",
+    emoji: "🛍️",
+    description: "Buy 50,000 items",
+    longDescription:
+      "With 50,000 purchases made, you're now a Buy Legend. Your beekeeping empire is massive, and your honey is in high demand worldwide.",
+    purchasesRequired: 50000,
+  },
+  buyingTitan: {
+    name: "Buying Titan",
     emoji: "🛍️",
     description: "Buy 100,000 items",
     longDescription:
-      "With 100,000 purchases made, you're now a Buy Tycoon. Your beekeeping empire is massive, and your honey is in high demand worldwide.",
+      "You've made 100,000 purchases and have earned the title of Buying Titan. Your beekeeping empire is the envy of beekeepers everywhere, and your honey is known for its unparalleled quality.",
     purchasesRequired: 100000,
-  },
-  buyingMagnate: {
-    name: "Buying Magnate",
-    emoji: "🛍️",
-    description: "Buy 1,000,000 items",
-    longDescription:
-      "You're a Buying Magnate with 1,000,000 purchases made. Your beekeeping empire is unmatched,",
-    purchasesRequired: 1000000,
   },
 };

@@ -118,29 +118,32 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
         />
         <br />
         {name !== "" && (
-          <SaveButton
-            // disabled={name === userProfile.name}
-            onClick={() => {
-              if (name.length < 4) {
-                setNameError("Must be at least 4 characters long");
-              } else if (name.length > 16)
-                setNameError("Can be up to 16 characters long");
-              else if (name === userProfile.name) {
-                toast.error(
-                  "The new name cannot be the same as the previous one"
-                );
-              } else {
-                setUserProfile({
-                  ...userProfile,
-                  name: name,
-                });
-                toast.success("Changed name successful");
-                setName("");
-              }
-            }}
-          >
-            Save
-          </SaveButton>
+          <>
+            <SaveButton
+              // disabled={name === userProfile.name}
+              onClick={() => {
+                if (name.length < 4) {
+                  setNameError("Must be at least 4 characters long");
+                } else if (name.length > 16)
+                  setNameError("Can be up to 16 characters long");
+                else if (name === userProfile.name) {
+                  toast.error(
+                    "The new name cannot be the same as the previous one"
+                  );
+                } else {
+                  setUserProfile({
+                    ...userProfile,
+                    name: name,
+                  });
+                  toast.success("Changed name successful");
+                  setName("");
+                }
+              }}
+            >
+              Save
+            </SaveButton>
+            <br />
+          </>
         )}
         <Button
           style={{
@@ -189,6 +192,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             style={{
               fontSize: ".9rem",
               borderRadius: 12,
+              padding: "8px 14px",
             }}
             onClick={() => {
               setUserProfile({ ...userProfile, profilePicture: null });

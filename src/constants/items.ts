@@ -41,14 +41,15 @@ export const items: { [key: string]: Item } = {
       "The backbone of any bee colony, this bee works tirelessly to gather nectar and pollen and produce honey.",
     emoji: "🐝",
   },
-  droneBee: {
-    name: "Drone Bee",
+
+  honeycomb: {
+    name: "Honeycomb",
     cost: 500,
     multiplier: 5,
     perSecond: 2,
     description:
-      "A male bee whose sole purpose is to mate with the queen bee. Essential for the survival of the colony.",
-    emoji: "🐝",
+      "A hexagonal wax structure that bees build to store their honey and raise their young.",
+    emoji: "🍯",
   },
   queenBee: {
     name: "Queen Bee",
@@ -59,32 +60,34 @@ export const items: { [key: string]: Item } = {
       "The ruler of the hive, the queen bee is responsible for laying all the eggs and maintaining the colony's social order.",
     emoji: "👑",
   },
-  honeycomb: {
-    name: "Honeycomb",
+  droneBee: {
+    name: "Drone Bee",
     cost: 5000,
     multiplier: 50,
     perSecond: 10,
     description:
-      "A hexagonal wax structure that bees build to store their honey and raise their young.",
-    emoji: "🍯",
+      "A male bee whose sole purpose is to mate with the queen bee. Essential for the survival of the colony.",
+    emoji: "🐝",
   },
-  honeyJar: {
-    name: "Honey Jar",
+
+  honeyPot: {
+    name: "Honey Pot",
     cost: 20000,
     multiplier: 100,
     perSecond: 25,
     description:
-      "A jar filled with delicious, golden honey that's ready for human consumption.",
+      "A pot filled with delicious, golden honey that's ready for human consumption.",
     emoji: "🍯",
   },
-  apiary: {
-    name: "Apiary",
+
+  beeSuit: {
+    name: "Bee Suit",
     cost: 100000,
     multiplier: 500,
     perSecond: 100,
     description:
-      "A collection of beehives that's used for commercial honey production.",
-    emoji: "🏭",
+      "A protective suit that covers the entire body and prevents bee stings.",
+    emoji: "👩‍🚀",
   },
   hive: {
     name: "Hive",
@@ -104,6 +107,15 @@ export const items: { [key: string]: Item } = {
       "A special substance secreted by worker bees that's fed exclusively to the queen bee and her larvae.",
     emoji: "👑",
   },
+  pollinatorDrone: {
+    name: "Pollinator Drone",
+    cost: 2500000,
+    multiplier: 3000,
+    perSecond: 750,
+    description:
+      "A specialized drone that's designed to pollinate flowers in large quantities, significantly boosting the efficiency of the bee colony.",
+    emoji: "🚁",
+  },
   royalHive: {
     name: "Royal Hive",
     cost: 5000000,
@@ -113,14 +125,14 @@ export const items: { [key: string]: Item } = {
       "A luxurious hive fit for a queen, with spacious chambers and plenty of room for her attendants.",
     emoji: "🏰",
   },
-  beeSuit: {
-    name: "Bee Suit",
+  apiary: {
+    name: "Apiary",
     cost: 10000000,
     multiplier: 7500,
     perSecond: 1500,
     description:
-      "A protective suit that covers the entire body and prevents bee stings.",
-    emoji: "👩‍🚀",
+      "A collection of beehives that's used for commercial honey production.",
+    emoji: "🏭",
   },
   pollenCollector: {
     name: "Pollen Collector",
@@ -130,6 +142,15 @@ export const items: { [key: string]: Item } = {
     description:
       "A machine that automatically collects pollen from flowers, making the work of the bees a little easier.",
     emoji: "🌼",
+  },
+  royalBee: {
+    name: "Royal Bee",
+    cost: 50000000,
+    multiplier: 15000,
+    perSecond: 3000,
+    description:
+      " A majestic bee with a crown, known for its superior pollen collection and exquisite golden wings.",
+    emoji: "🐝",
   },
   diamondHive: {
     name: "Diamond Hive",

@@ -6,3 +6,4 @@ export { AchievementsList } from "./AchievementsList";
 export { ProfileAvatar } from "./ProfileAvatar";
 export { BackToTop } from "./BackToTop";
 export { BackButton } from "./BackButton";
+export { Quests } from "./Quests";
