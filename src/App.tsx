@@ -15,25 +15,16 @@ function App() {
     defaultUserProfile,
     "userProfile"
   );
+  const userProfileProps = { userProfile, setUserProfile };
   return (
     <ThemeProvider theme={MuiTheme}>
-      <MainLayout userProfile={userProfile} setUserProfile={setUserProfile}>
+      <MainLayout {...userProfileProps}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Game userProfile={userProfile} setUserProfile={setUserProfile} />
-            }
-          />
+          <Route path="/" element={<Game {...userProfileProps} />} />
           <Route path="/about" element={<About />} />
           <Route
             path="/settings"
-            element={
-              <Settings
-                userProfile={userProfile}
-                setUserProfile={setUserProfile}
-              />
-            }
+            element={<Settings {...userProfileProps} />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

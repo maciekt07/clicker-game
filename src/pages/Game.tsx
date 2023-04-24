@@ -1,15 +1,9 @@
 import { useState, useEffect } from "react";
-import {
-  CreateProfile,
-  StatsInfo,
-  Shop,
-  BackToTop,
-  Quests,
-} from "../components";
+import { CreateProfile, StatsInfo, Shop, BackToTop } from "../components";
 import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
 import { compactFormat, playSound, showToast } from "../utils";
 import { achievements } from "../constants";
-import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/click.mp3";
@@ -18,6 +12,7 @@ import { UserProfileProps } from "../types/userProfileProps";
 import { Share } from "@mui/icons-material";
 
 export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
+  const userProfileProps = { userProfile, setUserProfile };
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const handleSetUserProfile = (name: string | null, createdAt: Date) => {
@@ -172,15 +167,12 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         <CreateProfile onSave={handleSetUserProfile} />
       ) : (
         <>
-          <VolumeSlider
-            userProfile={userProfile}
-            setUserProfile={setUserProfile}
-          />
+          <VolumeSlider {...userProfileProps} />
+
           <ShareButton onClick={handleShareClick}>
             <Share /> &nbsp; Share
           </ShareButton>
 
-          {/* TODO: improve animation on mobile */}
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton
               className={isClicked ? "clicked" : ""}
@@ -192,8 +184,9 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           </ClickContainer>
 
           <StatsInfo userProfile={userProfile} />
-          <Quests userProfile={userProfile} setUserProfile={setUserProfile} />
-          <Shop userProfile={userProfile} setUserProfile={setUserProfile} />
+          {/*TODO: Implement the quests component as it is not done yet. */}
+          {/* <Quests {...userProfileProps} /> */}
+          <Shop {...userProfileProps} />
           <BackToTop />
         </>
       )}
