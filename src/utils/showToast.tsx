@@ -1,5 +1,5 @@
 import { playSound } from "./playSound";
-import toastSound from "../assets/toast.mp3";
+import toastSound from "../assets/sounds/toast.mp3";
 import { toast } from "react-toastify";
 
 interface ToastProps {

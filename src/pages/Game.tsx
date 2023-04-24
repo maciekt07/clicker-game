@@ -6,7 +6,7 @@ import { achievements } from "../constants";
 
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
-import ClickSound from "../assets/click.mp3";
+import ClickSound from "../assets/sounds/click.mp3";
 import { VolumeSlider } from "../components/VolumeSlider";
 import { UserProfileProps } from "../types/userProfileProps";
 import { Share } from "@mui/icons-material";

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { items } from "../constants/items";
 import { UserProfileProps } from "../types/userProfileProps";
 import {
@@ -12,9 +12,8 @@ import {
   LockedContainer,
 } from "../styles";
 import { achievements } from "../constants";
-import BuySound from "../assets/buy.mp3";
+import BuySound from "../assets/sounds/buy.mp3";
 import { formatNumber, playSound, showToast } from "../utils";
-import { toast } from "react-toastify";
 
 // The new cost of the item is calculated using the formula:
 // newCost = costBase * (rateGrowth ^ itemCount)
