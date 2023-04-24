@@ -15,6 +15,7 @@ Welcome to Honey Clicker! This is a simple yet addictive clicker game where you 
 - Progress is saved in localstorage
 - Purchase various items in the shop to increase your clicking power
 - Unlock achievements with interesting descriptions by reaching certain goals
+- Daily quest that change every 24 hours (not available yet)
 - User profile settings where you can change your name and profile picture
 - Cool sound effects and volume slider
 - Responsive design that adapts to different screen sizes

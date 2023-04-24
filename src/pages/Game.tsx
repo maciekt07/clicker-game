@@ -7,7 +7,7 @@ import {
   Quests,
 } from "../components";
 import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
-import { compactFormat, playSound } from "../utils";
+import { compactFormat, playSound, showToast } from "../utils";
 import { achievements } from "../constants";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -54,16 +54,22 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     // If there are unlocked click achievements, show toast notifications and update user profile
     if (unlockedClickAchievements.length > 0) {
       unlockedClickAchievements.forEach((achievement) => {
-        toast(
-          <>
-            <b>{achievement.name} unlocked!</b>
-            <br />
-            <span>{achievement.description}</span>
-          </>,
-          {
-            icon: achievement.emoji,
-          }
-        );
+        // toast(
+        //   <>
+        //     <b>{achievement.name} unlocked!</b>
+        //     <br />
+        //     <span>{achievement.description}</span>
+        //   </>,
+        //   {
+        //     icon: achievement.emoji,
+        //   }
+        // );
+        showToast({
+          header: `${achievement.name} unlocked!`,
+          text: achievement.description,
+          emoji: achievement.emoji,
+          volume: userProfile.audioVolume,
+        });
       });
 
       const newAchievements = userProfile.newAchievements + 1;
@@ -98,16 +104,12 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
       // Show toast notification for each unlocked achievement
       unlockedAchievements.forEach((achievement) => {
         // toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
-        toast(
-          <>
-            <b>{achievement.name} unlocked!</b>
-            <br />
-            <span>{achievement.description}</span>
-          </>,
-          {
-            icon: achievement.emoji,
-          }
-        );
+        showToast({
+          header: `${achievement.name} unlocked!`,
+          text: achievement.description,
+          emoji: achievement.emoji,
+          volume: userProfile.audioVolume,
+        });
       });
       const newAchievements = userProfile.newAchievements + 1;
       // Add unlocked achievements to user profile

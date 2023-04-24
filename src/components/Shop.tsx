@@ -13,7 +13,7 @@ import {
 } from "../styles";
 import { achievements } from "../constants";
 import BuySound from "../assets/buy.mp3";
-import { formatNumber, playSound } from "../utils";
+import { formatNumber, playSound, showToast } from "../utils";
 import { toast } from "react-toastify";
 
 // The new cost of the item is calculated using the formula:
@@ -50,14 +50,12 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
       1
     );
     if (!userProfile.inventory[item]) {
-      toast(
-        <>
-          <b>New Item Unlocked!</b>
-          <br />
-          <span>{selectedItem.name}</span>
-        </>,
-        { icon: "🔓" }
-      );
+      showToast({
+        header: "New item unlocked!",
+        text: selectedItem.name,
+        emoji: "🔓",
+        volume: userProfile.audioVolume,
+      });
     }
     const unlockedPurchaseAchievements = Object.values(achievements).filter(
       (achievement) =>
@@ -68,16 +66,12 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
     if (unlockedPurchaseAchievements.length > 0) {
       // Show toast notification for each unlocked purchase achievement
       unlockedPurchaseAchievements.forEach((achievement) => {
-        toast(
-          <>
-            <b>{achievement.name} unlocked!</b>
-            <br />
-            <span>{achievement.description}</span>
-          </>,
-          {
-            icon: achievement.emoji,
-          }
-        );
+        showToast({
+          header: `${achievement.name} unlocked!`,
+          text: achievement.description,
+          emoji: achievement.emoji,
+          volume: userProfile.audioVolume,
+        });
       });
 
       const newAchievements = userProfile.newAchievements + 1;

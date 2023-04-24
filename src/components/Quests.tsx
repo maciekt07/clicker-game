@@ -10,7 +10,7 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
   // If the maximum points divided by 8 is greater than 100, the reward is equal to the maximum points divided by 8.
   // Otherwise, the reward is a minimum of 100.
   const reward =
-    userProfile.maxPoints / 8 > 100 ? userProfile.maxPoints / 8 : 100;
+    userProfile.maxPoints / 8 > 1000 ? userProfile.maxPoints / 8 : 1000;
 
   const questsList = {
     FirstQuest: {

@@ -34,7 +34,7 @@ export const VolumeSlider = ({
     const vol = Math.floor(userProfile.audioVolume * 100);
     return vol === 0 ? "Muted" : vol + "%";
   };
-
+  // Adds a keyboard shortcut for muting/unmuting the volume.
   useKeyDown("m", handleMuteClick);
 
   return (
