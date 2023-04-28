@@ -286,7 +286,7 @@ Error generating stack: `+i.message+`
   border: 5px solid ${Me.orange};
   padding: 30px 20px;
   border-radius: 40px;
-  transition: 0.3s all;
+  transition: 0.3s all ease-out;
   min-width: 360px;
   margin: 25px;
   flex-basis: calc(25% - 10px);
