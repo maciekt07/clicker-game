@@ -15,5 +15,5 @@ export const defaultUserProfile: User = {
   inventory: {},
   achievements: [],
   newAchievements: 0,
-  audioVolume: 0.3,
+  audioVolume: 0.5,
 };

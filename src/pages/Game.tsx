@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
-import { CreateProfile, StatsInfo, Shop, BackToTop } from "../components";
+import {
+  CreateProfile,
+  StatsInfo,
+  Shop,
+  BackToTop,
+  Quests,
+} from "../components";
 import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
 import { compactFormat, playSound, showToast } from "../utils";
 import { achievements } from "../constants";
-
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/sounds/click.mp3";
@@ -49,16 +54,6 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     // If there are unlocked click achievements, show toast notifications and update user profile
     if (unlockedClickAchievements.length > 0) {
       unlockedClickAchievements.forEach((achievement) => {
-        // toast(
-        //   <>
-        //     <b>{achievement.name} unlocked!</b>
-        //     <br />
-        //     <span>{achievement.description}</span>
-        //   </>,
-        //   {
-        //     icon: achievement.emoji,
-        //   }
-        // );
         showToast({
           header: `${achievement.name} unlocked!`,
           text: achievement.description,
@@ -80,8 +75,6 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     }
   };
 
-  // useKeyDown("Enter", handleClick);
-
   // Function to add points to user's profile
   const handleAddPoints = (points: number) => {
     const newPoints = points;
@@ -98,7 +91,6 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     if (unlockedAchievements.length > 0) {
       // Show toast notification for each unlocked achievement
       unlockedAchievements.forEach((achievement) => {
-        // toast(`🍯 ${achievement.name} unlocked! - ${achievement.description}`);
         showToast({
           header: `${achievement.name} unlocked!`,
           text: achievement.description,
@@ -131,7 +123,6 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
 
   useEffect(() => {
     if (userProfile.name !== null) {
-      document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
       //Points per second interval
       const intervalId = setInterval(() => {
         handleAddPoints(userProfile.points + userProfile.perSecond / 100);
@@ -144,12 +135,34 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   });
 
   useEffect(() => {
+    document.title = `Honey Clicker - ${compactFormat(userProfile.points)}`;
+  }, [userProfile.points]);
+
+  useEffect(() => {
     if (userProfile.name === null) {
       setClicks(0);
     }
   }, [userProfile]);
 
   const handleShareClick = async () => {
+    //unlock share achievement
+    const shareAchievementName = "ShareGameEnthusiast";
+    const shareAchievement = achievements[shareAchievementName];
+
+    if (!userProfile.achievements.includes(shareAchievement.name)) {
+      const updatedAchievements = [
+        ...userProfile.achievements,
+        shareAchievement.name,
+      ];
+      setUserProfile({ ...userProfile, achievements: updatedAchievements });
+      showToast({
+        header: `${shareAchievement.name} unlocked!`,
+        text: shareAchievement.description,
+        emoji: shareAchievement.emoji,
+        volume: userProfile.audioVolume,
+      });
+    }
+    //share
     try {
       await navigator.share({
         title: "Honey Clicker",

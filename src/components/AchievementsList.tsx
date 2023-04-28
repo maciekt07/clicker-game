@@ -27,7 +27,7 @@ export const AchievementsList = ({ userProfile }: Props) => {
               ? achievement.requirement + " points"
               : achievement.purchasesRequired
               ? achievement.purchasesRequired + " purchases"
-              : "Unknown requirement"
+              : achievement.description
           }`}
         >
           <ItemWrapper>

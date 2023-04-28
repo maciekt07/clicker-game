@@ -16,9 +16,9 @@ import { formatTimeAgo, isImageUrl } from "../utils";
 
 import { SaveButton, SettingsContainer, SettingsInput } from "../styles";
 
-import { nameToAvatar } from "../utils";
+import { nameToAvatar, showToast } from "../utils";
 import { Delete, Edit, InfoOutlined, Logout } from "@mui/icons-material";
-import { defaultUserProfile } from "../constants";
+import { defaultUserProfile, achievements } from "../constants";
 import { UserProfileProps } from "../types/userProfileProps";
 import { toast } from "react-toastify";
 
@@ -26,6 +26,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [imgLink, setImgLink] = useState("");
+  const [prevImage, setPrevImage] = useState("");
   const [imgError, setImgError] = useState("");
   const [imgDialog, setImgDialog] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
@@ -41,6 +42,43 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   }, [userProfile]);
 
   const createdAt = new Date(userProfile.createdAt);
+
+  const handleChangeImage = () => {
+    if (isImageUrl(imgLink) && imgLink.length <= 255) {
+      setImgDialog(false);
+      setImgLink("");
+      setPrevImage(imgLink);
+      // change profile picture achievement
+      const changeImageAchievementName = "profilePicturePro";
+      const changeImageAchievement = achievements[changeImageAchievementName];
+
+      if (!userProfile.achievements.includes(changeImageAchievement.name)) {
+        const updatedAchievements = [
+          ...userProfile.achievements,
+          changeImageAchievement.name,
+        ];
+        setUserProfile({
+          ...userProfile,
+          achievements: updatedAchievements,
+          profilePicture: imgLink === "" ? null : imgLink,
+        });
+        showToast({
+          header: `${changeImageAchievement.name} unlocked!`,
+          text: changeImageAchievement.description,
+          emoji: changeImageAchievement.emoji,
+          volume: userProfile.audioVolume,
+        });
+      } else {
+        setUserProfile({
+          ...userProfile,
+          profilePicture: imgLink === "" ? null : imgLink,
+        });
+      }
+      toast.success("Changed image successful");
+    } else {
+      setImgError("Please provide a valid image URL.");
+    }
+  };
 
   return (
     <>
@@ -58,9 +96,12 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
         >
           <Avatar
             src={userProfile.profilePicture?.toString()}
-            onError={() =>
-              setUserProfile({ ...userProfile, profilePicture: null })
-            }
+            onError={() => {
+              setUserProfile({ ...userProfile, profilePicture: null });
+              toast.error(
+                "Failed to load profile picture. Please check if image url is correct"
+              );
+            }}
             style={{
               width: "128px",
               height: "128px",
@@ -219,19 +260,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
               fontSize: ".9rem",
               borderRadius: 12,
             }}
-            onClick={() => {
-              if (isImageUrl(imgLink) && imgLink.length <= 255) {
-                setImgDialog(false);
-                setImgLink("");
-                setUserProfile({
-                  ...userProfile,
-                  profilePicture: imgLink === "" ? null : imgLink,
-                });
-                toast.success("Changed image successful");
-              } else {
-                setImgError("Please provide a valid image URL.");
-              }
-            }}
+            onClick={handleChangeImage}
           >
             ok
           </Button>

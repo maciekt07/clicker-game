@@ -44,7 +44,7 @@ const Item = css`
   border: 5px solid ${colorPalette.orange};
   padding: 30px 20px;
   border-radius: 40px;
-  transition: 0.3s all;
+  transition: 0.3s all ease-out;
   min-width: 360px;
   margin: 25px;
   flex-basis: calc(25% - 10px);
@@ -67,6 +67,7 @@ export const ItemWrapper = styled.div`
   ${Item}
   &:hover {
     box-shadow: 0px 0px 26px ${colorPalette.orange};
+    /* transform: scale(1.05); */
   }
 `;
 export const LockedContainer = styled.div`

@@ -32,6 +32,7 @@ export const items: { [key: string]: Item } = {
       "A tiny bee that doesn't produce much honey, but is a good starting point for your hive.",
     emoji: "🐝",
   },
+
   workerBee: {
     name: "Worker Bee",
     cost: 100,
@@ -51,6 +52,7 @@ export const items: { [key: string]: Item } = {
       "A hexagonal wax structure that bees build to store their honey and raise their young.",
     emoji: "🍯",
   },
+
   queenBee: {
     name: "Queen Bee",
     cost: 2500,
@@ -60,6 +62,7 @@ export const items: { [key: string]: Item } = {
       "The ruler of the hive, the queen bee is responsible for laying all the eggs and maintaining the colony's social order.",
     emoji: "👑",
   },
+
   droneBee: {
     name: "Drone Bee",
     cost: 5000,
@@ -89,6 +92,7 @@ export const items: { [key: string]: Item } = {
       "A protective suit that covers the entire body and prevents bee stings.",
     emoji: "👩‍🚀",
   },
+
   hive: {
     name: "Hive",
     cost: 500000,
@@ -98,6 +102,7 @@ export const items: { [key: string]: Item } = {
       "A structure made of wax and propolis that houses a bee colony.",
     emoji: "🏡",
   },
+
   royalJelly: {
     name: "Royal Jelly",
     cost: 1000000,
@@ -107,6 +112,7 @@ export const items: { [key: string]: Item } = {
       "A special substance secreted by worker bees that's fed exclusively to the queen bee and her larvae.",
     emoji: "👑",
   },
+
   pollinatorDrone: {
     name: "Pollinator Drone",
     cost: 2500000,
@@ -116,6 +122,7 @@ export const items: { [key: string]: Item } = {
       "A specialized drone that's designed to pollinate flowers in large quantities, significantly boosting the efficiency of the bee colony.",
     emoji: "🚁",
   },
+
   royalHive: {
     name: "Royal Hive",
     cost: 5000000,
@@ -125,6 +132,7 @@ export const items: { [key: string]: Item } = {
       "A luxurious hive fit for a queen, with spacious chambers and plenty of room for her attendants.",
     emoji: "🏰",
   },
+
   apiary: {
     name: "Apiary",
     cost: 10000000,
@@ -134,6 +142,7 @@ export const items: { [key: string]: Item } = {
       "A collection of beehives that's used for commercial honey production.",
     emoji: "🏭",
   },
+
   pollenCollector: {
     name: "Pollen Collector",
     cost: 25000000,
@@ -143,6 +152,7 @@ export const items: { [key: string]: Item } = {
       "A machine that automatically collects pollen from flowers, making the work of the bees a little easier.",
     emoji: "🌼",
   },
+
   royalBee: {
     name: "Royal Bee",
     cost: 50000000,
@@ -152,6 +162,7 @@ export const items: { [key: string]: Item } = {
       " A majestic bee with a crown, known for its superior pollen collection and exquisite golden wings.",
     emoji: "🐝",
   },
+
   diamondHive: {
     name: "Diamond Hive",
     cost: 100000000,
@@ -161,6 +172,7 @@ export const items: { [key: string]: Item } = {
       "A hive made entirely of diamond, the ultimate symbol of luxury and prestige.",
     emoji: "💎",
   },
+
   honeyExtractor: {
     name: "Honey Extractor",
     cost: 500000000,
@@ -170,6 +182,7 @@ export const items: { [key: string]: Item } = {
       "A device that spins the honeycombs and extracts the honey using centrifugal force.",
     emoji: "🍯",
   },
+
   beeMuseum: {
     name: "Bee Museum",
     cost: 1000000000,

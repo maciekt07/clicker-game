@@ -5,10 +5,11 @@ import { compactFormat } from "../utils";
 import { Done } from "@mui/icons-material";
 
 // TODO: Implement the quests component as it is not done yet.
+
 export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
   // Calculates the reward for completing all quests based on the user's maximum points.
-  // If the maximum points divided by 8 is greater than 100, the reward is equal to the maximum points divided by 8.
-  // Otherwise, the reward is a minimum of 100.
+  // If the maximum points divided by 8 is greater than 1000, the reward is equal to the maximum points divided by 8.
+  // Otherwise, the reward is a minimum of 1000.
   const reward =
     userProfile.maxPoints / 8 > 1000 ? userProfile.maxPoints / 8 : 1000;
 

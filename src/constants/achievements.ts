@@ -17,6 +17,7 @@ export interface Achievement {
   requirement?: number;
   clicksRequired?: number;
   purchasesRequired?: number;
+  strRequirement?: string;
 }
 /**
 An object containing all the achievements that can be earned by the user.
@@ -235,5 +236,27 @@ export const achievements: { [key: string]: Achievement } = {
     longDescription:
       "You've made 100,000 purchases and have earned the title of Buying Titan. Your beekeeping empire is the envy of beekeepers everywhere, and your honey is known for its unparalleled quality.",
     purchasesRequired: 100000,
+  },
+  //others
+  ShareGameEnthusiast: {
+    name: "Share Game Enthusiast",
+    emoji: "🔗",
+    description: "Click on share button",
+    longDescription:
+      "You've shared this amazing game on a social media platform, spreading the word about the wonders of beekeeping. Keep buzzing and sharing!",
+  },
+  volumeController: {
+    name: "Volume Controller",
+    emoji: "🔊",
+    description: "Adjust the volume of game sounds",
+    longDescription:
+      "You've taken control of the game sounds by adjusting the volume to your liking. Whether you prefer it loud or soft, you're now in charge of the audio experience!",
+  },
+  profilePicturePro: {
+    name: "Profile Picture Pro",
+    emoji: "📷",
+    description: "Change your profile picture",
+    longDescription:
+      "You've updated your profile picture and earned the title of Profile Picture Pro. Your new picture looks great!",
   },
 };

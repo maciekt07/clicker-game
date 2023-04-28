@@ -50,7 +50,7 @@ const StatsContainer = styled.div`
     font-size: 28px;
   }
   & span {
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 

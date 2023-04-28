@@ -22,18 +22,23 @@ export const ClickContainer = styled.div`
   }
 `;
 export const ClickImg = styled.img`
-  width: 20vw;
-  max-width: 360px;
+  width: 16vw;
+  max-width: 320px;
   min-width: 220px;
   filter: drop-shadow(0px 0px 30px #ffd071);
 `;
 
 export const ClickButton = muistyled(Button)({
   border: `5px solid ${colorPalette.orange}`,
-  borderRadius: "48px",
+  borderRadius: "64px",
   transition: ".15s all ease-out",
+  "@media not all and (pointer: coarse)": {
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+  },
   "&.clicked": {
-    borderRadius: "72px",
+    borderRadius: "82px",
     borderColor: colorPalette.yellow,
     transform: "scale(.9)",
   },

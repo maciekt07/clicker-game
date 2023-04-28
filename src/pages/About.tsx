@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { BackButton } from "../components";
 import styled from "styled-components";
 import { colorPalette } from "../styles";
-import { GitHub } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { Coffee, GitHub } from "@mui/icons-material";
+import { Button, Stack } from "@mui/material";
 import { achievements, items } from "../constants";
 import PLFlag from "../assets/poland-flag-icon.svg";
 
@@ -48,7 +48,11 @@ export const About = () => {
             You can also use the volume slider to adjust the game's sound
             effects. Don't forget to check out the stats info to see how many
             points you've earned and your progress towards unlocking
-            achievements.
+            achievements. To customize your Honey Clicker profile, you can
+            access the user profile settings by clicking on the profile icon at
+            the top right corner of the game's screen. From there, you can
+            change your username and profile picture by clicking on the
+            respective fields and uploading a new image or typing in a new name.
           </AboutText>
           <AboutText>
             <b>As you play the game,</b> you will unlock various achievements.
@@ -59,12 +63,25 @@ export const About = () => {
             second and multiplier. They are <b>{itemsCount} unique items</b> to
             buy.
           </AboutText>
+
           <AboutText>
             <b>Honey Clicker is a Progressive Web App. </b>
             Add this app to your home screen for quick and easy access to the
             game. This game works offline, so you can play it anytime, anywhere
             without an internet connection.
           </AboutText>
+
+          {/* <AboutText>
+            If you like this game you can{" "}
+            <AboutLink
+              href="https://buymeacoffee.com/maciekt07"
+              target="_blank"
+            >
+              buy me a coffee
+            </AboutLink>{" "}
+            ☕
+          </AboutText> */}
+
           <AboutText>
             Made with 🧡 by{" "}
             <AboutLink href="https://github.com/maciekt07" target="_blank">
@@ -80,19 +97,33 @@ export const About = () => {
               </React.Fragment>
             ))}
           </AboutText>
-
-          <Button
-            href="https://github.com/maciekt07/clicker-game"
-            target="_blank"
-            variant="text"
-            style={{
-              fontSize: ".9rem",
-              borderRadius: 12,
-              padding: 8,
-            }}
-          >
-            <GitHub /> &nbsp; Github
-          </Button>
+          <br />
+          <Stack spacing={2} direction="row">
+            <Button
+              href="https://github.com/maciekt07/clicker-game"
+              target="_blank"
+              variant="outlined"
+              style={{
+                fontSize: ".9rem",
+                borderRadius: 12,
+                padding: 10,
+              }}
+            >
+              <GitHub /> &nbsp; Github
+            </Button>
+            <Button
+              href="https://www.buymeacoffee.com/maciekt07"
+              target="_blank"
+              variant="outlined"
+              style={{
+                fontSize: ".9rem",
+                borderRadius: 12,
+                padding: 10,
+              }}
+            >
+              <Coffee /> &nbsp; Buy me a coffee
+            </Button>
+          </Stack>
         </AboutContainer>
       </div>
     </>
@@ -125,9 +156,13 @@ const Flag = styled.img`
   filter: drop-shadow(0px 0px 1.5px rgba(0, 0, 0, 0.45));
 `;
 
-const AboutLink = styled.a`
+interface LinkProps {
+  color?: string;
+}
+
+const AboutLink = styled.a<LinkProps>`
   cursor: pointer;
-  color: ${colorPalette.orange};
+  color: ${(props) => props.color || colorPalette.orange};
   display: inline-block;
   position: relative;
   text-decoration: none;
@@ -141,7 +176,7 @@ const AboutLink = styled.a`
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: ${colorPalette.orange};
+    background-color: ${(props) => props.color || colorPalette.orange};
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
     border-radius: 100px;
@@ -152,7 +187,7 @@ const AboutLink = styled.a`
     transform-origin: bottom left;
   }
   &:hover {
-    text-shadow: 0px 0px 20px ${colorPalette.orange};
+    text-shadow: 0px 0px 20px ${(props) => props.color || colorPalette.orange};
   }
   &:focus,
   &:focus-visible {

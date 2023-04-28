@@ -2,8 +2,9 @@ import { useState } from "react";
 import { UserProfileProps } from "../types/userProfileProps";
 import { Stack, Tooltip, IconButton, Slider } from "@mui/material";
 import { VolumeOff, VolumeDown, VolumeUp } from "@mui/icons-material";
-import { defaultUserProfile } from "../constants";
+import { defaultUserProfile, achievements } from "../constants";
 import { useKeyDown } from "../hooks";
+import { showToast } from "../utils";
 
 export const VolumeSlider = ({
   userProfile,
@@ -24,10 +25,32 @@ export const VolumeSlider = ({
   };
 
   const handleSliderChange = (e: Event, value: number | number[]) => {
-    setUserProfile({
-      ...userProfile,
-      audioVolume: value as number,
-    });
+    //change volume achievement
+    const volumeAchievementName = "volumeController";
+    const volumeAchievement = achievements[volumeAchievementName];
+
+    if (!userProfile.achievements.includes(volumeAchievement.name)) {
+      const updatedAchievements = [
+        ...userProfile.achievements,
+        volumeAchievement.name,
+      ];
+      setUserProfile({
+        ...userProfile,
+        audioVolume: value as number,
+        achievements: updatedAchievements,
+      });
+      showToast({
+        header: `${volumeAchievement.name} unlocked!`,
+        text: volumeAchievement.description,
+        emoji: volumeAchievement.emoji,
+        volume: userProfile.audioVolume,
+      });
+    } else {
+      setUserProfile({
+        ...userProfile,
+        audioVolume: value as number,
+      });
+    }
   };
 
   const volumeLabel = () => {

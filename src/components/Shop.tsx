@@ -101,6 +101,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
   return (
     <div>
       <Header>🛒 Shop</Header>
+
       <Container>
         {Object.entries(items).map(([itemName, item]) => {
           if (item.cost > userProfile.maxPoints) {
@@ -140,6 +141,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
           </LockedContainer>
         )}
       </Container>
+
       <div style={{ paddingTop: "85px" }} />
     </div>
   );
