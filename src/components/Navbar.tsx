@@ -16,7 +16,7 @@ export const Navbar = ({ children }: Props) => {
       <Nav>
         <Link to="/">
           <LogoContainer>
-            <LogoImage src={HoneyJar} />
+            <LogoImage alt="logo" src={HoneyJar} />
             <LogoTxt>Honey Clicker</LogoTxt>
           </LogoContainer>
         </Link>

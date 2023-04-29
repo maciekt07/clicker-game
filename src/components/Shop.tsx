@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { items } from "../constants/items";
 import { UserProfileProps } from "../types/userProfileProps";
 import {
   BuyButton,
@@ -11,7 +10,7 @@ import {
   ItemWrapper,
   LockedContainer,
 } from "../styles";
-import { achievements } from "../constants";
+import { achievements, items } from "../constants";
 import BuySound from "../assets/sounds/buy.mp3";
 import { formatNumber, playSound, showToast } from "../utils";
 
@@ -24,6 +23,7 @@ import { formatNumber, playSound, showToast } from "../utils";
 //TODO: Add toast when unlocked new item
 export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const handleBuyItem = (item: string) => {
+    console.log(userProfile);
     playSound(BuySound, userProfile.audioVolume);
     const selectedItem = items[item];
     const rateGrown = 1.1;
@@ -51,7 +51,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
     if (!userProfile.inventory[item]) {
       showToast({
         header: "New item unlocked!",
-        text: selectedItem.name,
+        text: `${selectedItem.name} ${selectedItem.emoji}`,
         emoji: "🔓",
         volume: userProfile.audioVolume,
       });
@@ -116,7 +116,7 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
               <ItemName>
                 {item.emoji} {item.name}
               </ItemName>
-              <Description>„{item.description}”</Description>
+              <Description>”{item.description}”</Description>
               <Cost enoughtPoints={userProfile.points >= newCost}>
                 Cost: 🍯{formatNumber(newCost, 0)}
               </Cost>

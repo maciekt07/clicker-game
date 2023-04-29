@@ -1,7 +1,6 @@
 import { formatNumber } from "../utils";
 import { User } from "../types/user";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { colorPalette } from "../styles";
 import { useScrollTrigger } from "../hooks";
 
@@ -31,7 +30,7 @@ export const StatsInfo = ({ userProfile }: Props) => {
             : formatNumber(userProfile.maxPoints)}
         </span>
         <br />
-        <span>Clicks: {userProfile.clicks}</span>
+        <span>Clicks: {formatNumber(userProfile.clicks, 0)}</span>
         <br />
         <span>Multiplier: {formatNumber(userProfile.multiplier, 0)}</span>
         <br />
@@ -76,6 +75,6 @@ const Points = styled.div<PointsProps>`
 
   @media (max-width: 600px) {
     font-size: 16px;
-    min-width: 200px;
+    min-width: 220px;
   }
 `;

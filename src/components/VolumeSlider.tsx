@@ -97,6 +97,7 @@ export const VolumeSlider = ({
         sx={{
           width: "200px",
         }}
+        aria-label="Volume Slider"
         value={userProfile.audioVolume}
         min={0}
         max={1}

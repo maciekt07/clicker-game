@@ -101,7 +101,8 @@ export const Cost = styled.h3<CostProps>`
 export const Description = styled.h4`
   opacity: 0.8;
   font-size: 14px;
-  min-height: 64px;
+  min-height: 72px;
+
   font-style: italic;
   font-weight: 600;
 `;

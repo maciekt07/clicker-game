@@ -14,6 +14,7 @@ export interface Achievement {
   emoji: string;
   description: string;
   longDescription?: string;
+  reward?: number;
   requirement?: number;
   clicksRequired?: number;
   purchasesRequired?: number;
@@ -244,6 +245,7 @@ export const achievements: { [key: string]: Achievement } = {
     description: "Click on share button",
     longDescription:
       "You've shared this amazing game on a social media platform, spreading the word about the wonders of beekeeping. Keep buzzing and sharing!",
+    reward: 1000,
   },
   volumeController: {
     name: "Volume Controller",

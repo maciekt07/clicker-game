@@ -73,6 +73,16 @@ export const items: { [key: string]: Item } = {
     emoji: "🐝",
   },
 
+  goldenFlower: {
+    name: "Golden Flower",
+    cost: 12500,
+    multiplier: 75,
+    perSecond: 18,
+    description:
+      "A rare flower that produces honey with a distinct flavor and high nutritional value.",
+    emoji: "🌻",
+  },
+
   honeyPot: {
     name: "Honey Pot",
     cost: 20000,
@@ -182,7 +192,15 @@ export const items: { [key: string]: Item } = {
       "A device that spins the honeycombs and extracts the honey using centrifugal force.",
     emoji: "🍯",
   },
-
+  beehiveObservatory: {
+    name: "Beehive Observatory",
+    cost: 750000000,
+    multiplier: 75000,
+    perSecond: 15000,
+    description:
+      "An advanced bee observatory with high-tech cameras and sensors for studying bee behavior in their habitat.",
+    emoji: "🔭",
+  },
   beeMuseum: {
     name: "Bee Museum",
     cost: 1000000000,

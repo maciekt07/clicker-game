@@ -20,7 +20,12 @@ import {
 } from "@mui/material";
 import { AvatarContainer, colorPalette } from "../styles";
 import { UserProfileProps } from "../types/userProfileProps";
-import { EmojiEvents, Logout, Settings } from "@mui/icons-material";
+import {
+  EmojiEvents,
+  Logout,
+  ManageAccounts,
+  Settings,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
 import { toast } from "react-toastify";
@@ -52,6 +57,7 @@ export const ProfileAvatar = ({
             >
               <Avatar
                 src={userProfile.profilePicture?.toString()}
+                alt="Profile Avatar"
                 style={{
                   width: "60px",
                   height: "60px",
@@ -87,8 +93,8 @@ export const ProfileAvatar = ({
         }}
         PaperProps={{
           style: {
-            borderRadius: 12,
-            marginTop: 20,
+            borderRadius: 14,
+            marginTop: 24,
           },
         }}
       >
@@ -99,7 +105,7 @@ export const ProfileAvatar = ({
           }}
         >
           <ListItemIcon>
-            <Settings />
+            <ManageAccounts />
           </ListItemIcon>
           <ListItemText>Settings</ListItemText>
         </MenuItem>

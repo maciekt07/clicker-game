@@ -4,6 +4,7 @@ import {
   StatsInfo,
   Shop,
   BackToTop,
+  VolumeSlider,
   Quests,
 } from "../components";
 import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
@@ -12,7 +13,6 @@ import { achievements } from "../constants";
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/sounds/click.mp3";
-import { VolumeSlider } from "../components/VolumeSlider";
 import { UserProfileProps } from "../types/userProfileProps";
 import { Share } from "@mui/icons-material";
 
@@ -154,10 +154,18 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         ...userProfile.achievements,
         shareAchievement.name,
       ];
-      setUserProfile({ ...userProfile, achievements: updatedAchievements });
+      const updatedPoints =
+        userProfile.points +
+        (shareAchievement.reward ? shareAchievement.reward : 0);
+
+      setUserProfile({
+        ...userProfile,
+        achievements: updatedAchievements,
+        points: updatedPoints,
+      });
       showToast({
         header: `${shareAchievement.name} unlocked!`,
-        text: shareAchievement.description,
+        text: `${shareAchievement.description}`,
         emoji: shareAchievement.emoji,
         volume: userProfile.audioVolume,
       });
@@ -188,14 +196,18 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
 
           <ClickContainer onTouchStart={(e) => e.preventDefault()}>
             <ClickButton
+              aria-label="Honey Jar"
               className={isClicked ? "clicked" : ""}
               onClick={handleClick}
               onTouchStart={(e) => e.preventDefault()}
             >
-              <ClickImg draggable="false" src={HoneyJar} />
+              <ClickImg
+                draggable="false"
+                src={HoneyJar}
+                alt="Honey Jar Image"
+              />
             </ClickButton>
           </ClickContainer>
-
           <StatsInfo userProfile={userProfile} />
           {/*TODO: Implement the quests component as it is not done yet. */}
           {/* <Quests {...userProfileProps} /> */}

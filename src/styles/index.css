@@ -35,7 +35,7 @@ body {
 }
 .MuiPaper-root,
 .MuiButtonBase-root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .MuiDialog-container {

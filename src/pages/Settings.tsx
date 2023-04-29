@@ -17,7 +17,13 @@ import { formatTimeAgo, isImageUrl } from "../utils";
 import { SaveButton, SettingsContainer, SettingsInput } from "../styles";
 
 import { nameToAvatar, showToast } from "../utils";
-import { Delete, Edit, InfoOutlined, Logout } from "@mui/icons-material";
+import {
+  AddAPhoto,
+  Delete,
+  Edit,
+  InfoOutlined,
+  Logout,
+} from "@mui/icons-material";
 import { defaultUserProfile, achievements } from "../constants";
 import { UserProfileProps } from "../types/userProfileProps";
 import { toast } from "react-toastify";
@@ -89,13 +95,20 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           onClick={() => setImgDialog(true)}
           badgeContent={
-            <Avatar style={{ background: "#6b6b6b", cursor: "pointer" }}>
-              <Edit />
+            <Avatar
+              style={{
+                background: "#767676ae",
+                backdropFilter: "blur(6px)",
+                cursor: "pointer",
+              }}
+            >
+              <AddAPhoto />
             </Avatar>
           }
         >
           <Avatar
             src={userProfile.profilePicture?.toString()}
+            alt="Profile Avatar"
             onError={() => {
               setUserProfile({ ...userProfile, profilePicture: null });
               toast.error(
