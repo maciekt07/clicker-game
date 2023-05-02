@@ -13,17 +13,9 @@ import {
   Badge,
 } from "@mui/material";
 import { formatTimeAgo, isImageUrl } from "../utils";
-
 import { SaveButton, SettingsContainer, SettingsInput } from "../styles";
-
 import { nameToAvatar, showToast } from "../utils";
-import {
-  AddAPhoto,
-  Delete,
-  Edit,
-  InfoOutlined,
-  Logout,
-} from "@mui/icons-material";
+import { AddAPhoto, Delete, InfoOutlined, Logout } from "@mui/icons-material";
 import { defaultUserProfile, achievements } from "../constants";
 import { UserProfileProps } from "../types/userProfileProps";
 import { toast } from "react-toastify";
@@ -32,7 +24,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [imgLink, setImgLink] = useState("");
-  const [prevImage, setPrevImage] = useState("");
   const [imgError, setImgError] = useState("");
   const [imgDialog, setImgDialog] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
@@ -53,11 +44,10 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
     if (isImageUrl(imgLink) && imgLink.length <= 255) {
       setImgDialog(false);
       setImgLink("");
-      setPrevImage(imgLink);
       // change profile picture achievement
       const changeImageAchievementName = "profilePicturePro";
       const changeImageAchievement = achievements[changeImageAchievementName];
-
+      const newAchievements = userProfile.newAchievements + 1;
       if (!userProfile.achievements.includes(changeImageAchievement.name)) {
         const updatedAchievements = [
           ...userProfile.achievements,
@@ -67,6 +57,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
           ...userProfile,
           achievements: updatedAchievements,
           profilePicture: imgLink === "" ? null : imgLink,
+          newAchievements: newAchievements,
         });
         showToast({
           header: `${changeImageAchievement.name} unlocked!`,
@@ -83,6 +74,23 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
       toast.success("Changed image successful");
     } else {
       setImgError("Please provide a valid image URL.");
+    }
+  };
+
+  const handleSaveNameClick = () => {
+    if (name.length < 4) {
+      setNameError("Must be at least 4 characters long");
+    } else if (name.length > 16)
+      setNameError("Can be up to 16 characters long");
+    else if (name === userProfile.name) {
+      toast.error("The new name cannot be the same as the previous one");
+    } else {
+      setUserProfile({
+        ...userProfile,
+        name: name,
+      });
+      toast.success("Changed name successful");
+      setName("");
     }
   };
 
@@ -138,7 +146,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             {nameToAvatar(userProfile.name)}
           </Avatar>
         </Badge>
-        <div style={{ fontSize: "24px", marginTop: "4px" }}>
+        <div style={{ fontSize: "24px", marginTop: "6px" }}>
           {userProfile.name}
         </div>
         <div
@@ -169,30 +177,14 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             setName(e.target.value);
             setNameError("");
           }}
+          onKeyDown={(e) => e.key === "Enter" && handleSaveNameClick()}
         />
         <br />
         {name !== "" && (
           <>
             <SaveButton
               // disabled={name === userProfile.name}
-              onClick={() => {
-                if (name.length < 4) {
-                  setNameError("Must be at least 4 characters long");
-                } else if (name.length > 16)
-                  setNameError("Can be up to 16 characters long");
-                else if (name === userProfile.name) {
-                  toast.error(
-                    "The new name cannot be the same as the previous one"
-                  );
-                } else {
-                  setUserProfile({
-                    ...userProfile,
-                    name: name,
-                  });
-                  toast.success("Changed name successful");
-                  setName("");
-                }
-              }}
+              onClick={handleSaveNameClick}
             >
               Save
             </SaveButton>
@@ -238,6 +230,7 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
               setImgLink(e.target.value);
               setImgError("");
             }}
+            onKeyDown={(e) => e.key === "Enter" && handleChangeImage()}
           />
           <br />
           <br />

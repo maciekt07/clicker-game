@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { BackButton } from "../components";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { colorPalette } from "../styles";
 import { Coffee, GitHub } from "@mui/icons-material";
 import { Button, Stack } from "@mui/material";
 import { achievements, items } from "../constants";
 import PLFlag from "../assets/poland-flag-icon.svg";
+import HappyBee from "../assets/HappyBee.png";
 
 export const About = () => {
   // Calculate the number of achievements and items
@@ -71,17 +72,6 @@ export const About = () => {
             without an internet connection.
           </AboutText>
 
-          {/* <AboutText>
-            If you like this game you can{" "}
-            <AboutLink
-              href="https://buymeacoffee.com/maciekt07"
-              target="_blank"
-            >
-              buy me a coffee
-            </AboutLink>{" "}
-            ☕
-          </AboutText> */}
-
           <AboutText>
             Made with 🧡 by{" "}
             <AboutLink href="https://github.com/maciekt07" target="_blank">
@@ -125,6 +115,7 @@ export const About = () => {
             </Button>
           </Stack>
         </AboutContainer>
+        {/* <BeeImg src={HappyBee} alt="happy bee" /> */}
       </div>
     </>
   );
@@ -195,3 +186,25 @@ const AboutLink = styled.a<LinkProps>`
     box-shadow: none;
   }
 `;
+// const bounce = keyframes`
+//    0% {
+//     transform: translateY(0);
+//   }
+//   50% {
+//     transform: translateY(-12px);
+//   }
+//   100% {
+//     transform: translateY(0);
+//   }
+// `;
+// const BeeImg = styled.img`
+//   position: fixed;
+//   bottom: 12px;
+//   right: 12px;
+//   width: 12vw;
+//   max-width: 140px;
+//   animation: ${bounce} 1.5s ease-in-out infinite;
+//   @media (max-width: 1300px) {
+//     opacity: 0.8;
+//   }
+// `;

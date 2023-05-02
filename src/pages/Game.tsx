@@ -148,7 +148,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     //unlock share achievement
     const shareAchievementName = "ShareGameEnthusiast";
     const shareAchievement = achievements[shareAchievementName];
-
+    const newAchievements = userProfile.newAchievements + 1;
     if (!userProfile.achievements.includes(shareAchievement.name)) {
       const updatedAchievements = [
         ...userProfile.achievements,
@@ -162,6 +162,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         ...userProfile,
         achievements: updatedAchievements,
         points: updatedPoints,
+        newAchievements: newAchievements,
       });
       showToast({
         header: `${shareAchievement.name} unlocked!`,
@@ -210,7 +211,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           </ClickContainer>
           <StatsInfo userProfile={userProfile} />
           {/*TODO: Implement the quests component as it is not done yet. */}
-          {/* <Quests {...userProfileProps} /> */}
+          <Quests {...userProfileProps} />
           <Shop {...userProfileProps} />
           <BackToTop />
         </>

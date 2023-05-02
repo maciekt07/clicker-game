@@ -13,7 +13,7 @@ export interface Achievement {
   name: string;
   emoji: string;
   description: string;
-  longDescription?: string;
+  longDescription: string;
   reward?: number;
   requirement?: number;
   clicksRequired?: number;
@@ -181,6 +181,14 @@ export const achievements: { [key: string]: Achievement } = {
       "You've made your first 10 purchases and earned the title of Buy Beginner. Keep buying and building your beekeeping empire!",
     purchasesRequired: 10,
   },
+  buyingEnthusiast: {
+    name: "Buying Enthusiast",
+    emoji: "🛍️",
+    description: "Buy 50 items",
+    longDescription:
+      "Congratulations, you're a Buying Enthusiast! You've made 50 purchases, showing your passion and dedication for beekeeping. Keep up the great work!",
+    purchasesRequired: 50,
+  },
   shoppingPro: {
     name: "Shopping Pro",
     emoji: "🛍️",
@@ -230,14 +238,15 @@ export const achievements: { [key: string]: Achievement } = {
       "With 50,000 purchases made, you're now a Buy Legend. Your beekeeping empire is massive, and your honey is in high demand worldwide.",
     purchasesRequired: 50000,
   },
-  buyingTitan: {
-    name: "Buying Titan",
-    emoji: "🛍️",
-    description: "Buy 100,000 items",
-    longDescription:
-      "You've made 100,000 purchases and have earned the title of Buying Titan. Your beekeeping empire is the envy of beekeepers everywhere, and your honey is known for its unparalleled quality.",
-    purchasesRequired: 100000,
-  },
+  // bro there is no way anyone will do it 💀💀
+  // buyingTitan: {
+  //   name: "Buying Titan",
+  //   emoji: "🛍️",
+  //   description: "Buy 100,000 items",
+  //   longDescription:
+  //     "You've made 100,000 purchases and have earned the title of Buying Titan. Your beekeeping empire is the envy of beekeepers everywhere, and your honey is known for its unparalleled quality.",
+  //   purchasesRequired: 100000,
+  // },
   //others
   ShareGameEnthusiast: {
     name: "Share Game Enthusiast",
@@ -245,7 +254,7 @@ export const achievements: { [key: string]: Achievement } = {
     description: "Click on share button",
     longDescription:
       "You've shared this amazing game on a social media platform, spreading the word about the wonders of beekeeping. Keep buzzing and sharing!",
-    reward: 1000,
+    reward: 5000,
   },
   volumeController: {
     name: "Volume Controller",

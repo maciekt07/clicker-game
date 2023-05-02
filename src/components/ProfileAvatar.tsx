@@ -20,12 +20,7 @@ import {
 } from "@mui/material";
 import { AvatarContainer, colorPalette } from "../styles";
 import { UserProfileProps } from "../types/userProfileProps";
-import {
-  EmojiEvents,
-  Logout,
-  ManageAccounts,
-  Settings,
-} from "@mui/icons-material";
+import { EmojiEvents, Logout, ManageAccounts } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
 import { toast } from "react-toastify";
@@ -196,7 +191,9 @@ export const ProfileAvatar = ({
         open={achievementsDialog}
         onClose={() => setAchievementsDialog(false)}
       >
-        <DialogTitle>{userProfile.name} Achievements </DialogTitle>
+        <DialogTitle sx={{ marginLeft: "20px" }}>
+          {userProfile.name} Achievements{" "}
+        </DialogTitle>
         <AchievementsList userProfile={userProfile} />
         <br />
         <Divider />

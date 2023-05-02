@@ -28,7 +28,7 @@ export const VolumeSlider = ({
     //change volume achievement
     const volumeAchievementName = "volumeController";
     const volumeAchievement = achievements[volumeAchievementName];
-
+    const newAchievements = userProfile.newAchievements + 1;
     if (!userProfile.achievements.includes(volumeAchievement.name)) {
       const updatedAchievements = [
         ...userProfile.achievements,
@@ -38,6 +38,7 @@ export const VolumeSlider = ({
         ...userProfile,
         audioVolume: value as number,
         achievements: updatedAchievements,
+        newAchievements: newAchievements,
       });
       showToast({
         header: `${volumeAchievement.name} unlocked!`,

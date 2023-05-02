@@ -85,6 +85,7 @@ export const CreateProfile: React.FC<Props> = ({ onSave }) => {
           label="Enter You Username"
           value={inputValue}
           onChange={handleInputChange}
+          onKeyDown={(e) => e.key === "Enter" && handleSetUserProfile()}
         />
         <br />
         <CreateButton onClick={handleSetUserProfile}>Save Profile</CreateButton>

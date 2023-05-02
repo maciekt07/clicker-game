@@ -25,15 +25,17 @@ export const AchievementsList = ({ userProfile }: Props) => {
 
   return (
     <Container>
-      {/* TODO: add progress bar */}
       <span style={{ marginLeft: "32px" }}>
         Total progress: {formatNumber(percentageProgress)}%
       </span>
-
-      <Progress
-        value={userProfile.achievements.length}
-        max={achievementsCount}
-      />
+      <Tooltip
+        title={`Achieved ${userProfile.achievements.length} out of ${achievementsCount} achievements`}
+      >
+        <Progress
+          value={userProfile.achievements.length}
+          max={achievementsCount}
+        />
+      </Tooltip>
       <br />
       {unlockedAchievements.map((achievement) => (
         <Tooltip

@@ -42,7 +42,7 @@ const Item = css`
   background: #ffffff1d;
   height: 410px;
   border: 5px solid ${colorPalette.orange};
-  padding: 30px 20px;
+  padding: 20px 20px 40px 20px;
   border-radius: 40px;
   transition: 0.3s all ease-out;
   min-width: 360px;

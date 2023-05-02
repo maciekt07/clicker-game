@@ -36,7 +36,6 @@ export const StatsInfo = ({ userProfile }: Props) => {
         <br />
         <span>Per Second: {formatNumber(userProfile.perSecond)}</span>
       </StatsContainer>
-      {/* TODO: - Improve UI beacause its ugly as fuck */}
       <Points show={checkShowPoints}>{formatPoints()}</Points>
     </>
   );
@@ -67,9 +66,10 @@ const Points = styled.div<PointsProps>`
   background: #ffffffd9;
   backdrop-filter: blur(4px);
   color: #333;
-  border: 3px solid ${colorPalette.peach};
+  border: 4px solid ${colorPalette.peach};
   font-size: 18px;
   border-radius: 20px;
+  font-weight: 500;
   padding: 20px;
   min-width: 280px;
 

@@ -23,7 +23,6 @@ import { formatNumber, playSound, showToast } from "../utils";
 //TODO: Add toast when unlocked new item
 export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const handleBuyItem = (item: string) => {
-    console.log(userProfile);
     playSound(BuySound, userProfile.audioVolume);
     const selectedItem = items[item];
     const rateGrown = 1.1;
