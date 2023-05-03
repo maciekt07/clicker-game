@@ -29,10 +29,10 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const timeRemaining = new Date(timer * 1000).toISOString().substr(11, 8);
 
   // Calculates the reward for completing all quests based on the user's maximum points.
-  // If the maximum points divided by 8 is greater than 1000, the reward is equal to the maximum points divided by 8.
+  // If the maximum points divided by 6 is greater than 1000, the reward is equal to the maximum points divided by 6.
   // Otherwise, the reward is a minimum of 1000.
   const reward =
-    userProfile.maxPoints / 8 > 1000 ? userProfile.maxPoints / 8 : 1000;
+    userProfile.maxPoints / 6 > 1000 ? userProfile.maxPoints / 6 : 1000;
 
   const questsList = {
     FirstQuest: {

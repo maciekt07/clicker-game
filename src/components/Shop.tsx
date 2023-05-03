@@ -87,6 +87,10 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
           ),
         ],
         newAchievements: newAchievements,
+        dateAchievements: {
+          ...userProfile.dateAchievements,
+          [unlockedPurchaseAchievements[0].name]: new Date(),
+        },
       });
     }
   };

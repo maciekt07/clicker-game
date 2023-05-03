@@ -16,4 +16,5 @@ export const defaultUserProfile: User = {
   achievements: [],
   newAchievements: 0,
   audioVolume: 0.5,
+  dateAchievements: {},
 };

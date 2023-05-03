@@ -70,6 +70,11 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           ...userProfile.achievements,
           ...unlockedClickAchievements.map((achievement) => achievement.name),
         ],
+        dateAchievements: {
+          ...userProfile.dateAchievements,
+          ...userProfile.dateAchievements,
+          [unlockedClickAchievements[0].name]: new Date(),
+        },
         newAchievements: newAchievements,
       });
     }
@@ -110,6 +115,11 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           ...unlockedAchievements.map((achievement) => achievement.name),
         ],
         newAchievements: newAchievements,
+        dateAchievements: {
+          ...userProfile.dateAchievements,
+          ...userProfile.dateAchievements,
+          [unlockedAchievements[0].name]: new Date(),
+        },
       });
     } else {
       setUserProfile({
@@ -163,10 +173,23 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
         achievements: updatedAchievements,
         points: updatedPoints,
         newAchievements: newAchievements,
+
+        dateAchievements: {
+          ...userProfile.dateAchievements,
+          ...userProfile.dateAchievements,
+          [shareAchievement.name]: new Date(),
+        },
       });
       showToast({
         header: `${shareAchievement.name} unlocked!`,
-        text: `${shareAchievement.description}`,
+        text: (
+          <span>
+            {shareAchievement.description}{" "}
+            {shareAchievement.reward && (
+              <b>Reward: 🍯{shareAchievement.reward}</b>
+            )}
+          </span>
+        ),
         emoji: shareAchievement.emoji,
         volume: userProfile.audioVolume,
       });

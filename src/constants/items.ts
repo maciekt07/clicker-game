@@ -53,6 +53,16 @@ export const items: { [key: string]: Item } = {
     emoji: "🍯",
   },
 
+  beekeepersHat: {
+    name: "Beekeeper's Hat",
+    cost: 1000,
+    multiplier: 10,
+    perSecond: 3,
+    description:
+      "A hat with a veil that protects the beekeeper's head and face from bee stings.",
+    emoji: "🧢",
+  },
+
   queenBee: {
     name: "Queen Bee",
     cost: 2500,
@@ -209,5 +219,14 @@ export const items: { [key: string]: Item } = {
     description:
       "A place that showcases the history, culture, and science of bees and honey.",
     emoji: "🏛️",
+  },
+  honeyBeeStatue: {
+    name: "Honey Bee Statue",
+    cost: 1750000000,
+    multiplier: 200000,
+    perSecond: 35000,
+    description:
+      " A statue of a honey bee made of pure gold that represents the ultimate achievement in beekeeping.",
+    emoji: "🗽",
   },
 };

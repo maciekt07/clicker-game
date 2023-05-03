@@ -39,6 +39,10 @@ export const VolumeSlider = ({
         audioVolume: value as number,
         achievements: updatedAchievements,
         newAchievements: newAchievements,
+        dateAchievements: {
+          ...userProfile.dateAchievements,
+          [volumeAchievement.name]: new Date(),
+        },
       });
       showToast({
         header: `${volumeAchievement.name} unlocked!`,

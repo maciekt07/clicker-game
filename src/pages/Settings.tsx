@@ -27,7 +27,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [imgError, setImgError] = useState("");
   const [imgDialog, setImgDialog] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
-
   const n = useNavigate();
   useEffect(() => {
     document.title = `Settings - ${userProfile.name} - Honey Clicker`;
@@ -39,7 +38,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
   }, [userProfile]);
 
   const createdAt = new Date(userProfile.createdAt);
-
   const handleChangeImage = () => {
     if (isImageUrl(imgLink) && imgLink.length <= 255) {
       setImgDialog(false);
@@ -58,6 +56,10 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
           achievements: updatedAchievements,
           profilePicture: imgLink === "" ? null : imgLink,
           newAchievements: newAchievements,
+          dateAchievements: {
+            ...userProfile.dateAchievements,
+            [changeImageAchievement.name]: new Date(),
+          },
         });
         showToast({
           header: `${changeImageAchievement.name} unlocked!`,

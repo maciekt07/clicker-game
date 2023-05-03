@@ -28,4 +28,7 @@ export interface User {
   achievements: string[];
   newAchievements: number;
   audioVolume: number;
+  dateAchievements: {
+    [achievementName: string]: Date;
+  };
 }

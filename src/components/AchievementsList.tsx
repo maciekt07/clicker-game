@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const AchievementsList = ({ userProfile }: Props) => {
+  //TODO: remove `achievements` array from `userProfile` and map achievements list with `dateAchievements` object instead
   // Filter out the achievements that the user has unlocked
   const unlockedAchievements = Object.values(achievements).filter(
     (achievement) => userProfile.achievements.includes(achievement.name)
@@ -22,7 +23,7 @@ export const AchievementsList = ({ userProfile }: Props) => {
 
   const percentageProgress =
     (userProfile.achievements.length / achievementsCount) * 100;
-
+  console.log(userProfile.dateAchievements);
   return (
     <Container>
       <span style={{ marginLeft: "32px" }}>
@@ -66,8 +67,25 @@ export const AchievementsList = ({ userProfile }: Props) => {
               </Avatar>
             </AvatarWrapper>
             <TextWrapper>
-              <Name>{achievement.name}</Name>
-              <br />
+              <span
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
+                <Name>{achievement.name}</Name>
+                <DateText>
+                  {new Date(
+                    userProfile.dateAchievements[achievement.name]
+                  ).toLocaleDateString()}{" "}
+                  {new Date(
+                    userProfile.dateAchievements[achievement.name]
+                  ).toLocaleTimeString()}
+                </DateText>
+              </span>
+
               <Description>
                 <b>
                   {achievement.description}
@@ -119,6 +137,11 @@ const AvatarWrapper = styled.div`
 const Name = styled.span`
   font-size: 20px;
   font-weight: bold;
+`;
+
+const DateText = styled.span`
+  font-style: italic;
+  font-size: 14px;
 `;
 
 const Description = styled.span`
