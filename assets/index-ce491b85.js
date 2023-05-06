@@ -592,7 +592,7 @@ Error generating stack: `+i.message+`
   &:hover {
     background: #f5f5f5e8;
   }
-`,WO=({userProfile:e,setUserProfile:t})=>{const[n,r]=g.useState(qu.audioVolume),o=()=>{r(e.audioVolume),e.audioVolume===0?t({...e,audioVolume:n!==0?n:1}):t({...e,audioVolume:0})},i=(s,l)=>{const c=_n["volumeController"],d=e.newAchievements+1;if(e.achievements.includes(c.name))t({...e,audioVolume:l});else{const p=[...e.achievements,c.name];t({...e,audioVolume:l,achievements:p,newAchievements:d,dateAchievements:{...e.dateAchievements,[c.name]:new Date}}),Yr({header:`${c.name} unlocked!`,text:c.description,emoji:c.emoji,volume:e.audioVolume})}},a=()=>{const s=Math.floor(e.audioVolume*100);return s===0?"Muted":s+"%"};return J4("m",o),Y(I1,{spacing:2,direction:"row",sx:{mb:1,width:"225px",marginLeft:"16px",background:"#ffffff2f",padding:"12px 24px 12px 18px",borderRadius:"16px",transition:".3s all",":hover":{background:"#ffffff35"},"@media (max-width: 600px)":{width:"180px",padding:"8px 18px 8px 9px"}},alignItems:"center",children:[S(Fa,{title:e.audioVolume===0?"Unmute":"Mute",children:S(qf,{sx:{color:"white"},onClick:o,children:e.audioVolume===0?S(zO,{}):e.audioVolume<=.5?S(NO,{}):S(_O,{})})}),S(kP,{sx:{width:"200px"},"aria-label":"Volume Slider",value:e.audioVolume,min:0,max:1,step:.01,valueLabelFormat:a,valueLabelDisplay:"auto",onChange:i})]})},UO=({userProfile:e,setUserProfile:t})=>{const[n,r]=g.useState(86400);g.useEffect(()=>{const l=setInterval(()=>{r(u=>u-1),n===0&&t({...e,quests:{...e.quests,daysCounter:e.quests.daysCounter+1}})},1e3);return()=>clearInterval(l)},[]),g.useEffect(()=>{const l=new Date(e.createdAt).getTime()/1e3,d=86400-(Math.floor(Date.now()/1e3)-l)%86400;r(d)},[e.createdAt]);const o=new Date(n*1e3).toISOString().substr(11,8),i=e.maxPoints/5>5e3?e.maxPoints/5:5e3,a={FirstQuest:{name:"available soon (or not)",completed:!1},SecondQuest:{name:"completed quest",completed:!0}},s=Object.values(a).every(l=>l.completed);return Y(HO,{children:[Y(YO,{children:[S(LO,{}),"   Daily quests for ",e.name]}),S("p",{children:e.quests.daysCounter}),Y("p",{children:[s?"Time to next quests: ":"Time remaining: ",S(KO,{nearTheEnd:n<7200,children:o})]}),s?S(GO,{children:"All quests completed"}):Object.values(a).map((l,u)=>Y(QO,{completed:l.completed,children:[l.completed&&S(RO,{})," ",l.name]},u)),!s&&Y("p",{children:["Reward = 🍯",L1(i)]})]})},HO=he.div`
+`,WO=({userProfile:e,setUserProfile:t})=>{const[n,r]=g.useState(qu.audioVolume),o=()=>{r(e.audioVolume),e.audioVolume===0?t({...e,audioVolume:n!==0?n:1}):t({...e,audioVolume:0})},i=(s,l)=>{const c=_n["volumeController"],d=e.newAchievements+1;if(e.achievements.includes(c.name))t({...e,audioVolume:l});else{const p=[...e.achievements,c.name];t({...e,audioVolume:l,achievements:p,newAchievements:d,dateAchievements:{...e.dateAchievements,[c.name]:new Date}}),Yr({header:`${c.name} unlocked!`,text:c.description,emoji:c.emoji,volume:e.audioVolume})}},a=()=>{const s=Math.floor(e.audioVolume*100);return s===0?"Muted":s+"%"};return J4("m",o),Y(I1,{spacing:2,direction:"row",sx:{mb:1,width:"225px",marginLeft:"16px",background:"#ffffff2f",padding:"12px 24px 12px 18px",borderRadius:"16px",transition:".3s all",":hover":{background:"#ffffff35"},"@media (max-width: 600px)":{width:"180px",padding:"8px 18px 8px 9px"}},alignItems:"center",children:[S(Fa,{title:e.audioVolume===0?"Unmute":"Mute",children:S(qf,{sx:{color:"white"},onClick:o,children:e.audioVolume===0?S(zO,{}):e.audioVolume<=.5?S(NO,{}):S(_O,{})})}),S(kP,{sx:{width:"200px"},"aria-label":"Volume Slider",value:e.audioVolume,min:0,max:1,step:.01,valueLabelFormat:a,valueLabelDisplay:"auto",onChange:i})]})},UO=({userProfile:e,setUserProfile:t})=>{const[n,r]=g.useState(86400);g.useEffect(()=>{const l=setInterval(()=>{r(u=>u-1),n===0&&t({...e,quests:{...e.quests,daysCounter:e.quests.daysCounter+1}})},1e3);return()=>clearInterval(l)},[]),g.useEffect(()=>{const l=new Date(e.createdAt).getTime()/1e3,d=86400-(Math.floor(Date.now()/1e3)-l)%86400;r(d)},[e.createdAt]);const o=new Date(n*1e3).toISOString().substr(11,8),i=e.maxPoints/4>5e3?e.maxPoints/4:5e3,a={FirstQuest:{name:"available soon (or not)",completed:!1},SecondQuest:{name:"completed quest",completed:!0}},s=Object.values(a).every(l=>l.completed);return Y(HO,{children:[Y(YO,{children:[S(LO,{}),"   Daily quests for ",e.name]}),e.quests.daysCounter&&S("p",{children:e.quests.daysCounter}),Y("p",{children:[s?"Time to next quests: ":"Time remaining: ",S(KO,{nearTheEnd:n<7200,children:o})]}),s?S(GO,{children:"All quests completed"}):Object.values(a).map((l,u)=>Y(QO,{completed:l.completed,children:[l.completed&&S(RO,{})," ",l.name]},u)),!s&&Y("p",{children:["Reward = 🍯",L1(i)]})]})},HO=he.div`
   background: #ffffff2f;
   margin-left: 20px;
   min-width: 300px;
@@ -600,10 +600,10 @@ Error generating stack: `+i.message+`
   position: absolute;
   top: 220px;
   border-radius: 20px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     position: relative;
     top: 0;
-    margin: 25px 175px;
+    margin: 25px 20vw;
   }
   @media (max-width: 700px) {
     margin: 25px 60px;
@@ -696,7 +696,7 @@ Error generating stack: `+i.message+`
   bottom: 12px;
   right: 12px;
   width: 10vw;
-  max-width: 128px;
+  max-width: 96px;
   animation: ${oI} 1.5s ease-in-out infinite;
   @media (max-width: 1300px) {
     opacity: 0.8;
