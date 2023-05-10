@@ -31,8 +31,8 @@ const Btn = styled.button<BtnProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 25px;
   z-index: 99;
   border: none;
   outline: none;

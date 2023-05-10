@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
 :root {
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
@@ -11,6 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   --toastify-font-family: "Poppins", sans-serif;
+  --toastify-color-error: #ff3737;
   --toastify-color-progress-dark: #f28705;
   --toastify-color-progress-light: #f28705;
 }
@@ -56,7 +60,9 @@ button {
   padding: 12px;
   border-radius: 18px;
   color: #4b4b4b;
+  user-select: none;
 }
+
 .MuiSlider-valueLabel {
   border-radius: 10px !important;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25) !important;
@@ -71,3 +77,5 @@ button {
 .MuiSlider-valueLabel::after {
   display: none;
 }
+
+`;

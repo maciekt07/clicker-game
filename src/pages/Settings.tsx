@@ -21,12 +21,12 @@ import { UserProfileProps } from "../types/userProfileProps";
 import { toast } from "react-toastify";
 
 export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
-  const [name, setName] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [imgLink, setImgLink] = useState("");
-  const [imgError, setImgError] = useState("");
-  const [imgDialog, setImgDialog] = useState(false);
-  const [logoutDialog, setLogoutDialog] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
+  const [imgLink, setImgLink] = useState<string>("");
+  const [imgError, setImgError] = useState<string>("");
+  const [imgDialog, setImgDialog] = useState<boolean>(false);
+  const [logoutDialog, setLogoutDialog] = useState<boolean>(false);
   const n = useNavigate();
   useEffect(() => {
     document.title = `Settings - ${userProfile.name} - Honey Clicker`;
@@ -121,9 +121,6 @@ export const Settings = ({ userProfile, setUserProfile }: UserProfileProps) => {
             alt="Profile Avatar"
             onError={() => {
               setUserProfile({ ...userProfile, profilePicture: null });
-              toast.error(
-                "Failed to load profile picture. Please check if image url is correct"
-              );
             }}
             style={{
               width: "128px",

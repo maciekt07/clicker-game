@@ -9,15 +9,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { nameToAvatar } from "../utils";
 import { FormContainer, NameInput, CreateButton } from "../styles";
+import { UserProfileProps } from "../types/userProfileProps";
 
-interface Props {
-  onSave: (name: string, createdAt: Date) => void;
-}
-
-export const CreateProfile: React.FC<Props> = ({ onSave }) => {
-  const [inputValue, setInputValue] = useState("");
+export const CreateProfile = ({
+  userProfile,
+  setUserProfile,
+}: UserProfileProps) => {
+  const [inputValue, setInputValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [dialog, setDialog] = useState(true);
+  const [dialog, setDialog] = useState<boolean>(true);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessage(null);
     setInputValue(event.target.value);
@@ -32,7 +32,11 @@ export const CreateProfile: React.FC<Props> = ({ onSave }) => {
     } else if (inputValue.length > 16)
       setErrorMessage("Can be up to 16 characters long");
     else {
-      onSave(inputValue, new Date());
+      setUserProfile({
+        ...userProfile,
+        name: inputValue,
+        createdAt: new Date(),
+      });
     }
   };
 

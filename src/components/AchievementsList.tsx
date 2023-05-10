@@ -23,7 +23,6 @@ export const AchievementsList = ({ userProfile }: Props) => {
 
   const percentageProgress =
     (userProfile.achievements.length / achievementsCount) * 100;
-  console.log(userProfile.dateAchievements);
   return (
     <Container>
       <span style={{ marginLeft: "32px" }}>
@@ -56,8 +55,8 @@ export const AchievementsList = ({ userProfile }: Props) => {
               <Avatar
                 style={{
                   marginLeft: "12px",
-                  width: "76px",
-                  height: "76px",
+                  width: "82px",
+                  height: "82px",
                   fontSize: "28px",
                   background: "#f28705",
                   boxShadow: "0 0 30px -1px #f28705cb",
@@ -67,24 +66,19 @@ export const AchievementsList = ({ userProfile }: Props) => {
               </Avatar>
             </AvatarWrapper>
             <TextWrapper>
-              <span
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "6px",
-                }}
-              >
+              <FirstLineContainer>
                 <Name>{achievement.name}</Name>
-                <DateText>
-                  {new Date(
-                    userProfile.dateAchievements[achievement.name]
-                  ).toLocaleDateString()}{" "}
-                  {new Date(
-                    userProfile.dateAchievements[achievement.name]
-                  ).toLocaleTimeString()}
-                </DateText>
-              </span>
+                {userProfile.dateAchievements && (
+                  <DateText>
+                    {new Date(
+                      userProfile.dateAchievements[achievement.name]
+                    ).toLocaleDateString()}{" "}
+                    {new Date(
+                      userProfile.dateAchievements[achievement.name]
+                    ).toLocaleTimeString()}
+                  </DateText>
+                )}
+              </FirstLineContainer>
 
               <Description>
                 <b>
@@ -123,6 +117,7 @@ const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 8px 32px;
+
   background: #e2e2e2;
   padding: 16px 32px 16px 16px;
   border-radius: 24px;
@@ -132,6 +127,18 @@ const AvatarWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-right: 16px;
+`;
+
+//TODO: improve name and date text on smaller screens
+
+const FirstLineContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  @media (max-width: 768px) {
+    justify-content: space-evenly;
+  }
 `;
 
 const Name = styled.span`

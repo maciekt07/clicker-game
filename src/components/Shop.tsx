@@ -13,6 +13,7 @@ import {
 import { achievements, items } from "../constants";
 import BuySound from "../assets/sounds/buy.mp3";
 import { formatNumber, playSound, showToast } from "../utils";
+import { Tooltip } from "@mui/material";
 
 // The new cost of the item is calculated using the formula:
 // newCost = costBase * (rateGrowth ^ itemCount)
@@ -20,12 +21,12 @@ import { formatNumber, playSound, showToast } from "../utils";
 // rateGrowth is the factor by which the cost increases with each purchase (e.g. 1.1 for 10% increase),
 // and itemCount is the current number of items owned by the user.
 
-//TODO: Add toast when unlocked new item
 export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
+  const rateGrown = 1.3;
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
     const selectedItem = items[item];
-    const rateGrown = 1.1;
+
     const itemCount = userProfile.inventory[item] || 0;
     const newCost = Math.floor(
       selectedItem.cost * Math.pow(rateGrown, itemCount)
@@ -112,7 +113,9 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
           }
 
           const itemCount = userProfile.inventory[itemName] || 0;
-          const newCost = Math.floor(item.cost * Math.pow(1.1, itemCount));
+          const newCost = Math.floor(
+            item.cost * Math.pow(rateGrown, itemCount)
+          );
 
           return (
             <ItemWrapper key={itemName}>

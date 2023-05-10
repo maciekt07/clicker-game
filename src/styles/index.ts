@@ -11,6 +11,8 @@ export {
   ClickImg,
   ClickButton,
   ShareButton,
+  Offline,
+  Points,
 } from "./Game.styled";
 export {
   Container,
@@ -27,3 +29,4 @@ export {
   SettingsInput,
   SaveButton,
 } from "./Settings.styled";
+export { GlobalStyle } from "./GlobalStyles";

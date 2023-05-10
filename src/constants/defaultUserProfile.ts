@@ -11,10 +11,13 @@ export const defaultUserProfile: User = {
   clicks: 0,
   maxPoints: 0,
   multiplier: 1,
-  perSecond: 0.1,
+  perSecond: 1,
   inventory: {},
   achievements: [],
   newAchievements: 0,
   audioVolume: 0.5,
   dateAchievements: {},
+  quests: {
+    daysCounter: 0,
+  },
 };

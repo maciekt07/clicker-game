@@ -11,6 +11,7 @@ Represents the user profile data structure.
 @property {string[]} achievements - The user's list of achieved achievements.
 @property {number} newAchievements - The number of unread achievements.
 @property {number} audioVolume - The user's audio volume level.
+@property {Object.<string, Date>} dateAchievements - The dates when the user achieved each achievement.
 */
 
 export interface User {
@@ -30,5 +31,8 @@ export interface User {
   audioVolume: number;
   dateAchievements: {
     [achievementName: string]: Date;
+  };
+  quests: {
+    daysCounter: number;
   };
 }

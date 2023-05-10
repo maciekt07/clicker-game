@@ -20,7 +20,12 @@ import {
 } from "@mui/material";
 import { AvatarContainer, colorPalette } from "../styles";
 import { UserProfileProps } from "../types/userProfileProps";
-import { EmojiEvents, Logout, ManageAccounts } from "@mui/icons-material";
+import {
+  Close,
+  EmojiEvents,
+  Logout,
+  ManageAccounts,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
 import { toast } from "react-toastify";
@@ -30,8 +35,8 @@ export const ProfileAvatar = ({
 }: UserProfileProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const [logoutDialog, setLogoutDialog] = useState(false);
-  const [achievementsDialog, setAchievementsDialog] = useState(false);
+  const [logoutDialog, setLogoutDialog] = useState<boolean>(false);
+  const [achievementsDialog, setAchievementsDialog] = useState<boolean>(false);
   const n = useNavigate();
   return (
     <>
@@ -47,12 +52,19 @@ export const ProfileAvatar = ({
           <IconButton>
             <Badge
               badgeContent={userProfile.newAchievements}
+              max={9}
               color="secondary"
               overlap="circular"
             >
               <Avatar
                 src={userProfile.profilePicture?.toString()}
                 alt="Profile Avatar"
+                onError={() => {
+                  setUserProfile({ ...userProfile, profilePicture: null });
+                  toast.error(
+                    "Failed to load profile picture. Please check if image url is correct"
+                  );
+                }}
                 style={{
                   width: "60px",
                   height: "60px",
@@ -191,8 +203,20 @@ export const ProfileAvatar = ({
         open={achievementsDialog}
         onClose={() => setAchievementsDialog(false)}
       >
-        <DialogTitle sx={{ marginLeft: "20px" }}>
-          {userProfile.name} Achievements{" "}
+        <DialogTitle
+          sx={{
+            marginLeft: "20px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span> {userProfile.name} Achievements</span>
+          <IconButton
+            onClick={() => setAchievementsDialog(false)}
+            color="error"
+          >
+            <Close />
+          </IconButton>
         </DialogTitle>
         <AchievementsList userProfile={userProfile} />
         <br />

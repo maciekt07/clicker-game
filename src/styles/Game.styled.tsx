@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { styled as muistyled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { colorPalette } from "./theme";
@@ -62,4 +62,49 @@ export const ShareButton = styled.button`
   &:hover {
     background: #ffffff35;
   }
+`;
+export const Offline = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  & span {
+    color: ${colorPalette.red};
+    text-shadow: 0 0 6px#ff5e5e;
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+`;
+
+interface PointsProps {
+  show: boolean;
+}
+
+const animatePoints = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+`;
+
+export const Points = styled.div<PointsProps>`
+  font-size: 20px;
+  position: absolute;
+  left: 60vw;
+  transition: 0.1s all;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  animation: ${(props) =>
+    props.show ? css`var(--animatePoints) .5s ease-out` : "none"};
+
+  /* Define animation as a CSS variable */
+  --animatePoints: ${animatePoints};
 `;

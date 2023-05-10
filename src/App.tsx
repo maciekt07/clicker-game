@@ -6,7 +6,7 @@ import { defaultUserProfile } from "./constants";
 import { User } from "./types/user";
 import { Settings } from "./pages/Settings";
 import { ThemeProvider } from "@mui/material";
-import { MuiTheme } from "./styles";
+import { GlobalStyle, MuiTheme } from "./styles";
 import { ToastContainer } from "react-toastify";
 import { NotFound } from "./pages/NotFound";
 import { MainLayout } from "./layouts/MainLayout";
@@ -19,6 +19,7 @@ function App() {
   return (
     <ThemeProvider theme={MuiTheme}>
       <MainLayout {...userProfileProps}>
+        <GlobalStyle />
         <Routes>
           <Route path="/" element={<Game {...userProfileProps} />} />
           <Route path="/about" element={<About />} />

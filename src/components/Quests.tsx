@@ -4,17 +4,26 @@ import { colorPalette } from "../styles";
 import { compactFormat } from "../utils";
 import { Done, TaskAlt } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 
 // TODO: Implement the quests component as it is not done yet.
 
 export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
-  const [timer, setTimer] = useState(86400); // 24h in seconds
+  const [timer, setTimer] = useState<number>(86400); // 24h in seconds
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const timerInterval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
     }, 1000);
-
-    return () => clearInterval(intervalId);
+    if (timer <= 0) {
+      setUserProfile({
+        ...userProfile,
+        quests: {
+          ...userProfile.quests,
+          daysCounter: userProfile.quests.daysCounter + 1,
+        },
+      });
+    }
+    return () => clearInterval(timerInterval);
   }, []);
 
   // Restart the timer if it's up
@@ -28,30 +37,23 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
 
   const timeRemaining = new Date(timer * 1000).toISOString().substr(11, 8);
 
-  // Calculates the reward for completing all quests based on the user's maximum points.
-  // If the maximum points divided by 6 is greater than 1000, the reward is equal to the maximum points divided by 6.
-  // Otherwise, the reward is a minimum of 1000.
   const reward =
-    userProfile.maxPoints / 6 > 1000 ? userProfile.maxPoints / 6 : 1000;
+    userProfile.maxPoints * 1.2 > 5000 ? userProfile.maxPoints * 1.2 : 5000;
 
-  const questsList = {
+  const [questsList, setQuestsList] = useState({
     FirstQuest: {
       name: "available soon (or not)",
+      description: "quests are not aviable yet",
+      emoji: "🙄",
       completed: false,
     },
     SecondQuest: {
       name: "completed quest",
+      description: "this is completed quest",
+      emoji: "🍯",
       completed: true,
     },
-    // clicksQuest: {
-    //   name: "Click honey jar 1000 times",
-    //   completed: false,
-    // },
-    // pointsQuest: {
-    //   name: "Collect 10 000 points",
-    //   completed: false,
-    // },
-  };
+  });
 
   const allCompleted = Object.values(questsList).every(
     (quest) => quest.completed
@@ -61,22 +63,41 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
       <Header>
         <TaskAlt /> &nbsp; Daily quests for {userProfile.name}
       </Header>
+      <p>{userProfile.quests.daysCounter}</p>
 
       <p>
         {allCompleted ? "Time to next quests: " : "Time remaining: "}
-        <TimeRemaining nearTheEnd={timer < 7200}>{timeRemaining}</TimeRemaining>
+        <TimeRemaining nearTheEnd={timer < 7200 && !allCompleted}>
+          {timeRemaining}
+        </TimeRemaining>
       </p>
 
       {!allCompleted ? (
         Object.values(questsList).map((quest, index) => (
           <Item completed={quest.completed} key={index}>
-            {quest.completed && <Done />} {quest.name}
+            {quest.completed && <Done />} {quest.name}{" "}
           </Item>
         ))
       ) : (
-        <Completed>All quests completed</Completed>
+        <Completed>All quests completed!</Completed>
       )}
-      {!allCompleted && <p>Reward = 🍯{compactFormat(reward)}</p>}
+      {!allCompleted && <p>Reward: 🍯{compactFormat(reward)}</p>}
+      <Button
+        onClick={() => {
+          setQuestsList((prevState) => {
+            return {
+              ...prevState,
+              FirstQuest: {
+                ...prevState.FirstQuest,
+                completed:
+                  questsList.FirstQuest.completed === true ? false : true,
+              },
+            };
+          });
+        }}
+      >
+        Complete
+      </Button>
     </Container>
   );
 };
@@ -89,10 +110,10 @@ const Container = styled.div`
   position: absolute;
   top: 220px;
   border-radius: 20px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     position: relative;
     top: 0;
-    margin: 25px 175px;
+    margin: 25px 20vw;
   }
   @media (max-width: 700px) {
     margin: 25px 60px;
@@ -122,6 +143,9 @@ const Completed = styled.p`
   font-weight: bold;
   text-align: center;
   margin: 28px;
+  background-color: #ffffff2a;
+  padding: 12px 16px;
+  border-radius: 8px;
 `;
 
 const Item = styled.div<ItemProps>`
@@ -132,6 +156,10 @@ const Item = styled.div<ItemProps>`
   padding: 12px 16px;
   border-radius: 8px;
   opacity: ${(props) => (props.completed ? 0.6 : 0.9)};
+  font-weight: ${(props) => !props.completed && "500"};
   font-style: ${(props) => (props.completed ? "italic" : "normal")};
   text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
+`;
+const Description = styled.span`
+  font-size: 12px;
 `;

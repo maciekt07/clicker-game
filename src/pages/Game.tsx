@@ -7,33 +7,39 @@ import {
   VolumeSlider,
   Quests,
 } from "../components";
-import { ClickButton, ClickContainer, ClickImg, ShareButton } from "../styles";
+import {
+  ClickButton,
+  ClickContainer,
+  ClickImg,
+  Offline,
+  Points,
+  ShareButton,
+} from "../styles";
 import { compactFormat, playSound, showToast } from "../utils";
 import { achievements } from "../constants";
 import "react-toastify/dist/ReactToastify.css";
 import HoneyJar from "../assets/honey-jar.png";
 import ClickSound from "../assets/sounds/click.mp3";
 import { UserProfileProps } from "../types/userProfileProps";
-import { Share } from "@mui/icons-material";
+import { Share, WifiOff } from "@mui/icons-material";
+import { useOnlineStatus } from "../hooks";
 
 export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const userProfileProps = { userProfile, setUserProfile };
   const [clicks, setClicks] = useState<number>(userProfile.clicks);
+  const [addedPoints, setAddedPoints] = useState<number>(0);
+  const [showAddedPoints, setShowAddedPoints] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  const handleSetUserProfile = (name: string | null, createdAt: Date) => {
-    setUserProfile({
-      ...userProfile,
-      name: name,
-      createdAt: createdAt,
-    });
-  };
-
+  const isOnline = useOnlineStatus();
   // Function to handle clicking on the honey jar
   const handleClick = () => {
     // Play click sound
     playSound(ClickSound, userProfile.audioVolume);
     // Add points based on user's multiplier
     handleAddPoints(userProfile.points + userProfile.multiplier);
+    setAddedPoints(userProfile.multiplier);
+    !showAddedPoints && setShowAddedPoints(true);
+    //TODO: display the number of added points next to the button after clicking
     // Increment click count
     setClicks(clicks + 1);
     //animation
@@ -80,10 +86,17 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowAddedPoints(false);
+    }, 100);
+  }, [showAddedPoints]);
+
   // Function to add points to user's profile
   const handleAddPoints = (points: number) => {
     const newPoints = points;
     const newMaxPoints = Math.max(newPoints, userProfile.maxPoints);
+
     // Check for unlocked achievements
     const unlockedAchievements = Object.values(achievements).filter(
       (achievement) =>
@@ -135,7 +148,11 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
     if (userProfile.name !== null) {
       //Points per second interval
       const intervalId = setInterval(() => {
-        handleAddPoints(userProfile.points + userProfile.perSecond / 100);
+        const pointsPerSecond = (
+          userProfile.points +
+          userProfile.perSecond / 100
+        ).toFixed(3);
+        handleAddPoints(Number(pointsPerSecond));
       }, 10);
 
       return () => {
@@ -209,7 +226,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   return (
     <>
       {userProfile.name === null ? (
-        <CreateProfile onSave={handleSetUserProfile} />
+        <CreateProfile {...userProfileProps} />
       ) : (
         <>
           <VolumeSlider {...userProfileProps} />
@@ -232,10 +249,18 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
               />
             </ClickButton>
           </ClickContainer>
+          {/* TODO: improve the display of added points  */}
+          {/* <Points show={showAddedPoints}>+{addedPoints}</Points> */}
           <StatsInfo userProfile={userProfile} />
           {/*TODO: Implement the quests component as it is not done yet. */}
           <Quests {...userProfileProps} />
           <Shop {...userProfileProps} />
+          {!isOnline && (
+            <Offline>
+              <WifiOff /> &nbsp; You're <span> offline </span> but you can still
+              play the game!
+            </Offline>
+          )}
           <BackToTop />
         </>
       )}

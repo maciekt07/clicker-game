@@ -115,7 +115,7 @@ export const About = () => {
             </Button>
           </Stack>
         </AboutContainer>
-        {/* <BeeImg src={HappyBee} alt="happy bee" /> */}
+        <BeeImg src={HappyBee} alt="happy bee" />
       </div>
     </>
   );
@@ -186,25 +186,25 @@ const AboutLink = styled.a<LinkProps>`
     box-shadow: none;
   }
 `;
-// const bounce = keyframes`
-//    0% {
-//     transform: translateY(0);
-//   }
-//   50% {
-//     transform: translateY(-12px);
-//   }
-//   100% {
-//     transform: translateY(0);
-//   }
-// `;
-// const BeeImg = styled.img`
-//   position: fixed;
-//   bottom: 12px;
-//   right: 12px;
-//   width: 12vw;
-//   max-width: 140px;
-//   animation: ${bounce} 1.5s ease-in-out infinite;
-//   @media (max-width: 1300px) {
-//     opacity: 0.8;
-//   }
-// `;
+const bounce = keyframes`
+   0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+const BeeImg = styled.img`
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 10vw;
+  max-width: 96px;
+  animation: ${bounce} 1.5s ease-in-out infinite;
+  @media (max-width: 1300px) {
+    opacity: 0.8;
+  }
+`;
