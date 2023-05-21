@@ -89,7 +89,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
   useEffect(() => {
     setTimeout(() => {
       setShowAddedPoints(false);
-    }, 100);
+    }, 250);
   }, [showAddedPoints]);
 
   // Function to add points to user's profile
@@ -249,7 +249,8 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
               />
             </ClickButton>
           </ClickContainer>
-          {/* TODO: improve the display of added points  */}
+
+          {/* TODO: improve the animation of added points  */}
           {/* <Points show={showAddedPoints}>+{addedPoints}</Points> */}
           <StatsInfo userProfile={userProfile} />
           {/*TODO: Implement the quests component as it is not done yet. */}

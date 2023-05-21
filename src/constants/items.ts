@@ -204,29 +204,38 @@ export const items: { [key: string]: Item } = {
   },
   beehiveObservatory: {
     name: "Beehive Observatory",
-    cost: 750000000,
-    multiplier: 75000,
-    perSecond: 150000,
+    cost: 1000000000,
+    multiplier: 150000,
+    perSecond: 350000,
     description:
       "An advanced bee observatory with high-tech cameras and sensors for studying bee behavior in their habitat.",
     emoji: "🔭",
   },
   beeMuseum: {
     name: "Bee Museum",
-    cost: 1000000000,
-    multiplier: 100000,
-    perSecond: 200000,
+    cost: 5000000000,
+    multiplier: 750000,
+    perSecond: 1500000,
     description:
       "A place that showcases the history, culture, and science of bees and honey.",
     emoji: "🏛️",
   },
   honeyBeeStatue: {
     name: "Honey Bee Statue",
-    cost: 1750000000,
-    multiplier: 200000,
-    perSecond: 350000,
+    cost: 10000000000,
+    multiplier: 2000000,
+    perSecond: 4000000,
     description:
       " A statue of a honey bee made of pure gold that represents the ultimate achievement in beekeeping.",
     emoji: "🗽",
+  },
+  programmerBee: {
+    name: "Programmer Bee",
+    cost: 50000000000,
+    multiplier: 10000000,
+    perSecond: 250000000,
+    description:
+      "A highly skilled bee who knows how to write code in languages such as JavaScript, React, TypeScript, and more. She has a strong background in front-end development.",
+    emoji: "🐝💻",
   },
 };

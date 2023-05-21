@@ -22,11 +22,7 @@ export const BackToTop = () => {
   );
 };
 
-interface BtnProps {
-  show: boolean;
-}
-
-const Btn = styled.button<BtnProps>`
+const Btn = styled.button<{ show: boolean }>`
   position: fixed;
   display: flex;
   justify-content: center;

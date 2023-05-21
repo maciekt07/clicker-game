@@ -22,7 +22,8 @@ import { Tooltip } from "@mui/material";
 // and itemCount is the current number of items owned by the user.
 
 export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
-  const rateGrown = 1.3;
+  const rateGrown = 1.213742069;
+  const descriptionMaxLength = 169;
   const handleBuyItem = (item: string) => {
     playSound(BuySound, userProfile.audioVolume);
     const selectedItem = items[item];
@@ -122,7 +123,25 @@ export const Shop = ({ userProfile, setUserProfile }: UserProfileProps) => {
               <ItemName>
                 {item.emoji} {item.name}
               </ItemName>
-              <Description>”{item.description}”</Description>
+              {/* tooltip with the rest of the text when it is too long */}
+              <Tooltip
+                title={
+                  item.description.length > descriptionMaxLength
+                    ? `${item.description.substring(descriptionMaxLength)}`
+                    : null
+                }
+              >
+                <Description>
+                  ”
+                  {item.description.length > descriptionMaxLength
+                    ? `${item.description.substring(
+                        0,
+                        descriptionMaxLength
+                      )}...`
+                    : item.description}
+                  ”
+                </Description>
+              </Tooltip>
               <Cost enoughtPoints={userProfile.points >= newCost}>
                 Cost: 🍯{formatNumber(newCost, 0)}
               </Cost>

@@ -164,14 +164,14 @@ export const achievements: { [key: string]: Achievement } = {
       "You've clicked the button 50,000 times, achieving the title of Clicking Titan. Your clicking skills are beyond impressive and have reached a level of mastery that few can match.",
     clicksRequired: 50000,
   },
-  clickingGod: {
-    name: "Clicking God",
-    emoji: "🖱️",
-    description: "Click the button 100,000 times",
-    longDescription:
-      "You've clicked the button 100,000 times, earning the title of Clicking God. Your clicking skills are truly divine!",
-    clicksRequired: 100000,
-  },
+  // clickingGod: {
+  //   name: "Clicking God",
+  //   emoji: "🖱️",
+  //   description: "Click the button 100,000 times",
+  //   longDescription:
+  //     "You've clicked the button 100,000 times, earning the title of Clicking God. Your clicking skills are truly divine!",
+  //   clicksRequired: 100000,
+  // },
   // buys
   buyBeginner: {
     name: "Buy Beginner",
@@ -213,32 +213,32 @@ export const achievements: { [key: string]: Achievement } = {
       "You've made 1,000 purchases and have earned the title of Buy Expert. Your beekeeping knowledge and equipment are second to none!",
     purchasesRequired: 1000,
   },
-  buyingChampion: {
-    name: "Buying Champion",
-    emoji: "🛍️",
-    description: "Buy 5,000 items",
-    longDescription:
-      "You've made 5,000 purchases and have earned the title of Buying Champion. Your beekeeping skills and knowledge have grown tremendously, and your bees are thriving under your expert care.",
-    purchasesRequired: 5000,
-  },
-  buyingMaster: {
-    name: "Buying Master",
-    emoji: "🛍️",
-    description: "Buy 10,000 items",
-    longDescription:
-      "You're a Buying Master, having made 10,000 purchases. Your beekeeping empire is growing rapidly, and your bees are thriving under your care.",
-    purchasesRequired: 10000,
-  },
-
-  buyingLegend: {
-    name: "Buy Legend",
-    emoji: "🛍️",
-    description: "Buy 50,000 items",
-    longDescription:
-      "With 50,000 purchases made, you're now a Buy Legend. Your beekeeping empire is massive, and your honey is in high demand worldwide.",
-    purchasesRequired: 50000,
-  },
   // bro there is no way anyone will do it 💀💀
+  // buyingChampion: {
+  //   name: "Buying Champion",
+  //   emoji: "🛍️",
+  //   description: "Buy 5,000 items",
+  //   longDescription:
+  //     "You've made 5,000 purchases and have earned the title of Buying Champion. Your beekeeping skills and knowledge have grown tremendously, and your bees are thriving under your expert care.",
+  //   purchasesRequired: 5000,
+  // },
+
+  // buyingMaster: {
+  //   name: "Buying Master",
+  //   emoji: "🛍️",
+  //   description: "Buy 10,000 items",
+  //   longDescription:
+  //     "You're a Buying Master, having made 10,000 purchases. Your beekeeping empire is growing rapidly, and your bees are thriving under your care.",
+  //   purchasesRequired: 10000,
+  // },
+  // buyingLegend: {
+  //   name: "Buy Legend",
+  //   emoji: "🛍️",
+  //   description: "Buy 50,000 items",
+  //   longDescription:
+  //     "With 50,000 purchases made, you're now a Buy Legend. Your beekeeping empire is massive, and your honey is in high demand worldwide.",
+  //   purchasesRequired: 50000,
+  // },
   // buyingTitan: {
   //   name: "Buying Titan",
   //   emoji: "🛍️",

@@ -87,11 +87,11 @@ const animatePoints = keyframes`
     opacity: 1;
   }
   20% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     opacity: 1;
   }
   100% {
-    transform: translateY(-50px);
+    transform: translateY(-30px);
     opacity: 0;
   }
 `;
@@ -103,7 +103,7 @@ export const Points = styled.div<PointsProps>`
   transition: 0.1s all;
   opacity: ${(props) => (props.show ? 1 : 0)};
   animation: ${(props) =>
-    props.show ? css`var(--animatePoints) .5s ease-out` : "none"};
+    props.show ? css`var(--animatePoints) .3s ease-out` : "none"};
 
   /* Define animation as a CSS variable */
   --animatePoints: ${animatePoints};

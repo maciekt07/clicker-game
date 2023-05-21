@@ -40,7 +40,7 @@ const Item = css`
   -webkit-text-stroke-color: black; */
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   background: #ffffff1d;
-  height: 410px;
+  height: 420px;
   border: 5px solid ${colorPalette.orange};
   padding: 20px 20px 40px 20px;
   border-radius: 40px;
@@ -102,7 +102,7 @@ export const Description = styled.h4`
   opacity: 0.8;
   font-size: 14px;
   min-height: 72px;
-
+  max-height: 72px;
   font-style: italic;
   font-weight: 600;
 `;

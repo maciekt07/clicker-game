@@ -6,14 +6,21 @@ import { Done, TaskAlt } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 
-// TODO: Implement the quests component as it is not done yet.
+// TODO: Implement the quests component as it is not done yet .
 
 export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
   const [timer, setTimer] = useState<number>(86400); // 24h in seconds
+
   useEffect(() => {
     const timerInterval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
     }, 1000);
+
+    return () => clearInterval(timerInterval);
+  }, []);
+
+  // Restart the timer if it's up
+  useEffect(() => {
     if (timer <= 0) {
       setUserProfile({
         ...userProfile,
@@ -23,11 +30,6 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
         },
       });
     }
-    return () => clearInterval(timerInterval);
-  }, []);
-
-  // Restart the timer if it's up
-  useEffect(() => {
     const createdAt = new Date(userProfile.createdAt).getTime() / 1000; // convert to seconds
     const now = Math.floor(Date.now() / 1000); // convert to seconds
     const diff = now - createdAt;
@@ -63,7 +65,6 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
       <Header>
         <TaskAlt /> &nbsp; Daily quests for {userProfile.name}
       </Header>
-      <p>{userProfile.quests.daysCounter}</p>
 
       <p>
         {allCompleted ? "Time to next quests: " : "Time remaining: "}
@@ -75,7 +76,7 @@ export const Quests = ({ userProfile, setUserProfile }: UserProfileProps) => {
       {!allCompleted ? (
         Object.values(questsList).map((quest, index) => (
           <Item completed={quest.completed} key={index}>
-            {quest.completed && <Done />} {quest.name}{" "}
+            {quest.completed && <Done />} {quest.emoji} {quest.name}{" "}
           </Item>
         ))
       ) : (
@@ -125,19 +126,11 @@ const Header = styled.h3`
   display: flex;
 `;
 
-interface TimeRemainingProps {
-  nearTheEnd: boolean;
-}
-
-const TimeRemaining = styled.span<TimeRemainingProps>`
+const TimeRemaining = styled.span<{ nearTheEnd: boolean }>`
   color: ${(props) => (props.nearTheEnd ? colorPalette.red : "#efefef")};
   text-shadow: ${(props) =>
     props.nearTheEnd ? "0 0 12px#ff5e5e" : "0px 0px 5px rgba(0, 0, 0, 0.25)"};
 `;
-
-interface ItemProps {
-  completed: boolean;
-}
 
 const Completed = styled.p`
   font-weight: bold;
@@ -148,7 +141,7 @@ const Completed = styled.p`
   border-radius: 8px;
 `;
 
-const Item = styled.div<ItemProps>`
+const Item = styled.div<{ completed: boolean }>`
   background: ${colorPalette.peach};
   display: flex;
   color: #333;
