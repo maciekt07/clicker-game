@@ -29,6 +29,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AchievementsList } from "./AchievementsList";
 import { toast } from "react-toastify";
+import styled from "@emotion/styled";
 export const ProfileAvatar = ({
   userProfile,
   setUserProfile,
@@ -100,12 +101,13 @@ export const ProfileAvatar = ({
         }}
         PaperProps={{
           style: {
-            borderRadius: 14,
+            borderRadius: 16,
             marginTop: 24,
+            padding: 2,
           },
         }}
       >
-        <MenuItem
+        <StyledMenuItem
           onClick={() => {
             n("/settings");
             setAnchorEl(null);
@@ -115,9 +117,9 @@ export const ProfileAvatar = ({
             <ManageAccounts />
           </ListItemIcon>
           <ListItemText>Settings</ListItemText>
-        </MenuItem>
+        </StyledMenuItem>
 
-        <MenuItem
+        <StyledMenuItem
           onClick={() => {
             setAnchorEl(null);
             setAchievementsDialog(true);
@@ -137,14 +139,15 @@ export const ProfileAvatar = ({
             </Badge>
           </ListItemIcon>
           <ListItemText>Achievements</ListItemText>
-        </MenuItem>
+        </StyledMenuItem>
         <Divider />
-        <MenuItem
+        <StyledMenuItem
           onClick={() => {
             setLogoutDialog(true);
             setAnchorEl(null);
           }}
           disabled={userProfile.name === null}
+          color="error"
         >
           <ListItemIcon style={{ color: colorPalette.red }}>
             <Logout />
@@ -152,7 +155,7 @@ export const ProfileAvatar = ({
           <ListItemText style={{ color: colorPalette.red }}>
             Logout
           </ListItemText>
-        </MenuItem>
+        </StyledMenuItem>
       </Menu>
       <Dialog
         PaperProps={{
@@ -236,3 +239,9 @@ export const ProfileAvatar = ({
     </>
   );
 };
+
+const StyledMenuItem = styled(MenuItem)`
+  padding: 12px;
+  border-radius: 16px;
+  margin: 6px 4px;
+`;

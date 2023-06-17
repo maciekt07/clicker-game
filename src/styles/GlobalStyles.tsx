@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import cursor from "../assets/cursor.png";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
@@ -21,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 
 * {
   -webkit-tap-highlight-color: transparent;
+  cursor: url(${cursor}), auto !important;
 }
 
 *::selection {

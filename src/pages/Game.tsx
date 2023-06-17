@@ -254,7 +254,7 @@ export const Game = ({ userProfile, setUserProfile }: UserProfileProps) => {
           {/* <Points show={showAddedPoints}>+{addedPoints}</Points> */}
           <StatsInfo userProfile={userProfile} />
           {/*TODO: Implement the quests component as it is not done yet. */}
-          <Quests {...userProfileProps} />
+          {/* <Quests {...userProfileProps} /> */}
           <Shop {...userProfileProps} />
           {!isOnline && (
             <Offline>
